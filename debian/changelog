@@ -1,3 +1,12 @@
+gnome-desktop (2.30.2-2) unstable; urgency=low
+
+  * Include crasher fixes on upstream’s advice.
+    + 01_rr_double_free.patch: double free in the RandR code.
+    + 02_pnp_buffer_overflow.patch: buffer overrun in the PNP parsing 
+      code.
+
+ -- Josselin Mouette <joss@debian.org>  Fri, 12 Nov 2010 20:00:44 +0100
+
 gnome-desktop (2.30.2-1) unstable; urgency=low
 
   * New upstream stable release.
