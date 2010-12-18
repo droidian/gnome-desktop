@@ -7,7 +7,7 @@ Source: gnome-desktop3
 Section: gnome
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Michael Biebl <biebl@debian.org>, Sebastien Bacher <seb128@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Michael Biebl <biebl@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/experimental/gnome-desktop3
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/experimental/gnome-desktop3
 Standards-Version: 3.9.1
@@ -25,7 +25,7 @@ Build-Depends: debhelper (>= 5),
                libx11-dev,
                libxrandr-dev (>= 1.2),
                libgdk-pixbuf2.0-dev (>= 2.21.3),
-               libgtk3.0-dev (>= 2.90.2),
+               libgtk3.0-dev (>= 2.91.6),
                libstartup-notification0-dev (>= 0.5),
                libxml2-dev (>= 2.4.20),
                libgconf2-dev (>= 2.0.0),
