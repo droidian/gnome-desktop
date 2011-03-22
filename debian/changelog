@@ -1,8 +1,15 @@
-gnome-desktop3 (2.91.6.1-2) UNRELEASED; urgency=low
+gnome-desktop3 (2.91.92-1) experimental; urgency=low
 
+  * New upstream release.
+
+  [ Josselin Mouette ]
   * Add missing dependency on gnome-desktop3-data.
 
- -- Josselin Mouette <joss@debian.org>  Mon, 21 Mar 2011 14:26:50 +0100
+  [ Frederic Peters ]
+  * debian/control.in: update dependency on gsettings-desktop-schemas.
+  * debian/rules: disable introspection support at the moment.
+
+ -- Frederic Peters <fpeters@debian.org>  Tue, 22 Mar 2011 14:03:34 +0100
 
 gnome-desktop3 (2.91.6.1-1) experimental; urgency=low
 

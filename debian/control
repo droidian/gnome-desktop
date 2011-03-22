@@ -7,7 +7,7 @@ Source: gnome-desktop3
 Section: gnome
 Priority: optional
 Maintainer: Josselin Mouette <joss@debian.org>
-Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Michael Biebl <biebl@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Frederic Peters <fpeters@debian.org>, Michael Biebl <biebl@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/experimental/gnome-desktop3
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/experimental/gnome-desktop3
 Standards-Version: 3.9.1
@@ -29,7 +29,7 @@ Build-Depends: debhelper (>= 5),
                libxml2-dev (>= 2.4.20),
                libglib2.0-doc,
                libgtk-3-doc,
-               gsettings-desktop-schemas-dev (>= 0.1.4)
+               gsettings-desktop-schemas-dev (>= 2.91.92)
 
 Package: gnome-desktop3-data
 Architecture: all
@@ -43,7 +43,7 @@ Section: libs
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
-         gsettings-desktop-schemas (>= 0.1.4),
+         gsettings-desktop-schemas (>= 2.91.92),
          gnome-desktop3-data (= ${source:Version})
 Recommends: hwdata (>= 0.227-1)
 Description: Utility library for loading .desktop files - runtime files

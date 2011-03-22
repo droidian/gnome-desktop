@@ -16,6 +16,7 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
 			--disable-gtk-doc \
-			--disable-desktop-docs
+			--disable-desktop-docs \
+			--enable-introspection=no
 
 DEB_DH_MAKESHLIBS_ARGS_libgnome-desktop-3-0 += -- -c4
