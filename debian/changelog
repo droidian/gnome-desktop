@@ -1,3 +1,9 @@
+gnome-desktop3 (2.91.93-1) experimental; urgency=low
+
+  * New upstream release.
+
+ -- Frederic Peters <fpeters@debian.org>  Thu, 24 Mar 2011 22:23:12 +0100
+
 gnome-desktop3 (2.91.92-1) experimental; urgency=low
 
   * New upstream release.
