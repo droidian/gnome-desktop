@@ -1,10 +1,14 @@
-gnome-desktop3 (3.0.1-2) UNRELEASED; urgency=low
+gnome-desktop3 (3.0.2-1) experimental; urgency=low
 
+  [ Rico Tzschichholz ]
   * debian/{rules,control.in,libgnome-desktop-3-dev,
     gir1.2-gnomedesktop-3.0.install}:
     - enable introspection build and add required files
 
- -- Rico Tzschichholz <ricotz@ubuntu.com>  Sun, 22 May 2011 18:48:11 +0200
+  [ Sebastien Bacher ]
+  * New upstream version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 24 May 2011 16:57:25 +0200
 
 gnome-desktop3 (3.0.1-1) experimental; urgency=low
 
