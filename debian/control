@@ -10,8 +10,8 @@ Maintainer: Josselin Mouette <joss@debian.org>
 Uploaders: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>, Emilio Pozuelo Monfort <pochu@debian.org>, Frederic Peters <fpeters@debian.org>, Michael Biebl <biebl@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/experimental/gnome-desktop3
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/experimental/gnome-desktop3
-Standards-Version: 3.9.1
-Build-Depends: debhelper (>= 5),
+Standards-Version: 3.9.2
+Build-Depends: debhelper (>= 8),
                dpkg-dev (>= 1.15.1),
                libglib2.0-dev (>= 2.27.3),
                intltool (>= 0.40.0),
