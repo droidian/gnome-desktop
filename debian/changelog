@@ -1,3 +1,16 @@
+gnome-desktop (2.30.2-3) unstable; urgency=low
+
+  * Bump debhelper compatibility level to 8.
+    - Update Build-Depends on debhelper.
+    - Strip debian/tmp/ from .install files.
+  * Switch to dh_python2.
+  * debian/patches/03_libm.patch:
+    - Link libgnome-desktop against -lm. Closes: #640438
+  * Use dh-autoreconf to update the build system.
+  * Bump Standards-Version to 3.9.2. No further changes.
+
+ -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:18:01 +0200
+
 gnome-desktop (2.30.2-2) unstable; urgency=low
 
   * Include crasher fixes on upstream’s advice.

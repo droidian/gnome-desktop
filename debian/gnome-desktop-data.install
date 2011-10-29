@@ -1,5 +1,5 @@
-debian/tmp/usr/share/pixmaps
-debian/tmp/usr/share/locale
-debian/tmp/usr/share/gnome
-debian/tmp/usr/share/gnome-about/*.xml
-debian/tmp/usr/share/omf
+usr/share/pixmaps
+usr/share/locale
+usr/share/gnome
+usr/share/gnome-about/*.xml
+usr/share/omf
