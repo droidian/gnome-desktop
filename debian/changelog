@@ -1,4 +1,4 @@
-gnome-desktop (2.30.2-3) UNRELEASED; urgency=low
+gnome-desktop (2.30.2-3) unstable; urgency=low
 
   * Bump debhelper compatibility level to 8.
     - Update Build-Depends on debhelper.
@@ -9,7 +9,7 @@ gnome-desktop (2.30.2-3) UNRELEASED; urgency=low
   * Use dh-autoreconf to update the build system.
   * Bump Standards-Version to 3.9.2. No further changes.
 
- -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:15:53 +0200
+ -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:18:01 +0200
 
 gnome-desktop (2.30.2-2) unstable; urgency=low
 
