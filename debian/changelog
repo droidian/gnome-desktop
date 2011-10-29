@@ -3,6 +3,7 @@ gnome-desktop (2.30.2-3) UNRELEASED; urgency=low
   * Bump debhelper compatibility level to 8.
     - Update Build-Depends on debhelper.
     - Strip debian/tmp/ from .install files.
+  * Switch to dh_python2.
 
  -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 12:51:03 +0200
 
