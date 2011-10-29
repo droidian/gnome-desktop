@@ -7,7 +7,7 @@ Vcs-Svn: svn://svn.debian.org/svn/pkg-gnome/desktop/unstable/gnome-desktop
 Vcs-Browser: http://svn.debian.org/viewsvn/pkg-gnome/desktop/unstable/gnome-desktop
 Standards-Version: 3.9.0
 XS-Python-Version: >= 2.4
-Build-Depends: debhelper (>= 5),
+Build-Depends: debhelper (>= 8),
                libglib2.0-dev (>= 2.19.1),
                intltool (>= 0.40.0),
                scrollkeeper,
