@@ -4,8 +4,10 @@ gnome-desktop (2.30.2-3) UNRELEASED; urgency=low
     - Update Build-Depends on debhelper.
     - Strip debian/tmp/ from .install files.
   * Switch to dh_python2.
+  * debian/patches/03_libm.patch:
+    - Link lbignome-desktop against -lm. Closes: #640438
 
- -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 12:51:03 +0200
+ -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:13:04 +0200
 
 gnome-desktop (2.30.2-2) unstable; urgency=low
 
