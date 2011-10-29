@@ -7,6 +7,7 @@ gnome-desktop (2.30.2-3) UNRELEASED; urgency=low
   * debian/patches/03_libm.patch:
     - Link lbignome-desktop against -lm. Closes: #640438
   * Use dh-autoreconf to update the build system.
+  * Bump Standards-Version to 3.9.2. No further changes.
 
  -- Michael Biebl <biebl@debian.org>  Sat, 29 Oct 2011 13:14:17 +0200
 
