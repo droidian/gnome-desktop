@@ -1,3 +1,9 @@
+gnome-desktop (2.30.2-4) UNRELEASED; urgency=low
+
+  * Drop gnome-about package, now useless.
+
+ -- Josselin Mouette <joss@debian.org>  Thu, 24 Nov 2011 20:58:40 +0100
+
 gnome-desktop (2.30.2-3) unstable; urgency=low
 
   * Bump debhelper compatibility level to 8.

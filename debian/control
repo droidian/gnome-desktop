@@ -32,19 +32,6 @@ Build-Depends: debhelper (>= 8),
                libglib2.0-doc,
                libgtk2.0-doc
 
-Package: gnome-about
-Architecture: all
-Depends: ${misc:Depends},
-         ${python:Depends},
-         python-gtk2,
-         python-gobject,
-         python-gnome2,
-         python-cairo,
-         gnome-desktop-data (= ${source:Version})
-Description: The GNOME about box
- Informative little about thing that lets us brag to our friends as our name
- scrolls by, and lets users click to load the GNOME home pages.
-
 Package: gnome-desktop-data
 Architecture: all
 Depends: ${misc:Depends}
