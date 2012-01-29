@@ -16,6 +16,3 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
 			--disable-gtk-doc
-
-binary-install/gnome-about::
-	dh_python2 -pgnome-about
