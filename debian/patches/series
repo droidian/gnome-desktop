@@ -1,3 +1,1 @@
-01_rr_double_free.patch
-02_pnp_buffer_overflow.patch
 03_libm.patch
