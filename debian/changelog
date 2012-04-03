@@ -1,3 +1,10 @@
+gnome-desktop (2.32.1-2) UNRELEASED; urgency=low
+
+  * Stop building desktop-wide help documents and remove them from
+    gnome-desktop-data. Those files will be provided by gnome-desktop3-data.
+
+ -- Michael Biebl <biebl@debian.org>  Tue, 03 Apr 2012 18:32:56 +0200
+
 gnome-desktop (2.32.1-1) unstable; urgency=low
 
   [ Josselin Mouette ]

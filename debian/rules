@@ -15,4 +15,5 @@ DEB_CONFIGURE_EXTRA_FLAGS += \
 			--with-gnome-distributor=Debian \
 			--with-pnp-ids-path=/usr/share/hwdata/pnp.ids \
 			--disable-scrollkeeper \
+			--disable-desktop-docs \
 			--disable-gtk-doc
