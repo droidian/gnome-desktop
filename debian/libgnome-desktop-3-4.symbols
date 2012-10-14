@@ -1,4 +1,4 @@
-libgnome-desktop-3.so.2 libgnome-desktop-3-2 #MINVER#
+libgnome-desktop-3.so.4 libgnome-desktop-3-4 #MINVER#
  gnome_bg_changes_with_time@Base 3.2.0
  gnome_bg_create_frame_thumbnail@Base 3.2.0
  gnome_bg_create_surface@Base 3.2.0
@@ -76,7 +76,7 @@ libgnome-desktop-3.so.2 libgnome-desktop-3-2 #MINVER#
  gnome_rr_crtc_set_gamma@Base 3.2.0
  gnome_rr_crtc_supports_rotation@Base 3.2.0
  gnome_rr_error_quark@Base 3.2.0
- gnome_rr_labeler_get_color_for_output@Base 3.2.0
+ gnome_rr_labeler_get_rgba_for_output@Base 3.5.2
  gnome_rr_labeler_get_type@Base 3.2.0
  gnome_rr_labeler_hide@Base 3.2.0
  gnome_rr_labeler_new@Base 3.2.0
@@ -96,6 +96,7 @@ libgnome-desktop-3.so.2 libgnome-desktop-3-2 #MINVER#
  gnome_rr_output_get_edid_data@Base 3.2.0
  gnome_rr_output_get_height_mm@Base 3.2.0
  gnome_rr_output_get_id@Base 3.2.0
+ gnome_rr_output_get_ids_from_edid@Base 3.5.3
  gnome_rr_output_get_is_primary@Base 3.2.0
  gnome_rr_output_get_name@Base 3.2.0
  gnome_rr_output_get_position@Base 3.2.0
@@ -145,3 +146,13 @@ libgnome-desktop-3.so.2 libgnome-desktop-3-2 #MINVER#
  gnome_rr_screen_set_size@Base 3.2.0
  gnome_wall_clock_get_clock@Base 3.2.0
  gnome_wall_clock_get_type@Base 3.2.0
+ gnome_xkb_info_description_for_option@Base 3.5.90
+ gnome_xkb_info_free_var_defs@Base 3.5.2
+ gnome_xkb_info_get_all_layouts@Base 3.5.2
+ gnome_xkb_info_get_all_option_groups@Base 3.5.90
+ gnome_xkb_info_get_layout_info@Base 3.5.2
+ gnome_xkb_info_get_layout_info_for_language@Base 3.5.2
+ gnome_xkb_info_get_options_for_group@Base 3.5.90
+ gnome_xkb_info_get_type@Base 3.5.2
+ gnome_xkb_info_get_var_defs@Base 3.5.2
+ gnome_xkb_info_new@Base 3.5.2
