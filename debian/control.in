@@ -47,7 +47,7 @@ Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
          gsettings-desktop-schemas (>= 3.5.91),
-         gnome-desktop3-data (= ${source:Version})
+         gnome-desktop3-data (>= 3.4.2)
 Replaces: libgnome-desktop-3-2 (<< 3.5.2)
 Recommends: hwdata (>= 0.227-1)
 Description: Utility library for loading .desktop files - runtime files
