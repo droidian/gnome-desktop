@@ -1,4 +1,6 @@
-gnome-desktop3 (3.4.2-2) UNRELEASED; urgency=low
+gnome-desktop3 (3.4.2-2) unstable; urgency=low
+
+  * Team upload.
 
   [ Josselin Mouette ]
   * Add missing epoch on libxrandr build-dependency.
@@ -9,7 +11,16 @@ gnome-desktop3 (3.4.2-2) UNRELEASED; urgency=low
       so that the former can be coinstalled with other sonames of
       the library. Closes: #704177.
 
- -- Josselin Mouette <joss@debian.org>  Fri, 06 Jul 2012 11:45:51 +0200
+  [ Simon McVittie ]
+  * Add patch from upstream 3.5.3 to sync thumbnail location with GLib
+    2.34+ (~/.cache/thumbnails instead of ~/.thumbnails), preventing
+    infinite loops in which Nautilus will generate thumbnails of thumbnails.
+    Closes: #708185.
+    + Explicitly (build-)depend on GLib 2.34+ to make sure the system is
+      consistent
+    + Thumbnails are now in a well-known cache directory (Closes: #637049)
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 15 May 2013 09:01:28 +0100
 
 gnome-desktop3 (3.4.2-1) unstable; urgency=low
 

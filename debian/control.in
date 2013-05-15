@@ -9,7 +9,7 @@ Standards-Version: 3.9.3
 Build-Depends: debhelper (>= 8),
                dpkg-dev (>= 1.15.1),
                dh-autoreconf,
-               libglib2.0-dev (>= 2.27.3),
+               libglib2.0-dev (>= 2.34),
                intltool (>= 0.40.6),
                scrollkeeper,
                cdbs (>= 0.4.41),
@@ -43,6 +43,7 @@ Section: libs
 Architecture: any
 Depends: ${misc:Depends},
          ${shlibs:Depends},
+         libglib2.0-0 (>= 2.34),
          gsettings-desktop-schemas (>= 2.91.92),
          gnome-desktop3-data (>= ${source:Version})
 Recommends: hwdata (>= 0.227-1)
