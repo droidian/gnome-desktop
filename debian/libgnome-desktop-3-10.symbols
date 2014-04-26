@@ -111,6 +111,7 @@ libgnome-desktop-3.so.10 libgnome-desktop-3-10 #MINVER#
  gnome_rr_output_get_name@Base 3.11.90
  gnome_rr_output_get_physical_size@Base 3.11.90
  gnome_rr_output_get_position@Base 3.11.90
+ gnome_rr_output_get_possible_crtcs@Base 3.12.1
  gnome_rr_output_get_preferred_mode@Base 3.11.90
  gnome_rr_output_get_type@Base 3.11.90
  gnome_rr_output_info_get_aspect_ratio@Base 3.11.90

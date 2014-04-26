@@ -1,3 +1,12 @@
+gnome-desktop3 (3.12.1-1) experimental; urgency=medium
+
+  * Drop conflicts against libgnome-desktop-3-7 because it is not 
+    necessary: only leaf packages in G3.8 use gnome-desktop, including 
+    gnome-shell that does work with the new g-desktop library.
+  * New upstream bugfix release.
+
+ -- Josselin Mouette <joss@debian.org>  Sat, 26 Apr 2014 14:09:27 +0200
+
 gnome-desktop3 (3.12.0-1) experimental; urgency=medium
 
   * New upstream release.
