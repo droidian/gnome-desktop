@@ -6,7 +6,6 @@ gnome-desktop3 (3.25.91.1-1) unstable; urgency=medium
     - Add a build-dependency against libseccomp-dev on linux architectrues
     - Add a dependency against bubblewrap on linux architectrues, this is
       needed to sandbox the thumbnailers.
-  * debian/patches/01_fix-ftbfs-x32.patch: Fix FTBFS on x32 arch
   * debian/libgnome-desktop-3-12.symbols: Add newly exported symbol
   * debian/control.in:
     - Bump Standards-Version to 4.1.0 (no further changes)
