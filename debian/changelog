@@ -1,4 +1,4 @@
-gnome-desktop3 (3.25.90-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.25.91.1-1) unstable; urgency=medium
 
   [ Laurent Bigonville ]
   * New upstream release (3.26 beta).
@@ -9,7 +9,7 @@ gnome-desktop3 (3.25.90-1) UNRELEASED; urgency=medium
   * debian/patches/01_fix-ftbfs-x32.patch: Fix FTBFS on x32 arch
   * debian/libgnome-desktop-3-12.symbols: Add newly exported symbol
   * debian/control.in:
-    - Bump Standards-Version to 4.0.1 (no further changes)
+    - Bump Standards-Version to 4.1.0 (no further changes)
     - Remove ancient (pre stretch) Breaks/Replaces
 
   [ Jeremy Bicha ]
@@ -18,7 +18,7 @@ gnome-desktop3 (3.25.90-1) UNRELEASED; urgency=medium
       thumbnailer on Debian-based systems.
       See https://bugzilla.gnome.org/785963
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 16 Aug 2017 13:47:25 +0200
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 30 Aug 2017 13:47:25 +0200
 
 gnome-desktop3 (3.22.2-1) unstable; urgency=medium
 
