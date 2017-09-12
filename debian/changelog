@@ -1,6 +1,9 @@
 gnome-desktop3 (3.26.0-1) unstable; urgency=medium
 
   * New upstream release
+  * Drop disable-bubblewrap.patch
+  * Add fix-bubblewrap.patch:
+    - Cherry-pick fix for bubblewrap sandbox
 
  -- Jeremy Bicha <jbicha@debian.org>  Mon, 11 Sep 2017 20:03:26 -0400
 
