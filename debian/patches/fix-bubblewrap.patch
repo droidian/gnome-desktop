@@ -1,0 +1,33 @@
+From 886994f2282a317848714a19e08f4fa63adc1bac Mon Sep 17 00:00:00 2001
+From: Dominique Leuenberger <dimstar@opensuse.org>
+Date: Sat, 2 Sep 2017 00:05:23 +0200
+Subject: thumbnailer: also add /lib(64)? to bwrap's link-mounted directory
+ list
+
+As not all distros have libs moves from /lib(64)? to /usr/lib(64), we need
+to also bind-mount those directories, or the thumbnailers will fail to load
+the required libraries.
+
+https://bugzilla.gnome.org/show_bug.cgi?id=787072
+---
+ libgnome-desktop/gnome-desktop-thumbnail-script.c | 4 ++--
+ 1 file changed, 2 insertions(+), 2 deletions(-)
+
+diff --git a/libgnome-desktop/gnome-desktop-thumbnail-script.c b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+index be603d3..99d83ac 100644
+--- a/libgnome-desktop/gnome-desktop-thumbnail-script.c
++++ b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+@@ -506,10 +506,10 @@ add_bwrap (GPtrArray   *array,
+   add_args (array,
+ 	    "bwrap",
+ 	    "--ro-bind", "/usr", "/usr",
++	    "--ro-bind", "/lib", "/lib",
++	    "--ro-bind", "/lib64", "/lib64",
+ 	    "--proc", "/proc",
+ 	    "--dev", "/dev",
+-	    "--symlink", "usr/lib", "/lib",
+-	    "--symlink", "usr/lib64", "/lib64",
+ 	    "--symlink", "usr/bin", "/bin",
+ 	    "--symlink", "usr/sbin", "/sbin",
+ 	    "--chdir", "/",
+
