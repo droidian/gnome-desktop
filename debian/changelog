@@ -1,4 +1,4 @@
-gnome-desktop3 (3.28.2-0ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.28.2-0ubuntu1) bionic; urgency=medium
 
   * New upstream release (LP: #1771242)
 
