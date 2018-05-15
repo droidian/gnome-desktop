@@ -30,8 +30,8 @@ Build-Depends: debhelper (>= 11),
                libxml2-dev (>= 2.4.20),
                xkb-data,
                yelp-tools
-Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop/+git/gnome-desktop
-Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop
+Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop/+git/gnome-desktop/+ref/ubuntu/bionic
+Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop -b ubuntu/bionic
 XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
 Standards-Version: 4.1.4
