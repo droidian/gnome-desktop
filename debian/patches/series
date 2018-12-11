@@ -4,3 +4,4 @@ git_revert_draw_background.patch
 ubuntu_language.patch
 ubuntu_language_list_from_SUPPORTED.patch
 gnomebg_hidpi_image.patch
+thumbnail-Handle-non-usrmerged-systems.patch
