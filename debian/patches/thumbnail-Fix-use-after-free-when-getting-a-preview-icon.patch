@@ -1,0 +1,72 @@
+From: Bastien Nocera <hadess@hadess.net>
+Date: Tue, 11 Dec 2018 12:59:31 +0100
+Subject: thumbnail: Fix use-after-free when getting a preview icon
+
+g_file_info_get_attribute_object() is transfer none, so when getting a
+preview GIcon from a gvfs-backed file that supports it, we need to
+reference the preview otherwise we might crash.
+
+==19044== Invalid read of size 8
+==19044==    at 0x48607E7: get_preview_thumbnail (gnome-desktop-thumbnail.c:978)
+==19044==    by 0x48607E7: gnome_desktop_thumbnail_factory_generate_thumbnail (gnome-desktop-thumbnail.c:1058)
+==19044==    by 0x401181: main (test-desktop-thumbnail.c:51)
+==19044==  Address 0x700f750 is 0 bytes inside a block of size 40 free'd
+==19044==    at 0x4839A0C: free (vg_replace_malloc.c:530)
+==19044==    by 0x48DFCD0: g_type_free_instance (gtype.c:1943)
+==19044==    by 0x4E7F7B5: _g_file_attribute_value_clear (gfileattribute.c:176)
+==19044==    by 0x4E83D46: g_file_info_finalize (gfileinfo.c:327)
+==19044==    by 0x48C1C61: g_object_unref (gobject.c:3346)
+==19044==    by 0x48607D5: get_preview_thumbnail (gnome-desktop-thumbnail.c:974)
+==19044==    by 0x48607D5: gnome_desktop_thumbnail_factory_generate_thumbnail (gnome-desktop-thumbnail.c:1058)
+==19044==    by 0x401181: main (test-desktop-thumbnail.c:51)
+==19044==  Block was alloc'd at
+==19044==    at 0x483880B: malloc (vg_replace_malloc.c:299)
+==19044==    by 0x4B54F20: g_malloc (gmem.c:99)
+==19044==    by 0x4B6C3C2: g_slice_alloc (gslice.c:1024)
+==19044==    by 0x4B6C9F8: g_slice_alloc0 (gslice.c:1050)
+==19044==    by 0x48DFA33: g_type_create_instance (gtype.c:1846)
+==19044==    by 0x48C2397: g_object_new_internal (gobject.c:1805)
+==19044==    by 0x48C4113: g_object_new_valist (gobject.c:2128)
+==19044==    by 0x48C443B: g_object_new (gobject.c:1648)
+==19044==    by 0x7451CF7: g_vfs_icon_new (gvfsicon.c:178)
+==19044==    by 0x7451D47: g_vfs_icon_from_tokens (gvfsicon.c:268)
+==19044==    by 0x4E8BA45: g_icon_new_from_tokens (gicon.c:381)
+==19044==    by 0x4E8BA45: g_icon_new_for_string (gicon.c:462)
+==19044==    by 0x7450C5F: _g_dbus_get_file_attribute (gvfsdaemonprotocol.c:300)
+==19044==    by 0x7450D26: _g_dbus_get_file_info (gvfsdaemonprotocol.c:340)
+==19044==    by 0x867A74C: g_daemon_file_query_info (gdaemonfile.c:830)
+==19044==    by 0x486078D: get_preview_thumbnail (gnome-desktop-thumbnail.c:960)
+==19044==    by 0x486078D: gnome_desktop_thumbnail_factory_generate_thumbnail (gnome-desktop-thumbnail.c:1058)
+==19044==    by 0x401181: main (test-desktop-thumbnail.c:51)
+==19044==
+==19044== Invalid read of size 8
+==19044==    at 0x48607F0: get_preview_thumbnail (gnome-desktop-thumbnail.c:978)
+==19044==    by 0x48607F0: gnome_desktop_thumbnail_factory_generate_thumbnail (gnome-desktop-thumbnail.c:1058)
+==19044==    by 0x401181: main (test-desktop-thumbnail.c:51)
+==19044==  Address 0xaaaaaaaaaaaaaaaa is not stack'd, malloc'd or (recently) free'd
+
+Root-caused by "Just Me"
+
+Closes: #87
+(cherry picked from commit 43dac4103d937af8a891646f99d00891b9d84e94)
+---
+ libgnome-desktop/gnome-desktop-thumbnail.c | 6 ++++--
+ 1 file changed, 4 insertions(+), 2 deletions(-)
+
+diff --git a/libgnome-desktop/gnome-desktop-thumbnail.c b/libgnome-desktop/gnome-desktop-thumbnail.c
+index b31bad5..a490dc1 100644
+--- a/libgnome-desktop/gnome-desktop-thumbnail.c
++++ b/libgnome-desktop/gnome-desktop-thumbnail.c
+@@ -967,8 +967,10 @@ get_preview_thumbnail (const char *uri,
+     if (file_info == NULL)
+       return NULL;
+ 
+-    object = g_file_info_get_attribute_object (file_info,
+-                                               G_FILE_ATTRIBUTE_PREVIEW_ICON);
++    g_message ("got a preview thumbnail");
++
++    object = g_object_ref (g_file_info_get_attribute_object (file_info,
++                                                             G_FILE_ATTRIBUTE_PREVIEW_ICON));
+     g_object_unref (file_info);
+ 
+     if (!object)
