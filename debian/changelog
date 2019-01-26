@@ -1,8 +1,13 @@
-gnome-desktop3 (3.30.2-0ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.30.2-0ubuntu1) cosmic; urgency=medium
 
   * New upstream release (LP: #1807983)
+  * Cherry-pick thumbnail-Handle-non-usrmerged-systems.patch:
+    - Fix thumbnailer on 32-bit systems where /lib64 is not available.
+      (LP: #1807127)
+  * Cherry-pick thumbnail-Fix-use-after-free-when-getting-a-preview-icon.patch:
+    - Fix from gnome-3-30 branch for a potential crash bug
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 11 Dec 2018 10:57:38 -0500
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 11 Dec 2018 11:00:26 -0500
 
 gnome-desktop3 (3.30.1-1ubuntu1) cosmic; urgency=medium
 
