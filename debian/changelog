@@ -1,3 +1,12 @@
+gnome-desktop3 (3.32.1-1ubuntu1.1) disco-security; urgency=medium
+
+  * SECURITY UPDATE: thumbnailer sandbox escape via TIOCSTI
+    - debian/patches/CVE-2019-11460.patch: fix incomplete TIOCSTI filtering
+      in libgnome-desktop/gnome-desktop-thumbnail-script.c.
+    - CVE-2019-11460
+
+ -- Marc Deslauriers <marc.deslauriers@ubuntu.com>  Thu, 23 May 2019 12:45:04 -0400
+
 gnome-desktop3 (3.32.1-1ubuntu1) disco; urgency=medium
 
   * Update to the current stable version, based on Debian
