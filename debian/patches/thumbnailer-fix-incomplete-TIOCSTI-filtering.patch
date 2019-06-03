@@ -1,0 +1,29 @@
+From: Michael Catanzaro <mcatanzaro@igalia.com>
+Date: Sat, 13 Apr 2019 13:57:36 -0500
+Subject: thumbnailer: fix incomplete TIOCSTI filtering
+
+Fixes #112
+
+See also: https://github.com/flatpak/flatpak/issues/2782
+
+Origin: upstream, 3.30.2.2, commit:83949ed5800ec99953f5ee8d2bf8b90a69daa850
+Bug: https://gitlab.gnome.org/GNOME/gnome-desktop/issues/112
+Bug-Debian: https://bugs.debian.org/cgi-bin/bugreport.cgi?bug=928732
+Bug-CVE: CVE-2019-11460
+---
+ libgnome-desktop/gnome-desktop-thumbnail-script.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libgnome-desktop/gnome-desktop-thumbnail-script.c b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+index 9468b51..3b3d1ea 100644
+--- a/libgnome-desktop/gnome-desktop-thumbnail-script.c
++++ b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+@@ -343,7 +343,7 @@ setup_seccomp (GPtrArray  *argv_array,
+     {SCMP_SYS (clone), &SCMP_A0 (SCMP_CMP_MASKED_EQ, CLONE_NEWUSER, CLONE_NEWUSER)},
+ 
+     /* Don't allow faking input to the controlling tty (CVE-2017-5226) */
+-    {SCMP_SYS (ioctl), &SCMP_A1(SCMP_CMP_EQ, (int)TIOCSTI)},
++    {SCMP_SYS (ioctl), &SCMP_A1(SCMP_CMP_MASKED_EQ, 0xFFFFFFFFu, (int)TIOCSTI)},
+   };
+ 
+   struct
