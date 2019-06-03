@@ -14,7 +14,16 @@ override_dh_auto_configure:
 		-Dgnome_distributor=$(shell dpkg-vendor --query vendor) \
 		-Ddate_in_gnome_version=false \
 		-Dgtk_doc=true \
+		-Dinstalled_tests=true \
 		-Ddesktop-docs=true
+
+# We put the installed-tests in the -dev package to avoid having to
+# introduce a new package for them, so move their architecture-varying
+# metadata files into a multiarch-friendly location.
+override_dh_auto_install:
+	dh_auto_install
+	mv debian/tmp/usr/share/installed-tests/gnome-desktop/* \
+		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG)/installed-tests/gnome-desktop/
 
 override_dh_installchangelogs:
 	dh_installchangelogs -XChangeLog

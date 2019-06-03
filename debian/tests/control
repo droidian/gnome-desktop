@@ -1,0 +1,7 @@
+Tests: build
+Depends: build-essential, libgnome-desktop-3-dev
+Restrictions: allow-stderr superficial
+
+Tests: installed-tests
+Depends: dbus (>= 1.8), dpkg-dev, gnome-desktop-testing, libgnome-desktop-3-dev, xauth, xvfb
+Restrictions: allow-stderr superficial

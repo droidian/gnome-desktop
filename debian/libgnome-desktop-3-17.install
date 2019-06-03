@@ -1,2 +1,2 @@
 usr/lib/*/lib*.so.*
-usr/lib/*/libgnome-desktop-3-17
+usr/lib/*/libgnome-desktop-3-17/gnome-rr-debug

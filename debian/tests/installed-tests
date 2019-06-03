@@ -1,0 +1,26 @@
+#!/bin/sh
+# (C) 2013 Canonical Ltd.
+# (C) 2019 Simon McVittie
+# Authors: Iain Lane, Simon McVittie
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+set -eu
+
+export G_MESSAGES_DEBUG=all
+export XDG_RUNTIME_DIR="$AUTOPKGTEST_TMP"
+
+printf "Running as: "; id -a
+printf "passwd entry: "; getent passwd "$(id -u)" || echo "(exit status $?)"
+printf "group entry: "; getent group "$(id -g)" || echo "(exit status $?)"
+echo "Environment:"
+env | LC_ALL=C sort -u
+
+eval `dpkg-architecture --print-set`
+export XDG_DATA_DIRS="/usr/lib/$DEB_HOST_MULTIARCH/libgnome-desktop-3-17/installed-tests:/usr/share"
+
+dbus-run-session -- \
+xvfb-run -a \
+gnome-desktop-testing-runner \
+	--tap \
+	--log-directory "$AUTOPKGTEST_ARTIFACTS" \
+	gnome-desktop
