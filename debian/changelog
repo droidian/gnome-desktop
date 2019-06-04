@@ -9,6 +9,7 @@ gnome-desktop3 (3.32.2-2) UNRELEASED; urgency=medium
       great test coverage at the moment.
       A test for static linking is omitted because static linking is not
       supported for this package.
+  * d/copyright: Update to reflect the presence of GPL-2+ code
 
  -- Simon McVittie <smcv@debian.org>  Mon, 03 Jun 2019 23:48:08 +0100
 
