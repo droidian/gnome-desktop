@@ -1,4 +1,4 @@
-gnome-desktop3 (3.32.2-2) UNRELEASED; urgency=medium
+gnome-desktop3 (3.32.2-2) experimental; urgency=medium
 
   [ Simon McVittie ]
   * Enable installed-tests.
@@ -22,7 +22,7 @@ gnome-desktop3 (3.32.2-2) UNRELEASED; urgency=medium
     technical ABI break but one which it's OK to overlook. There's probably a
     better way to handle the visibility of these symbols, though.
 
- -- Iain Lane <laney@debian.org>  Fri, 28 Jun 2019 12:39:58 +0100
+ -- Iain Lane <laney@debian.org>  Fri, 28 Jun 2019 12:40:29 +0100
 
 gnome-desktop3 (3.32.2-1) experimental; urgency=medium
 
