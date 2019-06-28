@@ -1,5 +1,7 @@
 libgnome-desktop-3.so.17 libgnome-desktop-3-17 #MINVER#
 * Build-Depends-Package: libgnome-desktop-3-dev
+ _gnome_rr_output_connector_type_is_builtin_display@Base 3.28.2-0ubuntu1.4~
+ _gnome_rr_output_get_connector_type@Base 3.28.2-0ubuntu1.4~
  gnome_bg_changes_with_time@Base 3.17.92
  gnome_bg_create_frame_thumbnail@Base 3.17.92
  gnome_bg_create_surface@Base 3.17.92
