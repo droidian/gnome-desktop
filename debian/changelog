@@ -1,3 +1,29 @@
+gnome-desktop3 (3.32.2-2) experimental; urgency=medium
+
+  [ Simon McVittie ]
+  * Enable installed-tests.
+    Install them in libgnome-desktop-3-dev for now; they can be moved
+    to a separate gnome-desktop3-tests package (if desired) at the next
+    SONAME break.
+    - d/tests: Add autopkgtests, based on those in glib2.0.
+      They are all marked superficial since gnome-desktop3 doesn't have
+      great test coverage at the moment.
+      A test for static linking is omitted because static linking is not
+      supported for this package.
+  * d/copyright: Update to reflect the presence of GPL-2+ code
+
+  [ Iain Lane ]
+  * Cherry-pick patch from upstream to use mutter's connector-type to detect
+    output connector type. This fixes suspend on some systems (primarily ones
+    using the NVIDIA binary driver). (LP: #1731318)
+  * libgnome-desktop-3-17.symbols: Update. The patch add two symbols and drops
+    one. These symbols are defined in "gnome-rr-private.h", which is not
+    shipped in the -dev package, so they can't be used in practice. This is a
+    technical ABI break but one which it's OK to overlook. There's probably a
+    better way to handle the visibility of these symbols, though.
+
+ -- Iain Lane <laney@debian.org>  Fri, 28 Jun 2019 12:40:29 +0100
+
 gnome-desktop3 (3.32.2-1ubuntu1) eoan; urgency=medium
 
   * Update to the current stable version, based on Debian

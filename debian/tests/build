@@ -1,0 +1,61 @@
+#!/bin/sh
+# (C) 2012 Canonical Ltd.
+# (C) 2018-2019 Simon McVittie
+# Authors: Martin Pitt, Simon McVittie
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+set -eux
+
+mode=dynamic
+
+getopt_temp="$(getopt -o '' --long 'static' -n debian/tests/build -- "$@")"
+eval set -- "$getopt_temp"
+
+while true; do
+    case "$1" in
+        (--static)
+            mode=static
+            shift
+            continue
+            ;;
+
+        (--)
+            shift
+            break
+            ;;
+
+        (*)
+            echo "getopt: Internal error" >&2
+            exit 2
+    esac
+done
+
+WORKDIR=$(mktemp -d)
+trap "rm -rf $WORKDIR" 0 INT QUIT ABRT PIPE TERM
+cd $WORKDIR
+cat <<EOF > gnome-desktop.c
+#define GNOME_DESKTOP_USE_UNSTABLE_API
+#include <libgnome-desktop/gnome-languages.h>
+
+int main(void)
+{
+    g_free (gnome_normalize_locale ("en_GB"));
+    return 0;
+}
+EOF
+
+cflags=
+pcflags=
+
+case "$mode" in
+    (static)
+        cflags=-static
+        pcflags=--static
+        ;;
+esac
+
+gcc $cflags -o "$mode" gnome-desktop.c `pkg-config $pcflags --cflags --libs gnome-desktop-3.0`
+echo "build ($mode): OK"
+[ -x "$mode" ]
+"./$mode"
+echo "run ($mode): OK"
