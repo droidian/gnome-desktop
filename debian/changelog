@@ -1,11 +1,11 @@
-gnome-desktop3 (3.28.2-0ubuntu1.5) UNRELEASED; urgency=medium
+gnome-desktop3 (3.28.2-0ubuntu1.5) bionic; urgency=medium
 
   * Revert "libgnome-desktop-3-17.symbols: Update". I overzealously
     cherry-picked this from disco. This is in fact not a problem with the
     autotools build (in disco meson is used and the _-prefixed symbols are
     leaked). It is not needed here.
 
- -- Iain Lane <iain.lane@canonical.com>  Wed, 03 Jul 2019 09:51:32 +0100
+ -- Iain Lane <iain.lane@canonical.com>  Wed, 03 Jul 2019 09:53:10 +0100
 
 gnome-desktop3 (3.28.2-0ubuntu1.4) bionic; urgency=medium
 
