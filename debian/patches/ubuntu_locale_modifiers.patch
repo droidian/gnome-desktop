@@ -1,0 +1,90 @@
+Description: Display locale @modifiers properly
+ Make items in the UI represented by locale modifiers distinguishable from
+ items without modifiers.
+ This is a bit hackish; we probably need to add support for
+ translations somehow to have it accepted upstream.
+
+ The commenting of the language_name_get_codeset_details() function is
+ unrelated to the modifiers, and is motivated like this in the changelog:
+ "Don't mess with non-utf8 locales, or else the language chooser in
+  the User Accounts UI may display confusing info (LP: #864618)."
+ https://launchpad.net/ubuntu/+source/gnome-control-center/1:3.2.1-0ubuntu1
+ We don't set language any longer when adding users, but OTOH it's still
+ true that we don't want non-utf8 locales show up in the UIs. It stays
+ for now.
+Author: Gunnar Hjalmarsson <gunnarhj@ubuntu.com>
+Date: Tue, 26 Mar 2013 17:04:18 +0100
+Forwarded: https://gitlab.gnome.org/GNOME/gnome-desktop/issues/50
+
+ {a => b}/libgnome-desktop/gnome-languages.c | 16 +++++++++++++---
+ 1 file changed, 13 insertions(+), 3 deletions(-)
+
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index 53cd1bf..7035591 100644
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
+@@ -1093,6 +1093,7 @@ gnome_get_language_from_locale (const char *locale,
+         g_autofree char *langinfo_codeset = NULL;
+         g_autofree char *translated_language = NULL;
+         g_autofree char *translated_territory = NULL;
++        g_autofree char *modifier = NULL;
+         gboolean is_utf8 = TRUE;
+ 
+         g_return_val_if_fail (locale != NULL, NULL);
+@@ -1107,7 +1108,7 @@ gnome_get_language_from_locale (const char *locale,
+                             &language_code,
+                             &territory_code,
+                             &codeset_code,
+-                            NULL);
++                            &modifier);
+ 
+         if (language_code == NULL) {
+                 goto out;
+@@ -1133,7 +1134,7 @@ gnome_get_language_from_locale (const char *locale,
+                                         translated_territory);
+         }
+ 
+-        language_name_get_codeset_details (locale, &langinfo_codeset, &is_utf8);
++        //language_name_get_codeset_details (locale, &langinfo_codeset, &is_utf8);
+ 
+         if (codeset_code == NULL && langinfo_codeset != NULL) {
+                 codeset_code = g_strdup (langinfo_codeset);
+@@ -1145,6 +1146,10 @@ gnome_get_language_from_locale (const char *locale,
+                                         codeset_code);
+         }
+ 
++        if (modifier != NULL) {
++                g_string_append_printf (full_language, " - %s", modifier);
++        }
++
+  out:
+         if (full_language->len == 0) {
+                 g_string_free (full_language, TRUE);
+@@ -1178,6 +1183,7 @@ gnome_get_country_from_locale (const char *locale,
+         g_autofree char *langinfo_codeset = NULL;
+         g_autofree char *translated_language = NULL;
+         g_autofree char *translated_territory = NULL;
++        g_autofree char *modifier = NULL;
+         gboolean is_utf8 = TRUE;
+ 
+         g_return_val_if_fail (locale != NULL, NULL);
+@@ -1192,7 +1198,7 @@ gnome_get_country_from_locale (const char *locale,
+                             &language_code,
+                             &territory_code,
+                             &codeset_code,
+-                            NULL);
++                            &modifier);
+ 
+         if (territory_code == NULL) {
+                 goto out;
+@@ -1205,6 +1211,10 @@ gnome_get_country_from_locale (const char *locale,
+ 		goto out;
+ 	}
+ 
++        if (modifier != NULL) {
++                g_string_append_printf (full_name, " - %s", modifier);
++        }
++
+         if (language_code != NULL) {
+                 translated_language = get_translated_language (language_code, translation);
+         }

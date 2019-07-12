@@ -2,6 +2,7 @@ Use-connector_type-from-mutter-to-fix-detection-of-builti.patch
 04_compute_average_color.patch
 tweak_color_computation.patch
 git_revert_draw_background.patch
-ubuntu_language.patch
+git_support_common_name_in_ISO_639.patch
+ubuntu_locale_modifiers.patch
 ubuntu_language_list_from_SUPPORTED.patch
 gnomebg_hidpi_image.patch
