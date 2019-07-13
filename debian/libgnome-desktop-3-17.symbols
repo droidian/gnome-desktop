@@ -64,6 +64,7 @@ libgnome-desktop-3.so.17 libgnome-desktop-3-17 #MINVER#
  gnome_get_input_source_from_locale@Base 3.17.92
  gnome_get_language_from_code@Base 3.17.92
  gnome_get_language_from_locale@Base 3.17.92
+ gnome_get_translated_modifier@Base 3.32.2-2ubuntu2~
  gnome_idle_monitor_add_idle_watch@Base 3.17.92
  gnome_idle_monitor_add_user_active_watch@Base 3.17.92
  gnome_idle_monitor_get_idletime@Base 3.17.92

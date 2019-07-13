@@ -7,6 +7,8 @@ gnome-desktop3 (3.32.2-2ubuntu2) UNRELEASED; urgency=medium
       by locale modifiers distinguishable from items without modifiers)
   * debian/rules:
     - Specify gettext domain for dh_translations.
+  * d/p/ubuntu_locale_modifiers.patch, d/libgnome-desktop-3-17.symbols:
+    - Support for translation of locale modifiers added.
 
  -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Fri, 12 Jul 2019 14:28:00 +0200
 
