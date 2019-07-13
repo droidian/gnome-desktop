@@ -5,6 +5,8 @@ gnome-desktop3 (3.32.2-2ubuntu2) UNRELEASED; urgency=medium
     - git_support_common_name_in_ISO_639.patch (committed upstream)
     - ubuntu_locale_modifiers.patch (make items in the UI represented
       by locale modifiers distinguishable from items without modifiers)
+  * debian/rules:
+    - Specify gettext domain for dh_translations.
 
  -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Fri, 12 Jul 2019 14:28:00 +0200
 
