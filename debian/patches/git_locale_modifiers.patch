@@ -1,0 +1,195 @@
+Description: Display locale @modifiers properly
+ Make items in the UI represented by locale modifiers distinguishable from
+ items without modifiers.
+
+ This is a concatenation of multiple upstream commits from these merge
+ requests:
+
+ * gnome-desktop!43 (merged)
+ * gnome-desktop!44 (merged)
+ * gnome-desktop!45 (not yet merged)
+
+Author: Gunnar Hjalmarsson <gunnarhj@ubuntu.com>
+Forwarded: https://gitlab.gnome.org/GNOME/gnome-desktop/issues/50
+
+ libgnome-desktop/gnome-languages.c | 101 ++++++++++++++++++++++++++--
+ libgnome-desktop/gnome-languages.h |   2 +
+ 2 files changed, 99 insertions(+), 4 deletions(-)
+
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index 74959c5..de9adbb 100644
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
+@@ -33,7 +33,7 @@
+ #include <sys/stat.h>
+ 
+ #include <glib.h>
+-#include <glib/gi18n.h>
++#include <glib/gi18n-lib.h>
+ #include <glib/gstdio.h>
+ 
+ #define GNOME_DESKTOP_USE_UNSTABLE_API
+@@ -1071,6 +1071,8 @@ gnome_get_language_from_locale (const char *locale,
+         g_autofree char *langinfo_codeset = NULL;
+         g_autofree char *translated_language = NULL;
+         g_autofree char *translated_territory = NULL;
++        g_autofree char *modifier = NULL;
++        g_autofree char *translated_modifier = NULL;
+         gboolean is_utf8 = TRUE;
+ 
+         g_return_val_if_fail (locale != NULL, NULL);
+@@ -1085,7 +1087,7 @@ gnome_get_language_from_locale (const char *locale,
+                             &language_code,
+                             &territory_code,
+                             &codeset_code,
+-                            NULL);
++                            &modifier);
+ 
+         if (language_code == NULL) {
+                 goto out;
+@@ -1102,6 +1104,11 @@ gnome_get_language_from_locale (const char *locale,
+ 		goto out;
+ 	}
+ 
++        if (modifier != NULL)
++                translated_modifier = gnome_get_translated_modifier (modifier, translation);
++        if (translated_modifier != NULL)
++                g_string_append_printf (full_language, " — %s", translated_modifier);
++
+         if (territory_code != NULL) {
+                 translated_territory = get_translated_territory (territory_code, translation);
+         }
+@@ -1156,6 +1163,8 @@ gnome_get_country_from_locale (const char *locale,
+         g_autofree char *langinfo_codeset = NULL;
+         g_autofree char *translated_language = NULL;
+         g_autofree char *translated_territory = NULL;
++        g_autofree char *modifier = NULL;
++        g_autofree char *translated_modifier = NULL;
+         gboolean is_utf8 = TRUE;
+ 
+         g_return_val_if_fail (locale != NULL, NULL);
+@@ -1170,7 +1179,7 @@ gnome_get_country_from_locale (const char *locale,
+                             &language_code,
+                             &territory_code,
+                             &codeset_code,
+-                            NULL);
++                            &modifier);
+ 
+         if (territory_code == NULL) {
+                 goto out;
+@@ -1188,10 +1197,18 @@ gnome_get_country_from_locale (const char *locale,
+         }
+         if (translated_language != NULL) {
+                 g_string_append_printf (full_name,
+-                                        " (%s)",
++                                        " (%s",
+                                         translated_language);
+         }
+ 
++        if (modifier != NULL)
++                translated_modifier = gnome_get_translated_modifier (modifier, translation);
++        if (translated_modifier != NULL)
++                g_string_append_printf (full_name, " — %s", translated_modifier);
++
++        if (translated_language != NULL)
++                g_string_append_printf (full_name, ")");
++
+         language_name_get_codeset_details (translation, &langinfo_codeset, &is_utf8);
+ 
+         if (codeset_code == NULL && langinfo_codeset != NULL) {
+@@ -1297,6 +1314,82 @@ gnome_get_country_from_code (const char *code,
+         return get_translated_territory (code, translation);
+ }
+ 
++/**
++ * gnome_get_translated_modifier:
++ * @modifier: the modifier part of a locale name
++ * @translation: (allow-none): a locale string
++ *
++ * Gets a translation of the raw @modifier string. If @translation
++ * is provided the returned string is translated accordingly.
++ *
++ * Return value: (transfer full): the translated modifier string.
++ * Caller takes ownership.
++ *
++ * Since: 3.34
++ */
++char *
++gnome_get_translated_modifier (const char *modifier,
++                               const char *translation)
++{
++        char *retval;
++        GHashTable *modifiers_map;
++        locale_t loc;
++        locale_t old_locale;
++
++        g_return_val_if_fail (modifier != NULL, NULL);
++
++        if (translation != NULL) {
++                loc = newlocale (LC_MESSAGES_MASK, translation, (locale_t) 0);
++                if (loc == (locale_t) 0) {
++                        return NULL;
++                }
++                old_locale = uselocale (loc);
++        }
++
++        /* Modifiers as listed in glibc's SUPPORTED file:
++         * https://sourceware.org/git/?p=glibc.git;a=blob;f=localedata/SUPPORTED;hb=HEAD
++         * (except for @euro, which would be superfluous in this context). */
++        modifiers_map = g_hash_table_new (g_str_hash, g_str_equal);
++
++        /* TRANSLATORS: Used to distinguish the labels representing the gez_ER
++           and gez_ET locales from gez_ER@abegede respective gez_ET@abegede. The
++           difference is related to collation. */
++        g_hash_table_insert (modifiers_map, "abegede", _("Abegede"));
++        /* TRANSLATORS: Used to distinguish Cyrillic from Latin written language variants. */
++        g_hash_table_insert (modifiers_map, "cyrillic", _("Cyrillic"));
++        /* TRANSLATORS: Also known as "Nagari", a written variant for many languages
++           of the Indian subcontinent. See:
++           https://en.wikipedia.org/wiki/Devanagari */
++        g_hash_table_insert (modifiers_map, "devanagari", _("Devanagari"));
++        /* TRANSLATORS: Used to distinguish the label representing the tt_RU
++           locale from tt_RU@iqtelif. It's a special alphabet for Tatar. */
++        g_hash_table_insert (modifiers_map, "iqtelif", _("IQTElif"));
++        /* TRANSLATORS: The alphabet/script, not the language. Used to distinguish
++           Latin from Cyrillic written language variants. */
++        g_hash_table_insert (modifiers_map, "latin", _("Latin"));
++        /* TRANSLATORS: "Saho" is a variant of the Afar language. Used to
++           distinguish the label representing the aa_ER locale from aa_ER@saaho. */
++        g_hash_table_insert (modifiers_map, "saaho", _("Saho"));
++        /* TRANSLATORS: "Valencia" is a dialect of the Catalan language spoken
++           in Valencia. Used to distinguish the label representing the ca_ES
++           locale from ca_ES@valencia. */
++        g_hash_table_insert (modifiers_map, "valencia", _("Valencia"));
++
++        if (g_hash_table_contains (modifiers_map, modifier))
++                retval = g_strdup (g_hash_table_lookup (modifiers_map, modifier));
++        else
++                retval = g_strdup (modifier);
++
++        g_hash_table_destroy (modifiers_map);
++
++        if (translation != NULL) {
++                uselocale (old_locale);
++                freelocale (loc);
++        }
++
++        return retval;
++}
++
+ /**
+  * gnome_get_input_source_from_locale:
+  * @locale: a locale string
+diff --git a/libgnome-desktop/gnome-languages.h b/libgnome-desktop/gnome-languages.h
+index 407a8c3..97f4af5 100644
+--- a/libgnome-desktop/gnome-languages.h
++++ b/libgnome-desktop/gnome-languages.h
+@@ -47,6 +47,8 @@ char *        gnome_get_language_from_code      (const char *code,
+                                                  const char *translation);
+ char *        gnome_get_country_from_code       (const char *code,
+                                                  const char *translation);
++char *        gnome_get_translated_modifier     (const char *modifier,
++                                                 const char *translation);
+ gboolean      gnome_get_input_source_from_locale (const char  *locale,
+                                                   const char **type,
+                                                   const char **id);

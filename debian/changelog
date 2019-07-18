@@ -1,3 +1,15 @@
+gnome-desktop3 (3.32.2-2ubuntu3) eoan; urgency=medium
+
+  * debian/patches/git_locale_modifiers.patch:
+    - File renamed due to upstreaming and updated with latest (and
+      proposed) upstream commits.
+    - Commenting of the language_name_get_codeset_details() function
+      in gnome-languages.c dropped. It was added when fixing bug
+      864618, and served a purpose at the time, but later code changes
+      have made it redundant.
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Fri, 19 Jul 2019 01:39:00 +0200
+
 gnome-desktop3 (3.32.2-2ubuntu2) eoan; urgency=medium
 
   * Split ubuntu_language.patch into:
