@@ -1,3 +1,9 @@
+gnome-desktop3 (3.33.4-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Iain Lane <laney@debian.org>  Sat, 27 Jul 2019 18:21:40 +0100
+
 gnome-desktop3 (3.32.2-2) experimental; urgency=medium
 
   [ Simon McVittie ]
