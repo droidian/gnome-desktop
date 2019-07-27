@@ -1,4 +1,4 @@
-libgnome-desktop-3.so.17 libgnome-desktop-3-17 #MINVER#
+libgnome-desktop-3.so.18 libgnome-desktop-3-18 #MINVER#
 * Build-Depends-Package: libgnome-desktop-3-dev
  _gnome_datetime_source_new@Base 3.31.90
  _gnome_rr_output_connector_type_is_builtin_display@Base 3.32.2-2~
