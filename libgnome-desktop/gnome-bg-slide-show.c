@@ -31,7 +31,7 @@
 
 struct _GnomeBGSlideShowPrivate
 {
-        char *filename;
+        GFile *file;
 
         double start_time;
         double total_duration;
@@ -67,7 +67,7 @@ struct _FileSize
 
 enum {
         PROP_0,
-        PROP_FILENAME,
+        PROP_FILE,
         PROP_START_TIME,
         PROP_TOTAL_DURATION,
         PROP_HAS_MULTIPLE_SIZES,
@@ -92,8 +92,8 @@ gnome_bg_slide_show_set_property (GObject       *object,
 
         switch (property_id)
         {
-        case PROP_FILENAME:
-                self->priv->filename = g_value_dup_string (value);
+        case PROP_FILE:
+                self->priv->file = g_object_ref (g_value_get_object (value));
                 break;
         default:
                 G_OBJECT_WARN_INVALID_PROPERTY_ID (object, property_id, pspec);
@@ -115,6 +115,9 @@ gnome_bg_slide_show_get_property (GObject     *object,
 
         switch (property_id)
         {
+        case PROP_FILE:
+                g_value_set_object (value, self->priv->file);
+                break;
         case PROP_START_TIME:
                 g_value_set_int (value, self->priv->start_time);
                 break;
@@ -166,7 +169,7 @@ gnome_bg_slide_show_finalize (GObject *object)
 
         g_queue_free_full (self->priv->stack, g_free);
 
-        g_free (self->priv->filename);
+        g_object_unref (self->priv->file);
 }
 
 static void
@@ -181,11 +184,11 @@ gnome_bg_slide_show_class_init (GnomeBGSlideShowClass *self_class)
         gobject_class->finalize = gnome_bg_slide_show_finalize;
 
         g_object_class_install_property (gobject_class,
-                                         PROP_FILENAME,
-                                         g_param_spec_string ("filename",
-                                                              "Filename",
-                                                              "Filename",
-                                                              NULL,
+                                         PROP_FILE,
+                                         g_param_spec_object ("file",
+                                                              "File",
+                                                              "File",
+                                                              G_TYPE_FILE,
                                                               G_PARAM_READWRITE | G_PARAM_CONSTRUCT_ONLY));
 
         g_object_class_install_property (gobject_class,
@@ -226,7 +229,7 @@ gnome_bg_slide_show_init (GnomeBGSlideShow *self)
 
 /**
  * gnome_bg_slide_show_new:
- * @filename: The name of the slide show file
+ * @filename: The filename of the slide show
  *
  * Creates a new object to manage a slide show.
  * window background between two #cairo_surface_ts.
@@ -236,9 +239,17 @@ gnome_bg_slide_show_init (GnomeBGSlideShow *self)
 GnomeBGSlideShow *
 gnome_bg_slide_show_new (const char *filename)
 {
-        return GNOME_BG_SLIDE_SHOW (g_object_new (GNOME_BG_TYPE_SLIDE_SHOW,
-                                                  "filename", filename,
+	GFile *file;
+	GnomeBGSlideShow *self;
+
+	file = g_file_new_for_path (filename);
+
+        self = GNOME_BG_SLIDE_SHOW (g_object_new (GNOME_BG_TYPE_SLIDE_SHOW,
+                                                  "file", file,
                                                   NULL));
+	g_object_unref (file);
+
+	return self;
 }
 
 static void
@@ -710,16 +721,14 @@ gboolean
 gnome_bg_slide_show_load (GnomeBGSlideShow  *self,
                           GError           **error)
 {
-        GFile *file;
         char  *contents;
         gsize  length;
         gboolean parsed;
 
-        file = g_file_new_for_path (self->priv->filename);
-        if (!g_file_load_contents (file, NULL, &contents, &length, NULL, NULL)) {
+        if (!g_file_load_contents (self->priv->file, NULL, &contents, &length,
+                                   NULL, NULL)) {
                 return FALSE;
         }
-        g_object_unref (file);
 
         parsed = parse_file_contents (self, contents, length, error);
         g_free (contents);
@@ -773,13 +782,11 @@ gnome_bg_slide_show_load_async (GnomeBGSlideShow    *self,
                                 gpointer             user_data)
 {
     GTask *task;
-    GFile *file;
 
     task = g_task_new (self, cancellable, callback, user_data);
 
-    file = g_file_new_for_path (self->priv->filename);
-    g_file_load_contents_async (file, cancellable, (GAsyncReadyCallback) on_file_loaded, task);
-    g_object_unref (file);
+    g_file_load_contents_async (self->priv->file, cancellable,
+                                (GAsyncReadyCallback) on_file_loaded, task);
 }
 
 /**

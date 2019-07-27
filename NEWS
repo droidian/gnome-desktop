@@ -1,34 +1,33 @@
 ==============
-Version 3.32.2
+Version 3.33.4
 ==============
 
-- Translation updates
-
-================
-Version 3.32.1.2
-================
-
-No changes except to NEWS. This release is just to advise that the
-previous tarball's NEWS referenced an incorrect CVE ID. The correct
-CVE ID is CVE-2019-11460.
-
-================
-Version 3.32.1.1
-================
-
-- Fix thumbnailer sandbox escape, CVE-2019-11460 (#112)
+- Support common_name in ISO 639 (#49, Gunnar Hjalmarsson)
+- Display locale @modifiers properly (#50, Gunnar Hjalmarsson)
+- Fix detection of builtin display on NVIDIA (Jeremy Soller)
+- GnomeBGSlideShow filename property replaced with a file property (Marco Trevisan)
 
 ==============
-Version 3.32.1
+Version 3.33.3
 ==============
 
 - Translation updates
 
 ==============
-Version 3.32.0
+Version 3.33.2
 ==============
 
-- Fix another thumbnailer sandboxing issue (!34)
+- thumbnailer: Correctly cleanup stale thumbnailer directories
+- Translation updates
+
+==============
+Version 3.33.1
+==============
+
+- thumbnailer: fix incomplete TIOCSTI filtering (#112)
+- gnome-languages: Use uselocale to avoid threadsafety issues (#105)
+- Add default keyboard layout for Indonesia
+- Translation updates
 
 ===============
 Version 3.31.91
