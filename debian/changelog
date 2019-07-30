@@ -1,4 +1,4 @@
-gnome-desktop3 (3.33.4-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.33.4-1) experimental; urgency=medium
 
   * New upstream release
     - Support common_name in ISO 639
@@ -15,7 +15,7 @@ gnome-desktop3 (3.33.4-1) UNRELEASED; urgency=medium
   * debian/libgnome-desktop-3-18.symbols: Update with changes in this release
   * debian/copyright: Minor updates
 
- -- Iain Lane <laney@debian.org>  Tue, 30 Jul 2019 09:59:00 +0100
+ -- Iain Lane <laney@debian.org>  Tue, 30 Jul 2019 17:33:26 +0100
 
 gnome-desktop3 (3.32.2-2) experimental; urgency=medium
 
