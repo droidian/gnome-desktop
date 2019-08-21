@@ -1,11 +1,5 @@
-libgnome-desktop-3.so.17 libgnome-desktop-3-17 #MINVER#
+libgnome-desktop-3.so.18 libgnome-desktop-3-18 #MINVER#
 * Build-Depends-Package: libgnome-desktop-3-dev
- _gnome_datetime_source_new@Base 3.31.90
- _gnome_rr_output_connector_type_is_builtin_display@Base 3.32.2-2~
- _gnome_rr_output_get_connector_type@Base 3.32.2-2~
- _gnome_rr_output_get_tile_info@Base 3.31.90
- _gnome_rr_output_get_tiled_display_size@Base 3.31.90
- _gnome_rr_screen_apply_configuration@Base 3.31.90
  gnome_bg_changes_with_time@Base 3.17.92
  gnome_bg_create_frame_thumbnail@Base 3.17.92
  gnome_bg_create_surface@Base 3.17.92
@@ -64,6 +58,7 @@ libgnome-desktop-3.so.17 libgnome-desktop-3-17 #MINVER#
  gnome_get_input_source_from_locale@Base 3.17.92
  gnome_get_language_from_code@Base 3.17.92
  gnome_get_language_from_locale@Base 3.17.92
+ gnome_get_translated_modifier@Base 3.33.4
  gnome_idle_monitor_add_idle_watch@Base 3.17.92
  gnome_idle_monitor_add_user_active_watch@Base 3.17.92
  gnome_idle_monitor_get_idletime@Base 3.17.92
@@ -187,84 +182,3 @@ libgnome-desktop-3.so.17 libgnome-desktop-3-17 #MINVER#
  gnome_xkb_info_get_options_for_group@Base 3.17.92
  gnome_xkb_info_get_type@Base 3.17.92
  gnome_xkb_info_new@Base 3.17.92
- meta_dbus_display_config_call_apply_configuration@Base 3.31.90
- meta_dbus_display_config_call_apply_configuration_finish@Base 3.31.90
- meta_dbus_display_config_call_apply_configuration_sync@Base 3.31.90
- meta_dbus_display_config_call_change_backlight@Base 3.31.90
- meta_dbus_display_config_call_change_backlight_finish@Base 3.31.90
- meta_dbus_display_config_call_change_backlight_sync@Base 3.31.90
- meta_dbus_display_config_call_get_crtc_gamma@Base 3.31.90
- meta_dbus_display_config_call_get_crtc_gamma_finish@Base 3.31.90
- meta_dbus_display_config_call_get_crtc_gamma_sync@Base 3.31.90
- meta_dbus_display_config_call_get_resources@Base 3.31.90
- meta_dbus_display_config_call_get_resources_finish@Base 3.31.90
- meta_dbus_display_config_call_get_resources_sync@Base 3.31.90
- meta_dbus_display_config_call_set_crtc_gamma@Base 3.31.90
- meta_dbus_display_config_call_set_crtc_gamma_finish@Base 3.31.90
- meta_dbus_display_config_call_set_crtc_gamma_sync@Base 3.31.90
- meta_dbus_display_config_complete_apply_configuration@Base 3.31.90
- meta_dbus_display_config_complete_change_backlight@Base 3.31.90
- meta_dbus_display_config_complete_get_crtc_gamma@Base 3.31.90
- meta_dbus_display_config_complete_get_resources@Base 3.31.90
- meta_dbus_display_config_complete_set_crtc_gamma@Base 3.31.90
- meta_dbus_display_config_emit_monitors_changed@Base 3.31.90
- meta_dbus_display_config_get_power_save_mode@Base 3.31.90
- meta_dbus_display_config_get_type@Base 3.31.90
- meta_dbus_display_config_interface_info@Base 3.31.90
- meta_dbus_display_config_override_properties@Base 3.31.90
- meta_dbus_display_config_proxy_get_type@Base 3.31.90
- meta_dbus_display_config_proxy_new@Base 3.31.90
- meta_dbus_display_config_proxy_new_finish@Base 3.31.90
- meta_dbus_display_config_proxy_new_for_bus@Base 3.31.90
- meta_dbus_display_config_proxy_new_for_bus_finish@Base 3.31.90
- meta_dbus_display_config_proxy_new_for_bus_sync@Base 3.31.90
- meta_dbus_display_config_proxy_new_sync@Base 3.31.90
- meta_dbus_display_config_set_power_save_mode@Base 3.31.90
- meta_dbus_display_config_skeleton_get_type@Base 3.31.90
- meta_dbus_display_config_skeleton_new@Base 3.31.90
- meta_dbus_idle_monitor_call_add_idle_watch@Base 3.31.90
- meta_dbus_idle_monitor_call_add_idle_watch_finish@Base 3.31.90
- meta_dbus_idle_monitor_call_add_idle_watch_sync@Base 3.31.90
- meta_dbus_idle_monitor_call_add_user_active_watch@Base 3.31.90
- meta_dbus_idle_monitor_call_add_user_active_watch_finish@Base 3.31.90
- meta_dbus_idle_monitor_call_add_user_active_watch_sync@Base 3.31.90
- meta_dbus_idle_monitor_call_get_idletime@Base 3.31.90
- meta_dbus_idle_monitor_call_get_idletime_finish@Base 3.31.90
- meta_dbus_idle_monitor_call_get_idletime_sync@Base 3.31.90
- meta_dbus_idle_monitor_call_remove_watch@Base 3.31.90
- meta_dbus_idle_monitor_call_remove_watch_finish@Base 3.31.90
- meta_dbus_idle_monitor_call_remove_watch_sync@Base 3.31.90
- meta_dbus_idle_monitor_complete_add_idle_watch@Base 3.31.90
- meta_dbus_idle_monitor_complete_add_user_active_watch@Base 3.31.90
- meta_dbus_idle_monitor_complete_get_idletime@Base 3.31.90
- meta_dbus_idle_monitor_complete_remove_watch@Base 3.31.90
- meta_dbus_idle_monitor_emit_watch_fired@Base 3.31.90
- meta_dbus_idle_monitor_get_type@Base 3.31.90
- meta_dbus_idle_monitor_interface_info@Base 3.31.90
- meta_dbus_idle_monitor_override_properties@Base 3.31.90
- meta_dbus_idle_monitor_proxy_get_type@Base 3.31.90
- meta_dbus_idle_monitor_proxy_new@Base 3.31.90
- meta_dbus_idle_monitor_proxy_new_finish@Base 3.31.90
- meta_dbus_idle_monitor_proxy_new_for_bus@Base 3.31.90
- meta_dbus_idle_monitor_proxy_new_for_bus_finish@Base 3.31.90
- meta_dbus_idle_monitor_proxy_new_for_bus_sync@Base 3.31.90
- meta_dbus_idle_monitor_proxy_new_sync@Base 3.31.90
- meta_dbus_idle_monitor_skeleton_get_type@Base 3.31.90
- meta_dbus_idle_monitor_skeleton_new@Base 3.31.90
- meta_dbus_object_get_idle_monitor@Base 3.31.90
- meta_dbus_object_get_type@Base 3.31.90
- meta_dbus_object_manager_client_get_proxy_type@Base 3.31.90
- meta_dbus_object_manager_client_get_type@Base 3.31.90
- meta_dbus_object_manager_client_new@Base 3.31.90
- meta_dbus_object_manager_client_new_finish@Base 3.31.90
- meta_dbus_object_manager_client_new_for_bus@Base 3.31.90
- meta_dbus_object_manager_client_new_for_bus_finish@Base 3.31.90
- meta_dbus_object_manager_client_new_for_bus_sync@Base 3.31.90
- meta_dbus_object_manager_client_new_sync@Base 3.31.90
- meta_dbus_object_peek_idle_monitor@Base 3.31.90
- meta_dbus_object_proxy_get_type@Base 3.31.90
- meta_dbus_object_proxy_new@Base 3.31.90
- meta_dbus_object_skeleton_get_type@Base 3.31.90
- meta_dbus_object_skeleton_new@Base 3.31.90
- meta_dbus_object_skeleton_set_idle_monitor@Base 3.31.90
- screen_signals@Base 3.31.90

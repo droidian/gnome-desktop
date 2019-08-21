@@ -89,12 +89,12 @@ enum {
   PROP_LAST
 };
 
-G_DEFINE_TYPE (GnomeRRConfig, gnome_rr_config, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GnomeRRConfig, gnome_rr_config, G_TYPE_OBJECT)
 
 static void
 gnome_rr_config_init (GnomeRRConfig *self)
 {
-    self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GNOME_TYPE_RR_CONFIG, GnomeRRConfigPrivate);
+    self->priv = gnome_rr_config_get_instance_private (self);
 
     self->priv->clone = FALSE;
     self->priv->screen = NULL;
@@ -163,6 +163,7 @@ gnome_rr_config_load_current (GnomeRRConfig *config, GError **error)
 	output->priv->name = g_strdup (gnome_rr_output_get_name (rr_output));
 	output->priv->connected = TRUE;
 	output->priv->display_name = g_strdup (gnome_rr_output_get_display_name (rr_output));
+	output->priv->connector_type = g_strdup (_gnome_rr_output_get_connector_type (rr_output));
 	output->priv->config = config;
 	output->priv->is_tiled = _gnome_rr_output_get_tile_info (rr_output,
 								 &output->priv->tile);
@@ -271,8 +272,6 @@ static void
 gnome_rr_config_class_init (GnomeRRConfigClass *klass)
 {
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-    g_type_class_add_private (klass, sizeof (GnomeRROutputInfoPrivate));
 
     gobject_class->set_property = gnome_rr_config_set_property;
     gobject_class->finalize = gnome_rr_config_finalize;
@@ -438,6 +437,7 @@ make_outputs (GnomeRRConfig *config)
 
         new->priv->name = g_strdup (old->priv->name);
         new->priv->display_name = g_strdup (old->priv->display_name);
+        new->priv->connector_type = g_strdup (old->priv->connector_type);
         new->priv->vendor = g_strdup (old->priv->vendor);
         new->priv->product = g_strdup (old->priv->product);
         new->priv->serial = g_strdup (old->priv->serial);
@@ -592,9 +592,7 @@ gnome_rr_config_ensure_primary (GnomeRRConfig *configuration)
                         top_left = info;
                 }
                 if (builtin_display == NULL
-                    && _gnome_rr_output_name_is_builtin_display (info->priv->name)) {
-                        /* shame we can't find the connector type
-                           as with gnome_rr_output_is_builtin_display */
+                    && _gnome_rr_output_connector_type_is_builtin_display (info->priv->connector_type)) {
                         builtin_display = info;
                 }
         }

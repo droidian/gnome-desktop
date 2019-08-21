@@ -29,17 +29,18 @@
 
 #include "gnome-rr-private.h"
 
-G_DEFINE_TYPE (GnomeRROutputInfo, gnome_rr_output_info, G_TYPE_OBJECT)
+G_DEFINE_TYPE_WITH_PRIVATE (GnomeRROutputInfo, gnome_rr_output_info, G_TYPE_OBJECT)
 
 static void
 gnome_rr_output_info_init (GnomeRROutputInfo *self)
 {
-    self->priv = G_TYPE_INSTANCE_GET_PRIVATE (self, GNOME_TYPE_RR_OUTPUT_INFO, GnomeRROutputInfoPrivate);
+    self->priv = gnome_rr_output_info_get_instance_private (self);
 
     self->priv->name = NULL;
     self->priv->on = FALSE;
     self->priv->rotation = GNOME_RR_ROTATION_0;
     self->priv->display_name = NULL;
+    self->priv->connector_type = NULL;
 }
 
 static void
@@ -49,6 +50,7 @@ gnome_rr_output_info_finalize (GObject *gobject)
 
     g_free (self->priv->name);
     g_free (self->priv->display_name);
+    g_free (self->priv->connector_type);
     g_free (self->priv->product);
     g_free (self->priv->serial);
     g_free (self->priv->vendor);
@@ -60,8 +62,6 @@ static void
 gnome_rr_output_info_class_init (GnomeRROutputInfoClass *klass)
 {
     GObjectClass *gobject_class = G_OBJECT_CLASS (klass);
-
-    g_type_class_add_private (klass, sizeof (GnomeRROutputInfoPrivate));
 
     gobject_class->finalize = gnome_rr_output_info_finalize;
 }

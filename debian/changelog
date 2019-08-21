@@ -1,3 +1,29 @@
+gnome-desktop3 (3.33.91-1) experimental; urgency=medium
+
+  * New upstream release
+    - Avoid using g_type_class_add_private()
+
+ -- Iain Lane <laney@debian.org>  Wed, 21 Aug 2019 09:44:48 +0100
+
+gnome-desktop3 (3.33.4-1) experimental; urgency=medium
+
+  * New upstream release
+    - Support common_name in ISO 639
+    - Display locale @modifiers properly
+    - Fix detection of builtin display on NVIDIA
+    - GnomeBGSlideShow filename property replaced with a file property
+    - thumbnailer: Correctly cleanup stale thumbnailer directories
+    - thumbnailer: fix incomplete TIOCSTI filtering
+    - gnome-languages: Use uselocale to avoid threadsafety issues
+    - Add default keyboard layout for Indonesia
+  * debian/*: libgnome-desktop-3-17 → libgnome-desktop-3-18
+  * Use-connector_type-from-mutter-to-fix-detection-of-builti.patch: Drop,
+    upstream
+  * debian/libgnome-desktop-3-18.symbols: Update with changes in this release
+  * debian/copyright: Minor updates
+
+ -- Iain Lane <laney@debian.org>  Tue, 30 Jul 2019 17:33:26 +0100
+
 gnome-desktop3 (3.32.2-2ubuntu1) eoan; urgency=medium
 
   * Merge with Debian. Remaining changes:
