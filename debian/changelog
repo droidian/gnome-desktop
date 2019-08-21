@@ -1,6 +1,7 @@
 gnome-desktop3 (3.33.91-1) UNRELEASED; urgency=medium
 
   * New upstream release
+    - Avoid using g_type_class_add_private()
 
  -- Iain Lane <laney@debian.org>  Wed, 21 Aug 2019 09:44:25 +0100
 
