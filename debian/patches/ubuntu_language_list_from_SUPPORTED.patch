@@ -16,7 +16,7 @@ all available language codes as parsed from /usr/share/i18n/SUPPORTED.
  2 files changed, 104 insertions(+)
 
 diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
-index 44d4356..8c71f86 100644
+index d69b0c5..72bc454 100644
 --- a/libgnome-desktop/gnome-languages.c
 +++ b/libgnome-desktop/gnome-languages.c
 @@ -59,6 +59,7 @@ typedef struct _GnomeLocale {
@@ -27,7 +27,7 @@ index 44d4356..8c71f86 100644
  static GHashTable *gnome_territories_map;
  static GHashTable *gnome_available_locales_map;
  static GHashTable *gnome_language_count_map;
-@@ -534,6 +535,55 @@ collect_locales_from_localebin (void)
+@@ -535,6 +536,55 @@ collect_locales_from_localebin (void)
          return found_locales;
  }
  
@@ -83,7 +83,7 @@ index 44d4356..8c71f86 100644
  static void
  count_languages_and_territories (void)
  {
-@@ -566,6 +616,27 @@ count_languages_and_territories (void)
+@@ -567,6 +617,27 @@ count_languages_and_territories (void)
  		}
          }
  }
@@ -111,7 +111,7 @@ index 44d4356..8c71f86 100644
  
  static void
  collect_locales (void)
-@@ -1272,6 +1343,38 @@ gnome_get_all_locales (void)
+@@ -1288,6 +1359,38 @@ gnome_get_all_locales (void)
          return (char **) g_ptr_array_free (array, FALSE);
  }
  
@@ -151,10 +151,10 @@ index 44d4356..8c71f86 100644
   * gnome_get_language_from_code:
   * @code: an ISO 639 code string
 diff --git a/libgnome-desktop/gnome-languages.h b/libgnome-desktop/gnome-languages.h
-index 3d7525d..b85b5f5 100644
+index 97f4af5..b64aa25 100644
 --- a/libgnome-desktop/gnome-languages.h
 +++ b/libgnome-desktop/gnome-languages.h
-@@ -34,6 +34,7 @@ char *        gnome_get_language_from_locale    (const char *locale,
+@@ -36,6 +36,7 @@ char *        gnome_get_language_from_locale    (const char *locale,
  char *        gnome_get_country_from_locale     (const char *locale,
                                                   const char *translation);
  char **       gnome_get_all_locales             (void);

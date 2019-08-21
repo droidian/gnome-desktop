@@ -13,7 +13,7 @@ https://bugzilla.gnome.org/show_bug.cgi?id=690378
  2 files changed, 32 insertions(+)
 
 diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
-index 3d25d4b..f9fa7a2 100644
+index 3f69d65..a62f3cb 100644
 --- a/libgnome-desktop/gnome-bg.c
 +++ b/libgnome-desktop/gnome-bg.c
 @@ -47,6 +47,7 @@ Author: Soren Sandmann <sandmann@redhat.com>

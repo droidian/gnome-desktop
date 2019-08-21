@@ -8,7 +8,7 @@ instead of in Unity to fix some races (LP: #963140)
  1 file changed, 141 insertions(+)
 
 diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
-index 2b6ecd3..fc368af 100644
+index 230a2f2..7985f82 100644
 --- a/libgnome-desktop/gnome-bg.c
 +++ b/libgnome-desktop/gnome-bg.c
 @@ -58,6 +58,19 @@ Author: Soren Sandmann <sandmann@redhat.com>
@@ -31,7 +31,7 @@ index 2b6ecd3..fc368af 100644
  /* This is the size of the GdkRGB dither matrix, in order to avoid
   * bad dithering when tiling the gradient
   */
-@@ -2258,10 +2271,137 @@ clear_cache (GnomeBG *bg)
+@@ -2267,10 +2280,137 @@ clear_cache (GnomeBG *bg)
  }
  
  /* Pixbuf utilities */
@@ -169,7 +169,7 @@ index 2b6ecd3..fc368af 100644
  	guint64 a_total, r_total, g_total, b_total;
  	guint row, column;
  	int row_stride;
-@@ -2321,6 +2461,7 @@ pixbuf_average_value (GdkPixbuf *pixbuf,
+@@ -2330,6 +2470,7 @@ pixbuf_average_value (GdkPixbuf *pixbuf,
  	result->red = r_total / dd;
  	result->green = g_total / dd;
  	result->blue = b_total / dd;
