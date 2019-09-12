@@ -1,8 +1,9 @@
-gnome-desktop3 (3.34.0-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.34.0-1) experimental; urgency=medium
 
   * New upstream release
+    - tests/wall*: Do not fail if some of the locales is missing
 
- -- Tim Lunn <tim@feathertop.org>  Thu, 12 Sep 2019 21:37:52 +1000
+ -- Tim Lunn <tim@feathertop.org>  Thu, 12 Sep 2019 21:56:55 +1000
 
 gnome-desktop3 (3.33.91-1) experimental; urgency=medium
 
