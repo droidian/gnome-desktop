@@ -1,3 +1,9 @@
+gnome-desktop3 (3.34.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Tim Lunn <tim@feathertop.org>  Thu, 12 Sep 2019 21:37:52 +1000
+
 gnome-desktop3 (3.33.91-1) experimental; urgency=medium
 
   * New upstream release
