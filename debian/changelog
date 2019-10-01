@@ -1,4 +1,4 @@
-gnome-desktop3 (3.34.0-2ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.34.0-2ubuntu1) eoan; urgency=medium
 
   * Updated to the current version, merging from Debian (lp: #1846147)
 
