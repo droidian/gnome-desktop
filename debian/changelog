@@ -1,9 +1,22 @@
-gnome-desktop3 (3.33.91-1ubuntu2) eoan; urgency=medium
+gnome-desktop3 (3.34.0-2ubuntu1) UNRELEASED; urgency=medium
 
-  * Merge back changes from 3.32.2-2ubuntu3 which were dropped because I
-    forgot to `git pull' first.
+  * Updated to the current version, merging from Debian (lp: #1846147)
 
- -- Iain Lane <iain.lane@canonical.com>  Wed, 21 Aug 2019 10:35:55 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 01 Oct 2019 16:53:18 +0200
+
+gnome-desktop3 (3.34.0-2) unstable; urgency=medium
+
+  * Team upload.
+  * Upload to unstable.
+
+ -- Andreas Henriksson <andreas@fatal.se>  Mon, 30 Sep 2019 13:29:10 +0200
+
+gnome-desktop3 (3.34.0-1) experimental; urgency=medium
+
+  * New upstream release
+    - tests/wall*: Do not fail if some of the locales is missing
+
+ -- Tim Lunn <tim@feathertop.org>  Thu, 12 Sep 2019 21:56:55 +1000
 
 gnome-desktop3 (3.33.91-1ubuntu1) eoan; urgency=medium
 
