@@ -81,8 +81,7 @@ Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
-Breaks: gnome-shell (<< 3.34),
-        libmutter-2-0 (<< 3.27.92-2~)
+Breaks: gnome-shell (<< 3.34)
 Description: Introspection data for GnomeDesktop
  This package provides the include files and static library for the GNOME
  desktop library functions.
