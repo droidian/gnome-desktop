@@ -1,3 +1,16 @@
+gnome-desktop3 (3.34.0-3) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bicha ]
+  * Bump gir1.2-gnomedesktop-3.0's Breaks against gnome-shell to << 3.34.
+    See a34fcb74. (Closes: #941782)
+  * Drop obsolete Breaks against libmutter-2-0.
+    libmutter-2-0 was part of the Buster development release
+    but was dropped before Buster was released.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 07 Oct 2019 10:50:58 +0100
+
 gnome-desktop3 (3.34.0-2) unstable; urgency=medium
 
   * Team upload.
