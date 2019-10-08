@@ -1,8 +1,27 @@
-gnome-desktop3 (3.34.0-2ubuntu1) eoan; urgency=medium
+gnome-desktop3 (3.34.1-1ubuntu1) UNRELEASED; urgency=medium
 
-  * Updated to the current version, merging from Debian (lp: #1846147)
+  * Updated to the current version, merging from Debian
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 01 Oct 2019 16:53:18 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 08 Oct 2019 16:52:49 +0200
+
+gnome-desktop3 (3.34.1-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 08 Oct 2019 16:47:08 +0200
+
+gnome-desktop3 (3.34.0-3) unstable; urgency=medium
+
+  * Team upload
+
+  [ Jeremy Bicha ]
+  * Bump gir1.2-gnomedesktop-3.0's Breaks against gnome-shell to << 3.34.
+    See a34fcb74. (Closes: #941782)
+  * Drop obsolete Breaks against libmutter-2-0.
+    libmutter-2-0 was part of the Buster development release
+    but was dropped before Buster was released.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 07 Oct 2019 10:50:58 +0100
 
 gnome-desktop3 (3.34.0-2) unstable; urgency=medium
 
