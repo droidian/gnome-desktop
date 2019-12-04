@@ -4,8 +4,10 @@ gnome-desktop3 (3.34.1-2) UNRELEASED; urgency=medium
     libudev-dev on non-linux architectures, this is not needed
   * debian/control.in: Do not (build-)depend against libseccomp-dev on
     riscv64, seccomp is not supported on this architecture ATM
+  * debian/control.in: Add at-spi2-core to the build-dependencies, this seems
+    to be needed for the tests on hurd-i386, that should fix the FTBFS
 
- -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Dec 2019 15:59:53 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Wed, 04 Dec 2019 16:27:58 +0100
 
 gnome-desktop3 (3.34.1-1) unstable; urgency=medium
 
