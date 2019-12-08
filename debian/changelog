@@ -1,3 +1,9 @@
+gnome-desktop3 (3.34.2-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 08 Dec 2019 21:37:01 +0100
+
 gnome-desktop3 (3.34.1-2) unstable; urgency=medium
 
   * debian/control.in: Do not make libgnome-desktop-3-dev depend against
