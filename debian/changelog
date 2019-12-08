@@ -1,8 +1,10 @@
 gnome-desktop3 (3.34.2-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * Add libsystemd-dev to the build-dependencies, this is used by the helper
+    to create transient systemd scopes
 
- -- Laurent Bigonville <bigon@debian.org>  Sun, 08 Dec 2019 21:37:01 +0100
+ -- Laurent Bigonville <bigon@debian.org>  Sun, 08 Dec 2019 21:43:08 +0100
 
 gnome-desktop3 (3.34.1-2) unstable; urgency=medium
 

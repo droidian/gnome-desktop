@@ -163,6 +163,8 @@ libgnome-desktop-3.so.18 libgnome-desktop-3-18 #MINVER#
  gnome_rr_screen_new_finish@Base 3.17.92
  gnome_rr_screen_refresh@Base 3.17.92
  gnome_rr_screen_set_dpms_mode@Base 3.17.92
+ gnome_start_systemd_scope@Base 3.34.2
+ gnome_start_systemd_scope_finish@Base 3.34.2
  gnome_wall_clock_get_clock@Base 3.17.92
  gnome_wall_clock_get_timezone@Base 3.17.92
  gnome_wall_clock_get_type@Base 3.17.92
