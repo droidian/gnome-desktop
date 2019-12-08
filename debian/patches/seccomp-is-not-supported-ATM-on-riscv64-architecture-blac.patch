@@ -1,0 +1,26 @@
+From: Laurent Bigonville <bigon@bigon.be>
+Date: Thu, 5 Dec 2019 09:31:10 +0000
+Subject: seccomp is not supported ATM on riscv64 architecture,
+ blacklist it for now
+
+Fixes: https://gitlab.gnome.org/GNOME/gnome-desktop/issues/128
+
+
+(cherry picked from commit f8916f70e7a9eb4364aee670b5c5657762473dc7)
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 84a2405..d819c00 100644
+--- a/meson.build
++++ b/meson.build
+@@ -58,7 +58,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
+ host_os = host_machine.system()
+ host_cpu = host_machine.cpu()
+ supported_os = ['linux']
+-unsupported_cpus = ['alpha', 'ia64', 'm68k', 'sh4', 'sparc', 'sparc64']
++unsupported_cpus = ['alpha', 'ia64', 'm68k', 'riscv64', 'sh4', 'sparc', 'sparc64']
+ if supported_os.contains(host_os) and not unsupported_cpus.contains(host_cpu)
+   seccomp_dep = dependency('libseccomp')
+ else
