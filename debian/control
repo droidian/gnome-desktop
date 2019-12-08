@@ -37,7 +37,7 @@ Build-Depends: at-spi2-core [hurd-i386] <!nocheck>,
 Rules-Requires-Root: no
 Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
-Standards-Version: 4.3.0
+Standards-Version: 4.4.1
 
 Package: gnome-desktop3-data
 Architecture: all
