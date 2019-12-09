@@ -65,6 +65,7 @@ Depends: gir1.2-gnomedesktop-3.0 (= ${binary:Version}),
          libgnome-desktop-3-18 (= ${binary:Version}),
          libgtk-3-dev (>= 3.3.6),
          libseccomp-dev [!hurd-any !kfreebsd-any !linux-alpha !linux-ia64 !linux-m68k !linux-riscv64 !linux-sh4 !linux-sparc64],
+         libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          ${misc:Depends},
          ${shlibs:Depends}
