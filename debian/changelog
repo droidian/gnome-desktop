@@ -1,3 +1,10 @@
+gnome-desktop3 (3.34.2-2ubuntu1~19.10.1) eoan; urgency=medium
+
+  * Backport for SRU from focal to eoan (LP: #1856317)
+  * Update branch references to ubuntu/eoan
+
+ -- Iain Lane <iain.lane@canonical.com>  Fri, 13 Dec 2019 13:32:51 +0000
+
 gnome-desktop3 (3.34.2-2ubuntu1) focal; urgency=medium
 
   * Merge with Debian. Remaining changes:
