@@ -1,4 +1,4 @@
-gnome-desktop3 (3.35.91-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.35.91-1) experimental; urgency=medium
 
   * New upstream release
   * Updated for the soname 18 -> 19 change
