@@ -1,6 +1,6 @@
 project('gnome-desktop', 'c',
-  meson_version: '>= 0.47.0',
-  version: '3.34.2',
+  meson_version: '>= 0.49.0',
+  version: '3.35.91',
   license: ['GPL2+', 'LGPL2+']
 )
 
@@ -14,7 +14,7 @@ project('gnome-desktop', 'c',
 # to 0. When bumping the second version, set the third one to zero.
 #
 # A lot easier than libtool, right?
-libversion = '18.0.3'
+libversion = '19.0.2'
 soversion = libversion.split('.')[0]
 
 gdk_pixbuf_req = '>= 2.36.5'
@@ -58,7 +58,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
 host_os = host_machine.system()
 host_cpu = host_machine.cpu()
 supported_os = ['linux']
-unsupported_cpus = ['alpha', 'ia64', 'm68k', 'sh4', 'sparc', 'sparc64']
+unsupported_cpus = ['alpha', 'ia64', 'm68k', 'riscv64', 'sh4', 'sparc', 'sparc64']
 if supported_os.contains(host_os) and not unsupported_cpus.contains(host_cpu)
   seccomp_dep = dependency('libseccomp')
 else

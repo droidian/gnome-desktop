@@ -9,19 +9,20 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-desktop HEAD\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-desktop/issues\n"
-"POT-Creation-Date: 2019-10-08 07:26+0000\n"
-"PO-Revision-Date: 2019-11-08 09:15+0800\n"
-"Last-Translator: Umarzuki Mochlis <umarzuki@gmail.com>\n"
-"Language-Team: Projek Gabai <gabai-penyumbang@lists.sf.net>\n"
+"POT-Creation-Date: 2020-01-19 07:52+0000\n"
+"PO-Revision-Date: 2020-01-24 23:49+0800\n"
+"Last-Translator: abuyop <abuyop@gmail.com>\n"
+"Language-Team: Pasukan Terjemahan GNOME Malaysia\n"
 "Language: ms\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 2.2.4\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: Poedit 2.0.6\n"
 
 #: libgnome-desktop/gnome-languages.c:717
 msgid "Unspecified"
-msgstr "Tidak ditentukan"
+msgstr "Tidak Dinyatakan"
 
 #. TRANSLATORS: Used to distinguish the labels representing the gez_ER
 #. and gez_ET locales from gez_ER@abegede respective gez_ET@abegede. The
@@ -33,7 +34,7 @@ msgstr "Abegede"
 #. TRANSLATORS: Used to distinguish Cyrillic from Latin written language variants.
 #: libgnome-desktop/gnome-languages.c:1381
 msgid "Cyrillic"
-msgstr "Cyrillic"
+msgstr "Cyril"
 
 #. TRANSLATORS: Also known as "Nagari", a written variant for many languages
 #. of the Indian subcontinent. See:
@@ -67,22 +68,22 @@ msgstr "Saho"
 msgid "Valencia"
 msgstr "Valencia"
 
-#: libgnome-desktop/gnome-rr-config.c:757
+#: libgnome-desktop/gnome-rr-config.c:754
 #, c-format
 msgid "CRTC %d cannot drive output %s"
 msgstr "CRTC% d tidak dapat memacu output %s"
 
-#: libgnome-desktop/gnome-rr-config.c:764
+#: libgnome-desktop/gnome-rr-config.c:761
 #, c-format
 msgid "output %s does not support mode %dx%d@%dHz"
 msgstr "output %s tidak menyokong mod %dx%d@%dHz"
 
-#: libgnome-desktop/gnome-rr-config.c:775
+#: libgnome-desktop/gnome-rr-config.c:772
 #, c-format
 msgid "CRTC %d does not support rotation=%d"
-msgstr "CRTC %d tidak menyokong penggiliran=%d"
+msgstr "CRTC %d tidak menyokong putaran=%d"
 
-#: libgnome-desktop/gnome-rr-config.c:788
+#: libgnome-desktop/gnome-rr-config.c:785
 #, c-format
 msgid ""
 "output %s does not have the same parameters as another cloned output:\n"
@@ -92,27 +93,27 @@ msgid ""
 msgstr ""
 "output %s tidak mempunyai parameter yang sama seperti output klon yang "
 "lain:\n"
-"mod sedia ada = %d, mod baru = %d\n"
-"koordinat sedia ada = (%d,%d), koordinat baru = (%d,%d)\n"
-"penggiliran sedia ada =%d, penggiliran baru =%d"
+"mod sedia ada = %d, mod baharu = %d\n"
+"koordinat sedia ada = (%d,%d), koordinat baharu = (%d,%d)\n"
+"putaran sedia ada =%d, putaran baharu =%d"
 
-#: libgnome-desktop/gnome-rr-config.c:803
+#: libgnome-desktop/gnome-rr-config.c:800
 #, c-format
 msgid "cannot clone to output %s"
 msgstr "tidak boleh klon ke output %s"
 
-#: libgnome-desktop/gnome-rr-config.c:929
+#: libgnome-desktop/gnome-rr-config.c:926
 #, c-format
 msgid "Trying modes for CRTC %d\n"
 msgstr "Cuba mod untuk CRTC %d\n"
 
-#: libgnome-desktop/gnome-rr-config.c:953
+#: libgnome-desktop/gnome-rr-config.c:950
 #, c-format
 msgid "CRTC %d: trying mode %dx%d@%dHz with output at %dx%d@%dHz (pass %d)\n"
 msgstr ""
 "CRTC %d: cuba mod %dx%d@%dHz dengan output pada %dx%d@%dHz (lulus %d)\n"
 
-#: libgnome-desktop/gnome-rr-config.c:1000
+#: libgnome-desktop/gnome-rr-config.c:997
 #, c-format
 msgid ""
 "could not assign CRTCs to outputs:\n"
@@ -121,7 +122,7 @@ msgstr ""
 "tidak dapat menetapkan CRTC pada output:\n"
 "%s"
 
-#: libgnome-desktop/gnome-rr-config.c:1004
+#: libgnome-desktop/gnome-rr-config.c:1001
 #, c-format
 msgid ""
 "none of the selected modes were compatible with the possible modes:\n"
@@ -133,7 +134,7 @@ msgstr ""
 #. Translators: the "requested", "minimum", and
 #. * "maximum" words here are not keywords; please
 #. * translate them as usual.
-#: libgnome-desktop/gnome-rr-config.c:1085
+#: libgnome-desktop/gnome-rr-config.c:1082
 #, c-format
 msgid ""
 "required virtual size does not fit available size: requested=(%d, %d), "
@@ -146,10 +147,12 @@ msgstr ""
 #. plus day used in 24-hour mode. Please keep the under-
 #. score to separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:330
+#| msgid "%a %b %e, %R:%S"
 msgid "%a %b %-e_%R:%S"
 msgstr "%a %e %b_%R:%S"
 
 #: libgnome-desktop/gnome-wall-clock.c:331
+#| msgid "%a %b %e, %R"
 msgid "%a %b %-e_%R"
 msgstr "%a %e %b_%R"
 
@@ -157,10 +160,12 @@ msgstr "%a %e %b_%R"
 #. used in 24-hour mode. Please keep the underscore to
 #. separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:336
+#| msgid "%a %b %e, %R:%S"
 msgid "%b %-e_%R:%S"
 msgstr "%a %e %b, %R:%S"
 
 #: libgnome-desktop/gnome-wall-clock.c:337
+#| msgid "%a %b %e, %R"
 msgid "%b %-e_%R"
 msgstr "%a %e %b, %R"
 
@@ -177,8 +182,9 @@ msgstr "%a %R"
 #. Translators: This is the time format without date used
 #. in 24-hour mode.
 #: libgnome-desktop/gnome-wall-clock.c:346
+#| msgid "%a %R:%S"
 msgid "%R:%S"
-msgstr "%a %R:%S"
+msgstr "%R:%S"
 
 #: libgnome-desktop/gnome-wall-clock.c:347
 msgid "%R"
@@ -188,10 +194,12 @@ msgstr "%R"
 #. plus day used for AM/PM. Please keep the under-
 #. score to separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:355
+#| msgid "%a %b %e, %l:%M:%S %p"
 msgid "%a %b %-e_%l:%M:%S %p"
 msgstr "%a %e %b_%l:%M:%S %p"
 
 #: libgnome-desktop/gnome-wall-clock.c:356
+#| msgid "%a %b %e, %l:%M %p"
 msgid "%a %b %-e_%l:%M %p"
 msgstr "%a %e %b_%l:%M %p"
 
@@ -199,10 +207,12 @@ msgstr "%a %e %b_%l:%M %p"
 #. used for AM/PM. Please keep the underscore to
 #. separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:361
+#| msgid "%a %b %e, %l:%M:%S %p"
 msgid "%b %-e_%l:%M:%S %p"
 msgstr "%e %b_%l:%M:%S %p"
 
 #: libgnome-desktop/gnome-wall-clock.c:362
+#| msgid "%a %b %e, %l:%M %p"
 msgid "%b %-e_%l:%M %p"
 msgstr "%e %b,_%l:%M %p"
 
@@ -219,12 +229,14 @@ msgstr "%a %l:%M %p"
 #. Translators: This is a time format without date used
 #. for AM/PM.
 #: libgnome-desktop/gnome-wall-clock.c:371
+#| msgid "%a %l:%M:%S %p"
 msgid "%l:%M:%S %p"
 msgstr "%l:%M:%S %p"
 
 #: libgnome-desktop/gnome-wall-clock.c:372
+#| msgid "%a %l:%M %p"
 msgid "%l:%M %p"
-msgstr "%a %l:%M %p"
+msgstr "%l:%M %p"
 
 #~ msgid "About GNOME"
 #~ msgstr "Perihal GNOME"
