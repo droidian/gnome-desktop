@@ -37,10 +37,10 @@ Build-Depends: at-spi2-core [hurd-i386] <!nocheck>,
                xkb-data,
                xvfb <!nocheck>
 Rules-Requires-Root: no
-Vcs-Browser: https://code.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop3/+git/gnome-desktop3
-Vcs-Git: https://git.launchpad.net/~ubuntu-desktop/ubuntu/+source/gnome-desktop3
-XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
+XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
+Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git -b ubuntu/master
+Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop/tree/ubuntu/master
 Standards-Version: 4.4.1
 
 Package: gnome-desktop3-data
