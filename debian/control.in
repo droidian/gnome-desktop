@@ -3,7 +3,7 @@ Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: at-spi2-core [hurd-i386] <!nocheck>,
+Build-Depends: at-spi2-core <!nocheck>,
                debhelper (>= 12),
                dh-sequence-gir,
                dh-sequence-gnome,
