@@ -1,8 +1,8 @@
-gnome-desktop3 (3.36.1-1ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.36.1-1ubuntu1) focal; urgency=medium
 
   * New stable version
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 10 Apr 2020 17:28:00 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 10 Apr 2020 17:29:07 +0200
 
 gnome-desktop3 (3.36.1-1) experimental; urgency=medium
 
