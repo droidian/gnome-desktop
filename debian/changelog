@@ -1,3 +1,20 @@
+gnome-desktop3 (3.36.1-1ubuntu1) UNRELEASED; urgency=medium
+
+  * New stable version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 10 Apr 2020 17:28:00 +0200
+
+gnome-desktop3 (3.36.1-1) experimental; urgency=medium
+
+  [ Jeremy Bicha ]
+  * New upstream release
+
+  [ Laurent Bigonville ]
+  * (Build-)depends on libseccomp-dev on linux-riscv64 now that's available
+  * Disable at-spi2 integration for the tests and fix the nocheck build-profile
+
+ -- Jeremy Bicha <jbicha@debian.org>  Tue, 31 Mar 2020 19:43:50 -0400
+
 gnome-desktop3 (3.36.0-1ubuntu1) focal; urgency=medium
 
   * Merge with Debian. Remaining changes:

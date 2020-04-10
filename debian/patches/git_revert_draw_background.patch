@@ -12,11 +12,11 @@ https://bugzilla.gnome.org/show_bug.cgi?id=690378
  libgnome-desktop/gnome-bg.h |  3 +++
  2 files changed, 32 insertions(+)
 
-diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
-index 3f69d65..a62f3cb 100644
---- a/libgnome-desktop/gnome-bg.c
-+++ b/libgnome-desktop/gnome-bg.c
-@@ -47,6 +47,7 @@ Author: Soren Sandmann <sandmann@redhat.com>
+Index: gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.c
+===================================================================
+--- gnome-desktop3-3.36.1.orig/libgnome-desktop/gnome-bg.c
++++ gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.c
+@@ -42,6 +42,7 @@ Author: Soren Sandmann <sandmann@redhat.
  #include "gnome-bg-slide-show.h"
  #include "gnome-bg-crossfade.h"
  
@@ -24,7 +24,7 @@ index 3f69d65..a62f3cb 100644
  #define BG_KEY_PRIMARY_COLOR      "primary-color"
  #define BG_KEY_SECONDARY_COLOR    "secondary-color"
  #define BG_KEY_COLOR_TYPE         "color-shading-type"
-@@ -91,6 +92,7 @@ struct _GnomeBG
+@@ -86,6 +87,7 @@ struct _GnomeBG
  	GDesktopBackgroundShading	color_type;
  	GdkRGBA			primary;
  	GdkRGBA			secondary;
@@ -32,7 +32,7 @@ index 3f69d65..a62f3cb 100644
  
  	GFileMonitor *		file_monitor;
  
-@@ -313,10 +315,15 @@ gnome_bg_load_from_preferences (GnomeBG   *bg,
+@@ -302,10 +304,15 @@ gnome_bg_load_from_preferences (GnomeBG
  	GDesktopBackgroundShading ctype;
  	GdkRGBA c1, c2;
  	GDesktopBackgroundStyle placement;
@@ -48,7 +48,7 @@ index 3f69d65..a62f3cb 100644
  	/* Filename */
  	filename = g_settings_get_mapped (settings, BG_KEY_PICTURE_URI, bg_gsettings_mapping, NULL);
  
-@@ -363,6 +370,7 @@ gnome_bg_save_to_preferences (GnomeBG   *bg,
+@@ -352,6 +359,7 @@ gnome_bg_save_to_preferences (GnomeBG
  		uri = g_filename_to_uri (bg->filename, NULL, NULL);
  	if (uri == NULL)
  		uri = g_strdup ("");
@@ -56,7 +56,7 @@ index 3f69d65..a62f3cb 100644
  	g_settings_set_string (settings, BG_KEY_PICTURE_URI, uri);
  	g_settings_set_string (settings, BG_KEY_PRIMARY_COLOR, primary);
  	g_settings_set_string (settings, BG_KEY_SECONDARY_COLOR, secondary);
-@@ -517,6 +525,27 @@ gnome_bg_get_rgba (GnomeBG                   *bg,
+@@ -506,6 +514,27 @@ gnome_bg_get_rgba (GnomeBG
  		*secondary = bg->secondary;
  }
  
@@ -84,11 +84,11 @@ index 3f69d65..a62f3cb 100644
  const gchar *
  gnome_bg_get_filename (GnomeBG *bg)
  {
-diff --git a/libgnome-desktop/gnome-bg.h b/libgnome-desktop/gnome-bg.h
-index f19173d..7dc9185 100644
---- a/libgnome-desktop/gnome-bg.h
-+++ b/libgnome-desktop/gnome-bg.h
-@@ -65,9 +65,12 @@ void             gnome_bg_set_rgba              (GnomeBG               *bg,
+Index: gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.h
+===================================================================
+--- gnome-desktop3-3.36.1.orig/libgnome-desktop/gnome-bg.h
++++ gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.h
+@@ -65,9 +65,12 @@ void             gnome_bg_set_rgba
  						 GDesktopBackgroundShading type,
  						 GdkRGBA               *primary,
  						 GdkRGBA               *secondary);

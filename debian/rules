@@ -40,5 +40,7 @@ override_dh_missing:
 CHECK_RUNTIME_DIR= $(CURDIR)/debian/tmp/run
 
 override_dh_auto_test:
+ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
 	mkdir -p -m0700 $(CHECK_RUNTIME_DIR)
-	XDG_RUNTIME_DIR=$(CHECK_RUNTIME_DIR) G_MESSAGES_DEBUG=all xvfb-run -a dh_auto_test
+	NO_AT_BRIDGE=1 XDG_RUNTIME_DIR=$(CHECK_RUNTIME_DIR) G_MESSAGES_DEBUG=all xvfb-run -a dh_auto_test
+endif
