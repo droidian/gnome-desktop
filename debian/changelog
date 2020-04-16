@@ -8,6 +8,7 @@ gnome-desktop3 (3.36.1-3) UNRELEASED; urgency=medium
     for example libgnome-desktop-3-18 and libgnome-desktop-3-19 in the
     GNOME 3.36 transition.
     (Closes: #956910, #956885, #956870, #956894, #956896, #956866)
+  * Standards-Version: 4.5.0 (no changes required)
 
  -- Simon McVittie <smcv@debian.org>  Thu, 16 Apr 2020 18:21:15 +0100
 
