@@ -1,8 +1,8 @@
-gnome-desktop3 (3.36.2-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.36.2-1) unstable; urgency=medium
 
   * New upstream release
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 30 Apr 2020 12:16:47 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 30 Apr 2020 12:17:26 +0200
 
 gnome-desktop3 (3.36.1-3) unstable; urgency=medium
 
