@@ -1,4 +1,4 @@
-gnome-desktop3 (3.36.2-1ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.36.2-1ubuntu1) groovy; urgency=medium
 
   * Merge with Debian. Remaining changes (lp: #1876076):
     - Add 04_compute_average_color.patch: Compute the avergage color in
