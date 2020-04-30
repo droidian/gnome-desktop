@@ -36,12 +36,14 @@ XS-Debian-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
 XS-Debian-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git -b ubuntu/master
 Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop/tree/ubuntu/master
-Standards-Version: 4.4.1
+Standards-Version: 4.5.0
 
 Package: gnome-desktop3-data
 Architecture: all
 Multi-Arch: foreign
 Depends: ${misc:Depends}
+Breaks: libgnome-desktop-3-17 (<< 3.36),
+        libgnome-desktop-3-18 (<< 3.36),
 Description: Common files for GNOME desktop apps
  This package includes some files that are shared between several GNOME
  apps (internationalization files).
@@ -52,6 +54,7 @@ Architecture: any
 Multi-Arch: same
 Depends: bubblewrap [linux-any],
          gnome-desktop3-data (>= ${source:Version}),
+         gnome-desktop3-data (<< ${gnome:NextVersion}),
          gsettings-desktop-schemas (>= 3.27.0),
          ${misc:Depends},
          ${shlibs:Depends}
