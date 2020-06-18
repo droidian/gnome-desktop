@@ -15,10 +15,10 @@ all available language codes as parsed from /usr/share/i18n/SUPPORTED.
  libgnome-desktop/gnome-languages.h |   1 +
  2 files changed, 104 insertions(+)
 
-diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
-index e27ccbd..88c387a 100644
---- a/libgnome-desktop/gnome-languages.c
-+++ b/libgnome-desktop/gnome-languages.c
+Index: gnome-desktop3-3.36.3.1/libgnome-desktop/gnome-languages.c
+===================================================================
+--- gnome-desktop3-3.36.3.1.orig/libgnome-desktop/gnome-languages.c
++++ gnome-desktop3-3.36.3.1/libgnome-desktop/gnome-languages.c
 @@ -59,6 +59,7 @@ typedef struct _GnomeLocale {
  } GnomeLocale;
  
@@ -112,9 +112,12 @@ index e27ccbd..88c387a 100644
  static void
  collect_locales (void)
 @@ -1288,6 +1359,38 @@ gnome_get_all_locales (void)
-         return (char **) g_ptr_array_free (array, FALSE);
- }
+         }
+         g_ptr_array_add (array, NULL);
  
++        return (char **) g_ptr_array_free (array, FALSE);
++}
++
 +/**
 + * gnome_get_all_languages:
 + *
@@ -144,17 +147,14 @@ index e27ccbd..88c387a 100644
 +        }
 +        g_ptr_array_add (array, NULL);
 +
-+        return (char **) g_ptr_array_free (array, FALSE);
-+}
-+
- /**
-  * gnome_get_language_from_code:
-  * @code: an ISO 639 code string
-diff --git a/libgnome-desktop/gnome-languages.h b/libgnome-desktop/gnome-languages.h
-index 97f4af5..b64aa25 100644
---- a/libgnome-desktop/gnome-languages.h
-+++ b/libgnome-desktop/gnome-languages.h
-@@ -36,6 +36,7 @@ char *        gnome_get_language_from_locale    (const char *locale,
+         return (char **) g_ptr_array_free (array, FALSE);
+ }
+ 
+Index: gnome-desktop3-3.36.3.1/libgnome-desktop/gnome-languages.h
+===================================================================
+--- gnome-desktop3-3.36.3.1.orig/libgnome-desktop/gnome-languages.h
++++ gnome-desktop3-3.36.3.1/libgnome-desktop/gnome-languages.h
+@@ -36,6 +36,7 @@ char *        gnome_get_language_from_lo
  char *        gnome_get_country_from_locale     (const char *locale,
                                                   const char *translation);
  char **       gnome_get_all_locales             (void);
