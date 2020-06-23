@@ -1,3 +1,17 @@
+gnome-desktop3 (3.36.3.1-2) UNRELEASED; urgency=medium
+
+  * Generate required locales before running tests.
+    This avoids needing locales-all; if only locales is installed, we can
+    generate the en_US and he_IL locales on-demand.
+  * d/p/riscv64_seccomp.patch: Add metadata
+  * d/p/tests-Don-t-run-at-build-time.patch:
+    Fix FTBFS by not running tests at build-time.
+    The tests assume that this version of libgnome-desktop has already been
+    installed system-wide, so they are appropriate to run as autopkgtests
+    but not at build-time. (Closes: #963384)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 23 Jun 2020 10:31:06 +0100
+
 gnome-desktop3 (3.36.3.1-1) unstable; urgency=medium
 
   * New upstream release
