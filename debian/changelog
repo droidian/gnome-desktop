@@ -1,3 +1,30 @@
+gnome-desktop3 (3.36.3.1-0ubuntu1) focal; urgency=medium
+
+  * New stable version (lp: #1884775)
+  * debian/patches/encoding_for_locale_modifiers.patch,
+    debian/patches/git_wallclock_fix.patch:
+    - removed, included in the new version
+  * debian/patches/tests-Don-t-run-at-build-time.patch:
+    - Fix FTBFS by not running tests at build-time
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Jun 2020 16:03:01 +0200
+
+gnome-desktop3 (3.36.2-0ubuntu2) focal; urgency=medium
+
+  * debian/patches/encoding_for_locale_modifiers.patch:
+    - Upstream commit which fixes encoding issue when translating
+      locale modifiers (LP: #1878515)
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Fri, 15 May 2020 00:54:00 +0200
+
+gnome-desktop3 (3.36.2-0ubuntu1) focal; urgency=medium
+
+  * New stable version (lp: #1876076)
+  * debian/patches/git_wallclock_fix.patch:
+    - backport an upstream fix for a test issue failing the build
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Thu, 30 Apr 2020 12:27:03 +0200
+
 gnome-desktop3 (3.36.1-1ubuntu1) focal; urgency=medium
 
   * New stable version
