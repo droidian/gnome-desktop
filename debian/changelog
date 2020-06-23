@@ -1,3 +1,11 @@
+gnome-desktop3 (3.36.3.1-2ubuntu1) UNRELEASED; urgency=medium
+
+  [ Simon McVittie ]
+  * debian/patches/tests-Don-t-run-at-build-time.patch:
+    - Fix FTBFS by not running tests at build-time
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Jun 2020 15:06:23 +0200
+
 gnome-desktop3 (3.36.3.1-1ubuntu1) groovy; urgency=medium
 
   * Merge with Debian. Remaining changes
