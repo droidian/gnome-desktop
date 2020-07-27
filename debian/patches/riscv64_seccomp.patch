@@ -1,6 +1,20 @@
+From: Laurent Bigonville <bigon@debian.org>
+Date: Mon, 16 Mar 2020 12:31:59 +0100
+Subject: Use libseccomp on linux-riscv64 now that's available
+
+This requires a future version of libseccomp (probably 2.4.4) or Debian's
+patched version of 2.4.3, and reverts commit f8916f70.
+
+Forwarded: https://gitlab.gnome.org/GNOME/gnome-desktop/-/merge_requests/77
+---
+ meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/meson.build b/meson.build
+index 7d9bf10..4c7f602 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -58,7 +58,7 @@ udev_dep = dependency('libudev', require
+@@ -58,7 +58,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
  host_os = host_machine.system()
  host_cpu = host_machine.cpu()
  supported_os = ['linux']
