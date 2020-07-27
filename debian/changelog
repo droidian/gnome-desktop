@@ -1,8 +1,10 @@
 gnome-desktop3 (3.36.4-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * debian/patches/tests-Don-t-run-at-build-time.patch:
+    - removed, included in the new version
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Jul 2020 15:31:01 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Jul 2020 15:32:07 +0200
 
 gnome-desktop3 (3.36.3.1-2) unstable; urgency=medium
 

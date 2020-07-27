@@ -1,2 +1,1 @@
 riscv64_seccomp.patch
-tests-Don-t-run-at-build-time.patch
