@@ -142,6 +142,8 @@ libgnome-desktop-3.so.19 libgnome-desktop-3-19 #MINVER#
  gnome_rr_output_is_builtin_display@Base 3.17.92
  gnome_rr_output_list_modes@Base 3.17.92
  gnome_rr_output_set_backlight@Base 3.17.92
+ gnome_rr_output_set_color_transform@Base 3.37.90.1
+ gnome_rr_output_supports_color_transform@Base 3.37.90.1
  gnome_rr_output_supports_mode@Base 3.17.92
  gnome_rr_output_supports_underscanning@Base 3.17.92
  gnome_rr_screen_get_crtc_by_id@Base 3.17.92
