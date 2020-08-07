@@ -1,6 +1,8 @@
 gnome-desktop3 (3.37.90.1-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * debian/control.in:
+    - don't Build-Depends on libx11-dev anymore
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 07 Aug 2020 12:15:06 +0200
 
