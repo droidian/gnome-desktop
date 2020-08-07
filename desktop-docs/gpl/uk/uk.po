@@ -6,8 +6,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: gnome-gpl manual\n"
 "Report-Msgid-Bugs-To: http://bugs.kde.org\n"
-"POT-Creation-Date: 2020-03-26 09:36+0000\n"
-"PO-Revision-Date: 2020-03-29 09:56+0300\n"
+"POT-Creation-Date: 2020-04-04 16:56+0000\n"
+"PO-Revision-Date: 2020-04-25 09:24+0300\n"
 "Last-Translator: Yuri Chornoivan <yurchor@ukr.net>\n"
 "Language-Team: Ukrainian <uk@li.org>\n"
 "Language: uk\n"
@@ -16,13 +16,13 @@ msgstr ""
 "Content-Transfer-Encoding: 8bit\n"
 "Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<"
 "=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
-"X-Generator: Lokalize 20.03.70\n"
+"X-Generator: Lokalize 20.07.70\n"
 
 #. Put one translator per line, in the form NAME <EMAIL>, YEAR1, YEAR2
 #| msgid "translator-credits"
 msgctxt "_"
 msgid "translator-credits"
-msgstr "Максим Дзюманенко <dziumanenko@gmail.com>"
+msgstr "Максим Дзюманенко <dziumanenko@gmail.com>, 2000"
 
 #. (itstool) path: articleinfo/title
 #: C/index.docbook:17
@@ -49,7 +49,7 @@ msgstr "Проект документування GNOME"
 #. (itstool) path: revhistory/revision
 #: C/index.docbook:32
 msgid "<revnumber>2</revnumber> <date>1991-06</date>"
-msgstr "<revnumber>2</revnumber> <date>червень 1991</date>"
+msgstr "<revnumber>2</revnumber> <date>червень 1991 року</date>"
 
 #. (itstool) path: para/address
 #: C/index.docbook:40
@@ -523,7 +523,7 @@ msgstr ""
 "розповсюдження відповідних вихідних текстів. (Цей варіант розповсюдження "
 "дозволений тільки для некомерційного поширення і тільки якщо Ви отримали "
 "програму в об'єктному чи придатному для виконанні вигляді разом з такою "
-"пропозицією, у відповідності з Підпунктом «б» вище."
+"пропозицією, у відповідності з Підпунктом <quote>б</quote> вище."
 
 #. (itstool) path: sect2/para
 #: C/index.docbook:263
