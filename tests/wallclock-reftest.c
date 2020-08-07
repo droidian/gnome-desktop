@@ -448,7 +448,8 @@ test_ui_file (GFile         *file,
   loc = newlocale (LC_ALL_MASK, locale, (locale_t) 0);
   if (loc == (locale_t)0)
     {
-      g_test_skip("locale not found, skipping");
+      g_test_message ("locale '%s' not found", locale);
+      g_test_fail();
       return;
     }
   previous_locale = uselocale (loc);
@@ -585,6 +586,9 @@ main (int argc, char **argv)
   unsetenv("LANGUAGE");
   unsetenv("LC_ALL");
   unsetenv("LC_TIME");
+
+  /* gdk_cairo_set_source_window() doesn't work with anything but X11 */
+  gdk_set_allowed_backends ("x11");
 
   /* I don't want to fight fuzzy scaling algorithms in GPUs,
    * so unless you explicitly set it to something else, we

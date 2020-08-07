@@ -1,5 +1,5 @@
 # Simplified Chinese translation for gnome-desktop.
-# Copyright (C) 2009-2018 gnome-desktop'S COPYRIGHT HOLDER
+# Copyright (C) 2009-2019 gnome-desktop'S COPYRIGHT HOLDER
 # This file is distributed under the same license as the gnome-desktop package.
 # Dillion Chen <dillon.chen@turbolinux.com.cn>
 #   Updated and QA by Wang Jian <lark@linux.net.cn>
@@ -14,14 +14,15 @@
 # YunQiang Su <wzssyqa@gmail.com>, 2012.
 # Sphinx Jiang <yishanj13@gmail.com>, 2013.
 # Mingcong Bai <jeffbai@aosc.xyz>, 2018.
+# Dingzhong Chen <wsxy162@gmail.com>, 2019.
 #
 msgid ""
 msgstr ""
 "Project-Id-Version: gnome-desktop master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-desktop/"
 "issues\n"
-"POT-Creation-Date: 2020-06-25 06:11+0000\n"
-"PO-Revision-Date: 2020-07-01 15:13-0400\n"
+"POT-Creation-Date: 2020-07-01 19:07+0000\n"
+"PO-Revision-Date: 2020-07-01 15:08-0400\n"
 "Last-Translator: Boyuan Yang <073plan@gmail.com>\n"
 "Language-Team: Chinese (China) <i18n-zh@googlegroups.com>\n"
 "Language: zh_CN\n"
@@ -153,86 +154,91 @@ msgstr ""
 "要求的虚拟尺寸不符合可用尺寸： 要求=(%d, %d)， 最小=(%d, %d)，最大"
 "=(%d, %d)"
 
+#: libgnome-desktop/gnome-wall-clock.c:258
+msgctxt "time separator"
+msgid "∶"
+msgstr "∶"
+
 #. Translators: This is the time format with full date
 #. plus day used in 24-hour mode. Please keep the under-
 #. score to separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:330
+#: libgnome-desktop/gnome-wall-clock.c:340
 msgid "%a %b %-e_%R:%S"
 msgstr "%-m月%-e日 %A_%R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:331
+#: libgnome-desktop/gnome-wall-clock.c:341
 msgid "%a %b %-e_%R"
 msgstr "%-m月%-e日 %A_%R"
 
 #. Translators: This is the time format with full date
 #. used in 24-hour mode. Please keep the underscore to
 #. separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:336
+#: libgnome-desktop/gnome-wall-clock.c:346
 msgid "%b %-e_%R:%S"
 msgstr "%-m月%-e日_%R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:337
+#: libgnome-desktop/gnome-wall-clock.c:347
 msgid "%b %-e_%R"
 msgstr "%-m月%-e日_%R"
 
 #. Translators: This is the time format with day used
 #. in 24-hour mode.
-#: libgnome-desktop/gnome-wall-clock.c:341
+#: libgnome-desktop/gnome-wall-clock.c:351
 msgid "%a %R:%S"
 msgstr "%A %R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:342
+#: libgnome-desktop/gnome-wall-clock.c:352
 msgid "%a %R"
 msgstr "%A %R"
 
 #. Translators: This is the time format without date used
 #. in 24-hour mode.
-#: libgnome-desktop/gnome-wall-clock.c:346
+#: libgnome-desktop/gnome-wall-clock.c:356
 msgid "%R:%S"
 msgstr "%R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:347
+#: libgnome-desktop/gnome-wall-clock.c:357
 msgid "%R"
 msgstr "%R"
 
 #. Translators: This is a time format with full date
 #. plus day used for AM/PM. Please keep the under-
 #. score to separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:355
+#: libgnome-desktop/gnome-wall-clock.c:365
 msgid "%a %b %-e_%l:%M:%S %p"
 msgstr "%-m月%-e日 %A_%p %-l:%M:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:356
+#: libgnome-desktop/gnome-wall-clock.c:366
 msgid "%a %b %-e_%l:%M %p"
 msgstr "%-m月%-e日 %A_%p %-l:%M"
 
 #. Translators: This is a time format with full date
 #. used for AM/PM. Please keep the underscore to
 #. separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:361
+#: libgnome-desktop/gnome-wall-clock.c:371
 msgid "%b %-e_%l:%M:%S %p"
 msgstr "%-m月%-e日_%p %-l:%M:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:362
+#: libgnome-desktop/gnome-wall-clock.c:372
 msgid "%b %-e_%l:%M %p"
 msgstr "%-m月%-e日_%p %-l:%M"
 
 #. Translators: This is a time format with day used
 #. for AM/PM.
-#: libgnome-desktop/gnome-wall-clock.c:366
+#: libgnome-desktop/gnome-wall-clock.c:376
 msgid "%a %l:%M:%S %p"
 msgstr "%A %p %-l:%M:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:367
+#: libgnome-desktop/gnome-wall-clock.c:377
 msgid "%a %l:%M %p"
 msgstr "%A %p %-l:%M"
 
 #. Translators: This is a time format without date used
 #. for AM/PM.
-#: libgnome-desktop/gnome-wall-clock.c:371
+#: libgnome-desktop/gnome-wall-clock.c:381
 msgid "%l:%M:%S %p"
 msgstr "%p %-l:%M:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:372
+#: libgnome-desktop/gnome-wall-clock.c:382
 msgid "%l:%M %p"
 msgstr "%p %-l:%M"

@@ -1,4 +1,4 @@
-gnome-desktop3 (3.36.4-1ubuntu1) groovy; urgency=medium
+gnome-desktop3 (3.37.90.1-1ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with Debian. Remaining changes
     - Add 04_compute_average_color.patch: Compute the avergage color in
@@ -13,7 +13,17 @@ gnome-desktop3 (3.36.4-1ubuntu1) groovy; urgency=medium
     - debian/libgnome-desktop-3-18.symbols:
       + Add symbols included in Ubuntu patches
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Mon, 27 Jul 2020 16:03:10 +0200
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 07 Aug 2020 12:17:03 +0200
+
+gnome-desktop3 (3.37.90.1-1) experimental; urgency=medium
+
+  * New upstream release
+  * debian/control.in:
+    - don't Build-Depends on libx11-dev anymore
+  * debian/libgnome-desktop-3-19.symbols:
+    - updated for the new version
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 07 Aug 2020 12:15:06 +0200
 
 gnome-desktop3 (3.36.4-1) unstable; urgency=medium
 
