@@ -1,3 +1,14 @@
+gnome-desktop3 (3.37.90.1-2) UNRELEASED; urgency=medium
+
+  * Add proposed patch to give thumbnailers access to /etc/alternatives.
+    In particular this fixes thumbnailers that use libblas.so.3, such as
+    some Totem plugins. (Closes: #943434)
+  * Generate ja_JP locale for tests
+  * d/tests/installed-tests: Fix path to test installation directory
+  * d/tests/installed-tests: Don't spuriously succeed if no tests are found
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 11 Aug 2020 12:08:12 +0100
+
 gnome-desktop3 (3.37.90.1-1) experimental; urgency=medium
 
   * New upstream release
