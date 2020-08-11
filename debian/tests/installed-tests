@@ -16,7 +16,7 @@ echo "Environment:"
 env | LC_ALL=C sort -u
 
 eval `dpkg-architecture --print-set`
-export XDG_DATA_DIRS="/usr/lib/$DEB_HOST_MULTIARCH/libgnome-desktop-3-18/installed-tests:/usr/share"
+export XDG_DATA_DIRS="/usr/lib/$DEB_HOST_MULTIARCH/libgnome-desktop-3-19:/usr/share"
 
 dbus-run-session -- \
 xvfb-run -a \
