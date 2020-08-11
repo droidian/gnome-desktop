@@ -11,10 +11,10 @@ Forwarded: https://gitlab.gnome.org/GNOME/gnome-desktop/-/merge_requests/77
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/meson.build b/meson.build
-index 7d9bf10..4c7f602 100644
+index fc74dcf..a2ee35d 100644
 --- a/meson.build
 +++ b/meson.build
-@@ -58,7 +58,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
+@@ -57,7 +57,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
  host_os = host_machine.system()
  host_cpu = host_machine.cpu()
  supported_os = ['linux']

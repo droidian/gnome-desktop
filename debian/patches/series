@@ -1,1 +1,2 @@
 riscv64_seccomp.patch
+thumbnail-Mount-etc-alternatives-if-it-exists.patch
