@@ -12,6 +12,7 @@ probably *is* self-contained.
 Bug: https://gitlab.gnome.org/GNOME/gnome-desktop/-/issues/92
 Bug-Debian: https://bugs.debian.org/943434
 Signed-off-by: Simon McVittie <smcv@debian.org>
+Applied-upstream: 3.37.90.2, commit:df477a3d6c1b86f1913e6dbf3fcb587114d11606
 ---
  libgnome-desktop/gnome-desktop-thumbnail-script.c | 12 ++++++++++++
  1 file changed, 12 insertions(+)
