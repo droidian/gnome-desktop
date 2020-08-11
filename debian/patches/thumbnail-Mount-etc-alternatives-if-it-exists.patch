@@ -18,10 +18,10 @@ Applied-upstream: 3.37.90.2, commit:df477a3d6c1b86f1913e6dbf3fcb587114d11606
  1 file changed, 12 insertions(+)
 
 diff --git a/libgnome-desktop/gnome-desktop-thumbnail-script.c b/libgnome-desktop/gnome-desktop-thumbnail-script.c
-index 6ffbe6d..5a72e8b 100644
+index c7f50e7..02776cd 100644
 --- a/libgnome-desktop/gnome-desktop-thumbnail-script.c
 +++ b/libgnome-desktop/gnome-desktop-thumbnail-script.c
-@@ -556,6 +556,18 @@ add_bwrap (GPtrArray   *array,
+@@ -563,6 +563,18 @@ add_bwrap (GPtrArray   *array,
    if (!g_str_has_prefix (FONTCONFIG_CACHE_PATH, "/usr/"))
      add_args (array, "--ro-bind-try", FONTCONFIG_CACHE_PATH, FONTCONFIG_CACHE_PATH, NULL);
  
