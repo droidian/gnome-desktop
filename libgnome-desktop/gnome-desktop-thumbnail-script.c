@@ -327,7 +327,14 @@ setup_seccomp (GPtrArray  *argv_array,
     {SCMP_SYS (unshare)},
     {SCMP_SYS (mount)},
     {SCMP_SYS (pivot_root)},
+#if defined(__s390__) || defined(__s390x__) || defined(__CRIS__)
+    /* Architectures with CONFIG_CLONE_BACKWARDS2: the child stack
+     * and flags arguments are reversed so the flags come second */
+    {SCMP_SYS (clone), &SCMP_A1 (SCMP_CMP_MASKED_EQ, CLONE_NEWUSER, CLONE_NEWUSER)},
+#else
+    /* Normally the flags come first */
     {SCMP_SYS (clone), &SCMP_A0 (SCMP_CMP_MASKED_EQ, CLONE_NEWUSER, CLONE_NEWUSER)},
+#endif
 
     /* Don't allow faking input to the controlling tty (CVE-2017-5226) */
     {SCMP_SYS (ioctl), &SCMP_A1(SCMP_CMP_MASKED_EQ, 0xFFFFFFFFu, (int)TIOCSTI)},
@@ -555,6 +562,18 @@ add_bwrap (GPtrArray   *array,
   /* fontconfig cache if necessary */
   if (!g_str_has_prefix (FONTCONFIG_CACHE_PATH, "/usr/"))
     add_args (array, "--ro-bind-try", FONTCONFIG_CACHE_PATH, FONTCONFIG_CACHE_PATH, NULL);
+
+  /*
+   * Used in various distributions. On those distributions, /usr is not
+   * complete without it: some files in /usr might be a symbolic link
+   * like /usr/bin/composite -> /etc/alternatives/composite ->
+   * /usr/bin/composite-im6.q16.
+   *
+   * https://manpages.debian.org/stable/dpkg/update-alternatives.1.en.html
+   * https://docs.fedoraproject.org/en-US/packaging-guidelines/Alternatives/
+   * https://en.opensuse.org/openSUSE:Packaging_Multiple_Version_guidelines
+   */
+  add_args (array, "--ro-bind-try", "/etc/alternatives", "/etc/alternatives", NULL);
 
   add_args (array,
 	    "--proc", "/proc",
