@@ -1,3 +1,1 @@
-Fix-argument-order-of-clone-for-s390x-in-seccomp-filter.patch
-thumbnail-Mount-etc-alternatives-if-it-exists.patch
 riscv64_seccomp.patch
