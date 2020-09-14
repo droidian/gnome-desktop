@@ -1,3 +1,9 @@
+gnome-desktop3 (3.38.0-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 14 Sep 2020 11:42:45 +0100
+
 gnome-desktop3 (3.37.91-1) experimental; urgency=medium
 
   * Team upload
