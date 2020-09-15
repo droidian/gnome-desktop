@@ -45,6 +45,7 @@ ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
 	debian/run-with-locales \
 		--generate en_US.UTF-8 \
 		--generate he_IL.UTF-8 \
+		--generate ja_JP.UTF-8 \
 		-- \
 	env \
 		NO_AT_BRIDGE=1 \

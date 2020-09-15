@@ -10,11 +10,11 @@ Forwarded: https://gitlab.gnome.org/GNOME/gnome-desktop/-/merge_requests/77
  meson.build | 2 +-
  1 file changed, 1 insertion(+), 1 deletion(-)
 
-Index: gnome-desktop3-3.37.90.1/meson.build
-===================================================================
---- gnome-desktop3-3.37.90.1.orig/meson.build
-+++ gnome-desktop3-3.37.90.1/meson.build
-@@ -57,7 +57,7 @@ udev_dep = dependency('libudev', require
+diff --git a/meson.build b/meson.build
+index 43295f0..2e154fa 100644
+--- a/meson.build
++++ b/meson.build
+@@ -57,7 +57,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
  host_os = host_machine.system()
  host_cpu = host_machine.cpu()
  supported_os = ['linux']
