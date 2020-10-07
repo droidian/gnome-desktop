@@ -1,6 +1,8 @@
 gnome-desktop3 (3.38.1-1) UNRELEASED; urgency=medium
 
   * New upstream release
+  * d/p/gnome_bg_slide_show_get_current_slide-add-NULL-check.patch:
+    - remove fix included in the new version
 
  -- Sebastien Bacher <seb128@ubuntu.com>  Wed, 07 Oct 2020 10:54:40 +0200
 
