@@ -1,3 +1,18 @@
+gnome-desktop3 (3.38.1-2) unstable; urgency=medium
+
+  * Team upload
+  * run-with-locales: Use UTF-8 for *.utf8 locales
+  * d/run-with-locales: Move to d/tests/
+    This improves tab-completion for d/rules.
+  * d/p/Update-Hebrew-translation.patch:
+    Update Hebrew translation from upstream.
+    In particular this fixes an autopkgtest failure where U+2236 RATIO was
+    wrongly translated to U+003A COLON (Closes: #974086), and also fixes
+    the hour and minute in the GNOME Shell clock being reversed in the
+    Hebrew locale.
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 11 Nov 2020 11:40:18 +0000
+
 gnome-desktop3 (3.38.1-1) unstable; urgency=medium
 
   * New upstream release
