@@ -39,7 +39,7 @@ CHECK_RUNTIME_DIR= $(CURDIR)/debian/tmp/run
 override_dh_auto_test:
 ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
 	mkdir -p -m0700 $(CHECK_RUNTIME_DIR)
-	debian/run-with-locales \
+	debian/tests/run-with-locales \
 		--generate en_US.UTF-8 \
 		--generate he_IL.UTF-8 \
 		--generate ja_JP.UTF-8 \
