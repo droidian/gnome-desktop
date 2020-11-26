@@ -1,1 +1,5 @@
 riscv64_seccomp.patch
+xkbinfo-move-two-internal-functions-north-for-better-grou.patch
+xkbinfo-refactor-some-of-the-rules-parsing.patch
+test-convert-the-xkbinfo-test-to-produce-YAML.patch
+xkbinfo-use-libxkbregistry-to-parse-the-rules-files-for-u.patch
