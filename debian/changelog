@@ -1,10 +1,19 @@
-gnome-desktop3 (3.38.2-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.38.2-1) unstable; urgency=medium
 
+  * Team upload
   * New upstream release
     - Translation updates
   * Drop patch for Hebrew translation, applied upstream
+  * Preferentially build-depend on libgdk-pixbuf-2.0-dev.
+    We don't need the deprecated Xlib integration that is also pulled in
+    by the older libgdk-pixbuf2.0-dev package (see #974870).
+  * Standards-Version: 4.5.1 (no changes required)
+  * Backport support for user-specific XKB configuration.
+    This uses the new libxkbregistry to load XKB configuration, instead of
+    parsing it directly, which means we can have per-user keyboard layouts
+    in Wayland sessions (analogous to Xmodmap). (Closes: #974056)
 
- -- Simon McVittie <smcv@debian.org>  Thu, 26 Nov 2020 09:03:04 +0000
+ -- Simon McVittie <smcv@debian.org>  Thu, 26 Nov 2020 10:51:18 +0000
 
 gnome-desktop3 (3.38.1-2) unstable; urgency=medium
 
