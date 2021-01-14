@@ -1,8 +1,10 @@
-gnome-desktop3 (3.38.3-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.38.3-1) unstable; urgency=medium
 
+  * Team upload
   * New upstream release
+    - Translation updates
 
- -- Simon McVittie <smcv@debian.org>  Thu, 14 Jan 2021 20:39:34 +0000
+ -- Simon McVittie <smcv@debian.org>  Thu, 14 Jan 2021 20:40:11 +0000
 
 gnome-desktop3 (3.38.2-1) unstable; urgency=medium
 
