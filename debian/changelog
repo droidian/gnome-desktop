@@ -1,3 +1,60 @@
+gnome-desktop3 (3.38.3-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian. Remaining changes (lp: #1911934)
+    - Add 04_compute_average_color.patch: Compute the avergage color in
+      gnome-desktop itself, not in unity to fix some races (LP #963140)
+    - Add tweak_color_computation.patch, Patch from Gord, no patch header,
+      no bug link.
+    - Add git_revert_draw_background.patch
+    - Add ubuntu_language_list_from_SUPPORTED.patch,
+      Add API to get list of available languages from SUPPORTED file.
+      To be used by gnome 3.8 region panel language installation.
+    - debian/control.in: Build-Depend on language-pack-gnome-he for build tests
+    - debian/libgnome-desktop-3-18.symbols:
+      + Add symbols included in Ubuntu patches
+
+ -- Sebastien Bacher <seb128@ubuntu.com>  Fri, 15 Jan 2021 17:23:56 +0100
+
+gnome-desktop3 (3.38.3-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Translation updates
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 14 Jan 2021 20:40:11 +0000
+
+gnome-desktop3 (3.38.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - Translation updates
+  * Drop patch for Hebrew translation, applied upstream
+  * Preferentially build-depend on libgdk-pixbuf-2.0-dev.
+    We don't need the deprecated Xlib integration that is also pulled in
+    by the older libgdk-pixbuf2.0-dev package (see #974870).
+  * Standards-Version: 4.5.1 (no changes required)
+  * Backport support for user-specific XKB configuration.
+    This uses the new libxkbregistry to load XKB configuration, instead of
+    parsing it directly, which means we can have per-user keyboard layouts
+    in Wayland sessions (analogous to Xmodmap). (Closes: #974056)
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 26 Nov 2020 10:51:18 +0000
+
+gnome-desktop3 (3.38.1-2) unstable; urgency=medium
+
+  * Team upload
+  * run-with-locales: Use UTF-8 for *.utf8 locales
+  * d/run-with-locales: Move to d/tests/
+    This improves tab-completion for d/rules.
+  * d/p/Update-Hebrew-translation.patch:
+    Update Hebrew translation from upstream.
+    In particular this fixes an autopkgtest failure where U+2236 RATIO was
+    wrongly translated to U+003A COLON (Closes: #974086), and also fixes
+    the hour and minute in the GNOME Shell clock being reversed in the
+    Hebrew locale.
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 11 Nov 2020 11:40:18 +0000
+
 gnome-desktop3 (3.38.1-1ubuntu1) groovy; urgency=medium
 
   * Merge with Debian. Remaining changes

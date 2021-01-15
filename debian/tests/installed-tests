@@ -26,7 +26,7 @@ fi
 
 dbus-run-session -- \
 xvfb-run -a \
-debian/run-with-locales \
+debian/tests/run-with-locales \
     --generate en_US.UTF-8 \
     --generate he_IL.UTF-8 \
     --generate ja_JP.UTF-8 \
