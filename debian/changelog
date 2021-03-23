@@ -1,8 +1,8 @@
-gnome-desktop3 (3.38.5-1) UNRELEASED; urgency=medium
+gnome-desktop3 (3.38.5-1) unstable; urgency=medium
 
   * New upstream release
 
- -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Mar 2021 08:46:53 +0100
+ -- Sebastien Bacher <seb128@ubuntu.com>  Tue, 23 Mar 2021 08:47:36 +0100
 
 gnome-desktop3 (3.38.4-1) unstable; urgency=medium
 
