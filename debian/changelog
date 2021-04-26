@@ -1,3 +1,10 @@
+gnome-desktop3 (3.38.5-1ubuntu2) UNRELEASED; urgency=medium
+
+  * d/p/xkbinfo-Update-iso639Ids-correctly-in-evdev.patch:
+    - Fix issue in g-c-c GUI for adding input source (LP: #1925792)
+
+ -- Gunnar Hjalmarsson <gunnarhj@ubuntu.com>  Mon, 26 Apr 2021 13:02:31 +0200
+
 gnome-desktop3 (3.38.5-1ubuntu1) hirsute; urgency=medium
 
   * Merge with Debian. Remaining changes
