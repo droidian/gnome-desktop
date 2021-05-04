@@ -1,10 +1,17 @@
-gnome-desktop3 (3.38.5-2) UNRELEASED; urgency=medium
+gnome-desktop3 (3.38.5-2) unstable; urgency=medium
+
+  * Team upload
 
   [ Gunnar Hjalmarsson ]
   * d/p/xkbinfo-Update-iso639Ids-correctly-in-evdev.patch:
-    - Fix issue in g-c-c GUI for adding input source (closes: #987603)
+    Don't list all keyboard layouts under "Other" in
+    gnome-control-center's list of input sources
+    (Closes: #987603, LP: #1925792)
 
- -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Mon, 26 Apr 2021 12:28:31 +0200
+  [ Simon McVittie ]
+  * Improve patch metadata
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 04 May 2021 20:42:48 +0100
 
 gnome-desktop3 (3.38.5-1) unstable; urgency=medium
 
