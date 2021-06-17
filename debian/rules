@@ -25,9 +25,6 @@ override_dh_auto_install:
 	mv debian/tmp/usr/share/installed-tests/gnome-desktop/* \
 		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG)/installed-tests/gnome-desktop/
 
-override_dh_installchangelogs:
-	dh_installchangelogs -XChangeLog
-
 override_dh_makeshlibs:
 	dh_makeshlibs -- -c4
 
