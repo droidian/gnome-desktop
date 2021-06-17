@@ -43,8 +43,16 @@
 
 #include "gnome-desktop-thumbnail-script.h"
 
+typedef enum {
+  SANDBOX_TYPE_NONE,
+  SANDBOX_TYPE_BWRAP,
+  SANDBOX_TYPE_FLATPAK
+} SandboxType;
+
+#define GST_REGISTRY_FILENAME "gstreamer-1.0.registry"
+
 typedef struct {
-  gboolean sandbox;
+  SandboxType sandbox;
   char *thumbnailer_name;
   GArray *fd_array;
   /* Input/output file paths outside the sandbox */
@@ -55,6 +63,8 @@ typedef struct {
   /* I/O file paths inside the sandbox */
   char *s_infile;
   char *s_outfile;
+  /* Whether a GStreamer cache dir was setup */
+  gboolean has_gst_registry;
 } ScriptExec;
 
 static char *
@@ -131,14 +141,18 @@ add_args (GPtrArray *argv_array, ...)
   va_end (args);
 }
 
-static void
-add_env (GPtrArray  *array,
-         const char *envvar)
+static char *
+create_gst_cache_dir (void)
 {
-  if (g_getenv (envvar) != NULL)
-    add_args (array,
-              "--setenv", envvar, g_getenv (envvar),
-              NULL);
+  char *out;
+
+  out = g_build_filename (g_get_user_cache_dir (),
+                          "gnome-desktop-thumbnailer",
+                          "gstreamer-1.0",
+                          NULL);
+  if (g_mkdir_with_parents (out, 0700) < 0)
+    g_clear_pointer (&out, g_free);
+  return out;
 }
 
 #ifdef ENABLE_SECCOMP
@@ -519,12 +533,23 @@ path_is_usrmerged (const char *dir)
          (stat_buf_src.st_ino == stat_buf_target.st_ino);
 }
 
+static void
+add_bwrap_env (GPtrArray  *array,
+               const char *envvar)
+{
+  if (g_getenv (envvar) != NULL)
+    add_args (array,
+              "--setenv", envvar, g_getenv (envvar),
+              NULL);
+}
+
 static gboolean
 add_bwrap (GPtrArray   *array,
 	   ScriptExec  *script)
 {
   const char * const usrmerged_dirs[] = { "bin", "lib64", "lib", "sbin" };
   int i;
+  g_autofree char *gst_cache_dir = NULL;
 
   g_return_val_if_fail (script->outdir != NULL, FALSE);
   g_return_val_if_fail (script->s_infile != NULL, FALSE);
@@ -563,6 +588,19 @@ add_bwrap (GPtrArray   *array,
   if (!g_str_has_prefix (FONTCONFIG_CACHE_PATH, "/usr/"))
     add_args (array, "--ro-bind-try", FONTCONFIG_CACHE_PATH, FONTCONFIG_CACHE_PATH, NULL);
 
+  /* GStreamer plugin cache if possible */
+  gst_cache_dir = create_gst_cache_dir ();
+  if (gst_cache_dir)
+    {
+      g_autofree char *registry = NULL;
+      script->has_gst_registry = TRUE;
+      registry = g_build_filename (gst_cache_dir, GST_REGISTRY_FILENAME, NULL);
+      add_args (array,
+                "--setenv", "GST_REGISTRY_1_0", registry,
+                "--bind", gst_cache_dir, gst_cache_dir,
+                NULL);
+    }
+
   /*
    * Used in various distributions. On those distributions, /usr is not
    * complete without it: some files in /usr might be a symbolic link
@@ -584,8 +622,9 @@ add_bwrap (GPtrArray   *array,
 	    "--die-with-parent",
 	    NULL);
 
-  add_env (array, "G_MESSAGES_DEBUG");
-  add_env (array, "G_MESSAGES_PREFIXED");
+  add_bwrap_env (array, "G_MESSAGES_DEBUG");
+  add_bwrap_env (array, "G_MESSAGES_PREFIXED");
+  add_bwrap_env (array, "GST_DEBUG");
 
   /* Add gnome-desktop's install prefix if needed */
   if (g_strcmp0 (INSTALL_PREFIX, "") != 0 &&
@@ -612,6 +651,72 @@ add_bwrap (GPtrArray   *array,
 }
 #endif /* HAVE_BWRAP */
 
+static void
+add_flatpak_env (GPtrArray  *array,
+                 const char *envvar)
+{
+  if (g_getenv (envvar) != NULL)
+    {
+      g_autofree char *option = NULL;
+
+      option = g_strdup_printf ("--env=%s=%s",
+                                envvar,
+                                g_getenv (envvar));
+      add_args (array, option, NULL);
+    }
+}
+
+static gboolean
+add_flatpak (GPtrArray   *array,
+             ScriptExec  *script)
+{
+  g_autofree char *inpath = NULL;
+  g_autofree char *outpath = NULL;
+  g_autofree char *gst_cache_dir = NULL;
+
+  g_return_val_if_fail (script->outdir != NULL, FALSE);
+  g_return_val_if_fail (script->infile != NULL, FALSE);
+
+  add_args (array,
+            "flatpak-spawn",
+            "--clear-env",
+            "--env=GIO_USE_VFS=local",
+            "--env=LC_ALL=C.UTF-8",
+            NULL);
+
+  add_flatpak_env (array, "G_MESSAGES_DEBUG");
+  add_flatpak_env (array, "G_MESSAGES_PREFIXED");
+  add_flatpak_env (array, "GST_DEBUG");
+
+  /* GStreamer plugin cache if possible */
+  gst_cache_dir = create_gst_cache_dir ();
+  if (gst_cache_dir)
+    {
+      g_autofree char *registry_path = NULL;
+      g_autofree char *env_option = NULL;
+      g_autofree char *expose_path_option = NULL;
+
+      script->has_gst_registry = TRUE;
+      registry_path = g_build_filename (gst_cache_dir, GST_REGISTRY_FILENAME, NULL);
+      expose_path_option = g_strdup_printf ("--sandbox-expose-path=%s", gst_cache_dir);
+      env_option = g_strdup_printf ("--env=GST_REGISTRY_1_0=%s", registry_path);
+      add_args (array, expose_path_option, env_option, NULL);
+    }
+
+  outpath = g_strdup_printf ("--sandbox-expose-path=%s", script->outdir);
+  inpath = g_strdup_printf ("--sandbox-expose-path-ro=%s", script->infile);
+
+  add_args (array,
+            "--watch-bus",
+            "--sandbox",
+            "--no-network",
+            outpath,
+            inpath,
+            NULL);
+
+  return TRUE;
+}
+
 static char **
 expand_thumbnailing_cmd (const char  *cmd,
 			 ScriptExec  *script,
@@ -631,7 +736,7 @@ expand_thumbnailing_cmd (const char  *cmd,
   array = g_ptr_array_new_with_free_func (g_free);
 
 #ifdef HAVE_BWRAP
-  if (script->sandbox)
+  if (script->sandbox == SANDBOX_TYPE_BWRAP)
     {
       if (!add_bwrap (array, script))
         {
@@ -643,7 +748,7 @@ expand_thumbnailing_cmd (const char  *cmd,
 #endif
 
 #ifdef ENABLE_SECCOMP
-  if (script->sandbox)
+  if (script->sandbox == SANDBOX_TYPE_BWRAP)
     {
       const char *arch;
 
@@ -660,6 +765,16 @@ expand_thumbnailing_cmd (const char  *cmd,
         }
     }
 #endif
+
+  if (script->sandbox == SANDBOX_TYPE_FLATPAK)
+    {
+      if (!add_flatpak (array, script))
+        {
+          g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                               "Flatpak-spawn setup failed");
+          goto bail;
+        }
+    }
 
   got_in = got_out = FALSE;
   for (i = 0; cmd_elems[i] != NULL; i++)
@@ -758,6 +873,47 @@ clear_fd (gpointer data)
     close (*fd_p);
 }
 
+static guint32
+get_portal_version (void)
+{
+  static guint32 version = G_MAXUINT32;
+
+  if (version == G_MAXUINT32)
+    {
+      g_autoptr(GError) error = NULL;
+      g_autoptr(GDBusConnection) session_bus =
+        g_bus_get_sync (G_BUS_TYPE_SESSION, NULL, NULL);
+      g_autoptr(GVariant) reply = NULL;
+
+      if (session_bus)
+        reply = g_dbus_connection_call_sync (session_bus,
+                                             "org.freedesktop.portal.Flatpak",
+                                             "/org/freedesktop/portal/Flatpak",
+                                             "org.freedesktop.DBus.Properties",
+                                             "Get",
+                                             g_variant_new ("(ss)", "org.freedesktop.portal.Flatpak", "version"),
+                                             G_VARIANT_TYPE ("(v)"),
+                                             G_DBUS_CALL_FLAGS_NONE,
+                                             -1,
+                                             NULL, &error);
+
+      if (reply == NULL)
+        {
+          g_debug ("Failed to get Flatpak portal version: %s", error->message);
+          /* Don't try again if we failed once */
+          version = 0;
+        }
+      else
+        {
+          g_autoptr(GVariant) v = g_variant_get_child_value (reply, 0);
+          g_autoptr(GVariant) v2 = g_variant_get_variant (v);
+          version = g_variant_get_uint32 (v2);
+        }
+    }
+
+  return version;
+}
+
 static ScriptExec *
 script_exec_new (const char  *uri,
 		 GError     **error)
@@ -770,8 +926,15 @@ script_exec_new (const char  *uri,
   /* Bubblewrap is not used if the application is already sandboxed in
    * Flatpak as all privileges to create a new namespace are dropped when
    * the initial one is created. */
-  if (!g_file_test ("/.flatpak-info", G_FILE_TEST_IS_REGULAR))
-    exec->sandbox = TRUE;
+  if (g_file_test ("/.flatpak-info", G_FILE_TEST_IS_REGULAR))
+    {
+      if (get_portal_version () >= 3)
+        exec->sandbox = SANDBOX_TYPE_FLATPAK;
+      else
+        exec->sandbox = SANDBOX_TYPE_NONE;
+    }
+  else
+    exec->sandbox = SANDBOX_TYPE_BWRAP;
 #endif
 
   file = g_file_new_for_uri (uri);
@@ -785,7 +948,7 @@ script_exec_new (const char  *uri,
     }
 
 #ifdef HAVE_BWRAP
-  if (exec->sandbox)
+  if (exec->sandbox == SANDBOX_TYPE_BWRAP)
     {
       char *tmpl;
       const char *infile;
@@ -817,6 +980,32 @@ script_exec_new (const char  *uri,
     }
   else
 #endif
+  if (exec->sandbox == SANDBOX_TYPE_FLATPAK)
+    {
+      char *tmpl;
+      const char *sandbox_dir;
+
+      sandbox_dir = g_getenv ("FLATPAK_SANDBOX_DIR");
+      if (!sandbox_dir || *sandbox_dir != '/')
+        {
+          g_set_error (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                       "Incorrect sandbox directory: '%s'", sandbox_dir ? sandbox_dir : "(null)");
+          goto bail;
+        }
+
+      g_mkdir_with_parents (sandbox_dir, 0700);
+      tmpl = g_build_filename (sandbox_dir, "gnome-desktop-thumbnailer-XXXXXX", NULL);
+      exec->outdir = g_mkdtemp (tmpl);
+      if (!exec->outdir)
+        {
+          g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+                               "Could not create temporary sandbox directory");
+          goto bail;
+        }
+
+      exec->outfile = g_build_filename (exec->outdir, "gnome-desktop-thumbnailer.png", NULL);
+    }
+  else if (exec->sandbox == SANDBOX_TYPE_NONE)
     {
       int fd;
       g_autofree char *tmpname = NULL;
@@ -827,12 +1016,52 @@ script_exec_new (const char  *uri,
       close (fd);
       exec->outfile = g_steal_pointer (&tmpname);
     }
+  else
+    g_assert_not_reached ();
 
   return exec;
 
 bail:
   script_exec_free (exec);
   return NULL;
+}
+
+static void
+clean_gst_registry_dir (ScriptExec *exec)
+{
+  g_autoptr(GDir) dir = NULL;
+  g_autofree char *gst_cache_dir = NULL;
+  g_autoptr(GError) error = NULL;
+  const char *name = NULL;
+
+  if (!exec->has_gst_registry)
+    return;
+
+  gst_cache_dir = create_gst_cache_dir ();
+  dir = g_dir_open (gst_cache_dir, 0, &error);
+  if (!dir) {
+    g_debug ("Failed to open GStreamer registry dir %s: %s",
+             gst_cache_dir,
+             error->message);
+    return;
+  }
+
+  while ((name = g_dir_read_name (dir)) != NULL)
+    {
+      g_autofree char *fullpath = NULL;
+
+      if (g_strcmp0 (name, ".") == 0 ||
+          g_strcmp0 (name, "..") == 0 ||
+          g_strcmp0 (name, GST_REGISTRY_FILENAME) == 0)
+        continue;
+
+      fullpath = g_build_filename (gst_cache_dir, name, NULL);
+      if (g_remove (fullpath) < 0)
+        g_warning ("Failed to delete left-over thumbnailing '%s'", fullpath);
+      else
+        g_warning ("Left-over file '%s' in '%s', deleting",
+                   name, gst_cache_dir);
+    }
 }
 
 static void
@@ -873,6 +1102,8 @@ gnome_desktop_thumbnail_script_exec (const char  *cmd,
 
   print_script_debug (expanded_script);
 
+  /* NOTE: Replace the error_out argument with NULL, if you want to see
+   * the output of the spawned command and its children */
   ret = g_spawn_sync (NULL, expanded_script, NULL, G_SPAWN_SEARCH_PATH,
 		      child_setup, exec->fd_array, NULL, &error_out,
 		      &exit_status, error);
@@ -888,6 +1119,8 @@ gnome_desktop_thumbnail_script_exec (const char  *cmd,
     {
       g_debug ("Failed to launch script: %s", !ret ? (*error)->message : error_out);
     }
+
+  clean_gst_registry_dir (exec);
 
 out:
   script_exec_free (exec);
