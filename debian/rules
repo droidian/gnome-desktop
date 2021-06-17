@@ -4,6 +4,7 @@ LIB_PKG := $(filter-out %-dev %-bin,$(filter lib%,$(shell awk '/^Package: / { pr
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
+export DPKG_GENSYMBOLS_CHECK_LEVEL = 4
 
 %:
 	dh $@
@@ -24,9 +25,6 @@ override_dh_auto_install:
 	dh_auto_install
 	mv debian/tmp/usr/share/installed-tests/gnome-desktop/* \
 		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG)/installed-tests/gnome-desktop/
-
-override_dh_makeshlibs:
-	dh_makeshlibs -- -c4
 
 override_dh_missing:
 	dh_missing --fail-missing
