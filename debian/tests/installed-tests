@@ -16,9 +16,6 @@ printf "group entry: "; getent group "$(id -g)" || echo "(exit status $?)"
 echo "Environment:"
 env | LC_ALL=C sort -u
 
-eval `dpkg-architecture --print-set`
-export XDG_DATA_DIRS="/usr/lib/$DEB_HOST_MULTIARCH/libgnome-desktop-3-19:/usr/share"
-
 if ! gnome-desktop-testing-runner -l gnome-desktop | grep '^gnome-desktop/'; then
     echo "No tests found. Does debian/tests/installed-tests need updating?" >&2
     exit 1
