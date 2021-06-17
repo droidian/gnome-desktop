@@ -12,7 +12,6 @@ libgnome-desktop-3.so.19 libgnome-desktop-3-19 #MINVER#
  gnome_bg_crossfade_start@Base 3.17.92
  gnome_bg_crossfade_stop@Base 3.17.92
  gnome_bg_draw@Base 3.17.92
- gnome_bg_get_draw_background@Base 3.18.1
  gnome_bg_get_filename@Base 3.17.92
  gnome_bg_get_image_size@Base 3.17.92
  gnome_bg_get_placement@Base 3.17.92
@@ -23,7 +22,6 @@ libgnome-desktop-3.so.19 libgnome-desktop-3-19 #MINVER#
  gnome_bg_load_from_preferences@Base 3.17.92
  gnome_bg_new@Base 3.17.92
  gnome_bg_save_to_preferences@Base 3.17.92
- gnome_bg_set_draw_background@Base 3.18.1
  gnome_bg_set_filename@Base 3.17.92
  gnome_bg_set_placement@Base 3.17.92
  gnome_bg_set_rgba@Base 3.27.90
