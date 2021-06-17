@@ -21,6 +21,10 @@
 
 #include <config.h>
 
+#ifdef HAVE_XKBREGISTRY
+#include <xkbcommon/xkbregistry.h>
+#endif
+
 #include <stdio.h>
 #include <stdlib.h>
 #include <string.h>
@@ -74,6 +78,7 @@ struct _GnomeXkbInfoPrivate
   GHashTable *layouts_by_language;
   GHashTable *layouts_table;
 
+#ifndef HAVE_XKBREGISTRY
   /* Only used while parsing */
   XkbOptionGroup *current_parser_group;
   XkbOption *current_parser_option;
@@ -82,6 +87,7 @@ struct _GnomeXkbInfoPrivate
   gchar  *current_parser_iso639Id;
   gchar  *current_parser_iso3166Id;
   gchar **current_parser_text;
+#endif
 };
 
 G_DEFINE_TYPE_WITH_CODE (GnomeXkbInfo, gnome_xkb_info, G_TYPE_OBJECT,
@@ -128,8 +134,216 @@ free_option_group (gpointer data)
   g_slice_free (XkbOptionGroup, group);
 }
 
+static void
+add_layout_to_table (GHashTable  *table,
+                     const gchar *key,
+                     Layout      *layout)
+{
+  GHashTable *set;
+
+  if (!layout->id)
+    return;
+
+  set = g_hash_table_lookup (table, key);
+  if (!set)
+    {
+      set = g_hash_table_new (g_str_hash, g_str_equal);
+      g_hash_table_replace (table, g_strdup (key), set);
+    }
+  else
+    {
+      if (g_hash_table_contains (set, layout->id))
+        return;
+    }
+  g_hash_table_replace (set, layout->id, layout);
+}
+
+static void
+add_layout_to_locale_tables (Layout     *layout,
+                             GHashTable *layouts_by_language,
+                             GHashTable *layouts_by_country)
+{
+  GSList *l, *lang_codes, *country_codes;
+  gchar *language, *country;
+
+  lang_codes = layout->iso639Ids;
+  country_codes = layout->iso3166Ids;
+
+  if (layout->is_variant)
+    {
+      if (!lang_codes)
+        lang_codes = layout->main_layout->iso639Ids;
+      if (!country_codes)
+        country_codes = layout->main_layout->iso3166Ids;
+    }
+
+  for (l = lang_codes; l; l = l->next)
+    {
+      language = gnome_get_language_from_code ((gchar *) l->data, NULL);
+      if (language)
+        {
+          add_layout_to_table (layouts_by_language, language, layout);
+          g_free (language);
+        }
+    }
+
+  for (l = country_codes; l; l = l->next)
+    {
+      country = gnome_get_country_from_code ((gchar *) l->data, NULL);
+      if (country)
+        {
+          add_layout_to_table (layouts_by_country, country, layout);
+          g_free (country);
+        }
+    }
+}
+
+#ifdef HAVE_XKBREGISTRY
+typedef enum {
+  ONLY_MAIN_LAYOUTS,
+  ONLY_VARIANTS,
+} LayoutSubset;
+
+static void
+add_layouts (GnomeXkbInfo        *self,
+             struct rxkb_context *ctx,
+             LayoutSubset      which)
+{
+  GnomeXkbInfoPrivate *priv = self->priv;
+  struct rxkb_layout *layout;
+
+  for (layout = rxkb_layout_first (ctx);
+       layout;
+       layout = rxkb_layout_next (layout))
+    {
+      struct rxkb_iso639_code *iso639;
+      struct rxkb_iso3166_code *iso3166;
+      const char *name, *variant;
+      Layout *l;
+
+      name = rxkb_layout_get_name (layout);
+      variant = rxkb_layout_get_variant (layout);
+
+      if ((which == ONLY_VARIANTS && variant == NULL) ||
+          (which == ONLY_MAIN_LAYOUTS && variant != NULL))
+          continue;
+
+      l = g_slice_new0 (Layout);
+      if (variant)
+        {
+          /* This relies on the main layouts being added first */
+          l->main_layout = g_hash_table_lookup (priv->layouts_table, name);
+          if (l->main_layout == NULL)
+           {
+               /* This is a bug in libxkbregistry */
+               g_warning ("Ignoring variant '%s(%s)' without a main layout",
+                          name, variant);
+               g_free (l);
+               continue;
+           }
+
+          l->xkb_name = g_strdup (variant);
+          l->is_variant = TRUE;
+          l->id = g_strjoin ("+", name, variant, NULL);
+        }
+      else
+        {
+          l->xkb_name = g_strdup (name);
+          l->id = g_strdup (name);
+        }
+      l->description = g_strdup (rxkb_layout_get_description (layout));
+      l->short_desc = g_strdup (rxkb_layout_get_brief (layout));
+      for (iso639 = rxkb_layout_get_iso639_first (layout);
+           iso639;
+           iso639 = rxkb_iso639_code_next (iso639))
+        {
+          char *id = g_strdup (rxkb_iso639_code_get_code (iso639));
+          l->iso639Ids = g_slist_prepend (l->iso639Ids, id);
+        }
+      for (iso3166 = rxkb_layout_get_iso3166_first (layout);
+           iso3166;
+           iso3166 = rxkb_iso3166_code_next (iso3166))
+        {
+          char *id = g_strdup (rxkb_iso3166_code_get_code (iso3166));
+          l->iso3166Ids = g_slist_prepend (l->iso3166Ids, id);
+        }
+
+      if (g_hash_table_contains (priv->layouts_table, l->id))
+        {
+          g_clear_pointer (&l, free_layout);
+          continue;
+        }
+
+      g_hash_table_replace (priv->layouts_table, l->id, l);
+      add_layout_to_locale_tables (l,
+                                   priv->layouts_by_language,
+                                   priv->layouts_by_country);
+   }
+}
+
+static gboolean
+parse_rules_file (GnomeXkbInfo  *self,
+                  const gchar   *ruleset,
+                  gboolean       include_extras)
+{
+  GnomeXkbInfoPrivate *priv = self->priv;
+  struct rxkb_context *ctx;
+  struct rxkb_option_group *group;
+  enum rxkb_context_flags flags = RXKB_CONTEXT_NO_FLAGS;
+
+  if (include_extras)
+      flags |= RXKB_CONTEXT_LOAD_EXOTIC_RULES;
+
+  ctx = rxkb_context_new (flags);
+  if (!rxkb_context_parse (ctx, ruleset)) {
+      rxkb_context_unref (ctx);
+      return FALSE;
+  }
+
+  /* libxkbregistry doesn't guarantee a sorting order of the layouts but we
+   * want to reference the main layout from the variants. So populate with
+   * the main layouts first, then add the variants */
+  add_layouts (self, ctx, ONLY_MAIN_LAYOUTS);
+  add_layouts (self, ctx, ONLY_VARIANTS);
+
+  for (group = rxkb_option_group_first (ctx);
+       group;
+       group = rxkb_option_group_next (group))
+    {
+        XkbOptionGroup *g;
+        struct rxkb_option *option;
+
+        g = g_slice_new (XkbOptionGroup);
+        g->id = g_strdup (rxkb_option_group_get_name (group));
+        g->description = g_strdup (rxkb_option_group_get_description (group));
+        g->options_table = g_hash_table_new_full (g_str_hash, g_str_equal,
+                                                  NULL, free_option);
+        g->allow_multiple_selection = rxkb_option_group_allows_multiple (group);
+        g_hash_table_replace (priv->option_groups_table, g->id, g);
+
+        for (option = rxkb_option_first (group);
+             option;
+             option = rxkb_option_next (option))
+          {
+            XkbOption *o;
+
+            o = g_slice_new (XkbOption);
+            o->id = g_strdup (rxkb_option_get_name (option));
+            o->description = g_strdup(rxkb_option_get_description (option));
+            g_hash_table_replace (g->options_table, o->id, o);
+          }
+    }
+
+  rxkb_context_unref (ctx);
+
+  return TRUE;
+}
+
+#else /* HAVE_XKBREGISTRY */
+
 static gchar *
-get_xml_rules_file_path (const gchar *suffix)
+get_xml_rules_file_path (const gchar    *ruleset,
+                         const gchar    *suffix)
 {
   const gchar *base_path;
   gchar *rules_file;
@@ -139,7 +353,7 @@ get_xml_rules_file_path (const gchar *suffix)
   if (!base_path)
     base_path = XKB_BASE;
 
-  rules_file = g_build_filename (base_path, "rules", XKB_RULES_FILE, NULL);
+  rules_file = g_build_filename (base_path, "rules", ruleset, NULL);
   xml_rules_file = g_strdup_printf ("%s%s", rules_file, suffix);
   g_free (rules_file);
 
@@ -283,70 +497,6 @@ parse_start_element (GMarkupParseContext  *context,
         }
 
       priv->current_parser_option = g_slice_new0 (XkbOption);
-    }
-}
-
-static void
-add_layout_to_table (GHashTable  *table,
-                     const gchar *key,
-                     Layout      *layout)
-{
-  GHashTable *set;
-
-  if (!layout->id)
-    return;
-
-  set = g_hash_table_lookup (table, key);
-  if (!set)
-    {
-      set = g_hash_table_new (g_str_hash, g_str_equal);
-      g_hash_table_replace (table, g_strdup (key), set);
-    }
-  else
-    {
-      if (g_hash_table_contains (set, layout->id))
-        return;
-    }
-  g_hash_table_replace (set, layout->id, layout);
-}
-
-static void
-add_layout_to_locale_tables (Layout     *layout,
-                             GHashTable *layouts_by_language,
-                             GHashTable *layouts_by_country)
-{
-  GSList *l, *lang_codes, *country_codes;
-  gchar *language, *country;
-
-  lang_codes = layout->iso639Ids;
-  country_codes = layout->iso3166Ids;
-
-  if (layout->is_variant)
-    {
-      if (!lang_codes)
-        lang_codes = layout->main_layout->iso639Ids;
-      if (!country_codes)
-        country_codes = layout->main_layout->iso3166Ids;
-    }
-
-  for (l = lang_codes; l; l = l->next)
-    {
-      language = gnome_get_language_from_code ((gchar *) l->data, NULL);
-      if (language)
-        {
-          add_layout_to_table (layouts_by_language, language, layout);
-          g_free (language);
-        }
-    }
-
-  for (l = country_codes; l; l = l->next)
-    {
-      country = gnome_get_country_from_code ((gchar *) l->data, NULL);
-      if (country)
-        {
-          add_layout_to_table (layouts_by_country, country, layout);
-          g_free (country);
-        }
     }
 }
 
@@ -527,9 +677,9 @@ static const GMarkupParser markup_parser = {
 };
 
 static void
-parse_rules_file (GnomeXkbInfo  *self,
-                  const gchar   *path,
-                  GError       **error)
+parse_rules_xml (GnomeXkbInfo  *self,
+                 const gchar   *path,
+                 GError       **error)
 {
   gchar *buffer;
   gsize length;
@@ -551,14 +701,47 @@ parse_rules_file (GnomeXkbInfo  *self,
     g_propagate_error (error, sub_error);
 }
 
+static gboolean
+parse_rules_file (GnomeXkbInfo  *self,
+                  const gchar   *ruleset,
+                  gboolean       include_extras)
+{
+  gchar *file_path;
+  GError *error = NULL;
+
+  file_path = get_xml_rules_file_path (ruleset, ".xml");
+  parse_rules_xml (self, file_path, &error);
+  if (error)
+    goto cleanup;
+  g_free (file_path);
+
+  if (!include_extras)
+    return TRUE;
+
+  file_path = get_xml_rules_file_path (ruleset, ".extras.xml");
+  parse_rules_xml (self, file_path, &error);
+  if (error)
+    goto cleanup;
+  g_free (file_path);
+
+  return TRUE;
+
+ cleanup:
+  g_warning ("Failed to load XKB rules file %s: %s", file_path, error->message);
+  g_clear_pointer (&file_path, g_free);
+  g_clear_pointer (&error, g_error_free);
+
+  return FALSE;
+}
+
+#endif /* HAVE_XKBREGISTRY */
+
 static void
 parse_rules (GnomeXkbInfo *self)
 {
   GnomeXkbInfoPrivate *priv = self->priv;
   GSettings *settings;
   gboolean show_all_sources;
-  gchar *file_path;
-  GError *error = NULL;
 
   /* Make sure the translated strings we get from XKEYBOARD_CONFIG() are
    * in UTF-8 and not in the current locale */
@@ -581,35 +764,18 @@ parse_rules (GnomeXkbInfo *self)
   /* Maps layout ids to Layout structs. Owns the Layout structs. */
   priv->layouts_table = g_hash_table_new_full (g_str_hash, g_str_equal, NULL, free_layout);
 
-  file_path = get_xml_rules_file_path (".xml");
-  parse_rules_file (self, file_path, &error);
-  if (error)
-    goto cleanup;
-  g_free (file_path);
-
   settings = g_settings_new ("org.gnome.desktop.input-sources");
   show_all_sources = g_settings_get_boolean (settings, "show-all-sources");
   g_object_unref (settings);
 
-  if (!show_all_sources)
-    return;
-
-  file_path = get_xml_rules_file_path (".extras.xml");
-  parse_rules_file (self, file_path, &error);
-  if (error)
-    goto cleanup;
-  g_free (file_path);
-
-  return;
-
- cleanup:
-  g_warning ("Failed to load XKB rules file %s: %s", file_path, error->message);
-  g_clear_pointer (&error, g_error_free);
-  g_clear_pointer (&file_path, g_free);
-  g_clear_pointer (&priv->option_groups_table, g_hash_table_destroy);
-  g_clear_pointer (&priv->layouts_by_country, g_hash_table_destroy);
-  g_clear_pointer (&priv->layouts_by_language, g_hash_table_destroy);
-  g_clear_pointer (&priv->layouts_table, g_hash_table_destroy);
+  if (!parse_rules_file (self, XKB_RULES_FILE, show_all_sources))
+    {
+      g_warning ("Failed to load '%s' XKB layouts", XKB_RULES_FILE);
+      g_clear_pointer (&priv->option_groups_table, g_hash_table_destroy);
+      g_clear_pointer (&priv->layouts_by_country, g_hash_table_destroy);
+      g_clear_pointer (&priv->layouts_by_language, g_hash_table_destroy);
+      g_clear_pointer (&priv->layouts_table, g_hash_table_destroy);
+    }
 }
 
 static gboolean
