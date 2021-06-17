@@ -26,14 +26,7 @@ override_dh_auto_install:
 	mv debian/tmp/usr/share/installed-tests/gnome-desktop/* \
 		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG)/installed-tests/gnome-desktop/
 
-override_dh_missing:
-	dh_missing --fail-missing
-
-CHECK_RUNTIME_DIR= $(CURDIR)/debian/tmp/run
-
 override_dh_auto_test:
-ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
-	mkdir -p -m0700 $(CHECK_RUNTIME_DIR)
 	debian/tests/run-with-locales \
 		--generate en_US.UTF-8 \
 		--generate he_IL.UTF-8 \
@@ -41,8 +34,5 @@ ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
 		-- \
 	env \
 		NO_AT_BRIDGE=1 \
-		XDG_RUNTIME_DIR=$(CHECK_RUNTIME_DIR) \
 		G_MESSAGES_DEBUG=all \
-	xvfb-run -a \
-	dh_auto_test
-endif
+	dh_auto_test -- --wrap="xvfb-run -a"
