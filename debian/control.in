@@ -47,7 +47,7 @@ Description: Common files for GNOME desktop apps
 Package: gnome-desktop-3-tests
 Architecture: any
 Depends: libgnome-desktop-3-19 (= ${binary:Version}),
-         gnome-desktop3-data (= ${binary:Version}),
+         gnome-desktop3-data (= ${source:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
 Breaks: libgnome-desktop-3-19 (<< 40),
