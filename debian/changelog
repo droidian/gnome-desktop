@@ -1,9 +1,24 @@
 gnome-desktop3 (40.2-1) UNRELEASED; urgency=medium
 
-  * debian/control: Rename source name to gnome-desktop
+  [ Marco Trevisan (Treviño) ]
   * New upstream release
+  * debian/patches: Drop, all applied upstream
+  * debian/libgnome-desktop-3-19.docs: Use new README.md file
+  * debian/rules: Do not exclude removed upstream ChangeLog
+  * debian/rules: Remove redundant --as-needed
+  * debian/rules: Use DPKG_GENSYMBOLS_CHECK_LEVEL instead of overriding
+    dh_makeshlibs
+  * debian: Use debhelper 13 features. As per this we can drop explicit
+    --fail-missing and use meson test features.
+  * debian: Move tests and debug utilities to new packages. Upstream is now
+    installing more tests, and these are not something we expect to have in a
+    library package. So, let's add two new packages for containing both the
+    compiled and the installed-tests metadata so that we can reduce the
+    customizations. As per this we can in fact use /usr/libexec for test
+    programs and avoid using a custom versioned path.
+  * debian/*.install: Use debhelper-13 variable substitutions
 
- -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Thu, 17 Jun 2021 19:10:52 +0200
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Mon, 21 Jun 2021 17:50:27 +0100
 
 gnome-desktop3 (3.38.5-2) unstable; urgency=medium
 
