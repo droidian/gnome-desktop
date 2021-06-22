@@ -4,7 +4,7 @@ Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: @GNOME_TEAM@
-Build-Depends: debhelper (>= 12),
+Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
                dh-sequence-gnome,
                docbook-xml,
@@ -48,6 +48,18 @@ Description: Common files for GNOME desktop apps
  This package includes some files that are shared between several GNOME
  apps (internationalization files).
 
+Package: gnome-desktop-3-tests
+Architecture: any
+Depends: libgnome-desktop-3-19 (= ${binary:Version}),
+         gnome-desktop3-data (= ${source:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Breaks: libgnome-desktop-3-19 (<< 40),
+        libgnome-desktop-3-dev (<< 40),
+Description: Installed test files for GNOME desktop
+ This package contains test programs, designed to be run as part of a
+ regression testsuite.
+
 Package: libgnome-desktop-3-19
 Section: libs
 Architecture: any
@@ -60,6 +72,17 @@ Depends: bubblewrap [linux-any],
          ${shlibs:Depends}
 Description: Utility library for loading .desktop files - runtime files
  This library is used by GNOME to load the .desktop files.
+
+Package: libgnome-desktop-3-dev-bin
+Section: libdevel
+Architecture: any
+Depends: libgnome-desktop-3-19 (= ${binary:Version}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Utility library for loading .desktop files - Debugging utilities
+ This library is used by GNOME to load the .desktop files.
+ .
+ This package contains development and debugging utilities.
 
 Package: libgnome-desktop-3-dev
 Section: libdevel

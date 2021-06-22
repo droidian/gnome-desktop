@@ -1,2 +1,1 @@
-usr/lib/*/lib*.so.*
-usr/lib/*/libgnome-desktop-3-19/gnome-rr-debug
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-desktop-${env:GD_API_VERSION}.so.${env:GD_SOVERSION}*

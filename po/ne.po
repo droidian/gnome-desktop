@@ -9,8 +9,8 @@ msgid ""
 msgstr ""
 "Project-Id-Version: Nepali Translation Gnome  3.26\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-desktop/issues\n"
-"POT-Creation-Date: 2019-07-15 00:21+0000\n"
-"PO-Revision-Date: 2019-08-29 13:53+0545\n"
+"POT-Creation-Date: 2021-04-15 14:55+0000\n"
+"PO-Revision-Date: 2021-04-15 20:39+0545\n"
 "Last-Translator: Pawan Chitrakar <chautari@gmail.com>\n"
 "Language-Team: Nepali Translation Team <chautari@gmail.com>\n"
 "Language: ne\n"
@@ -18,7 +18,7 @@ msgstr ""
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
 "First-Translator: Suman Raj Tiwari <tiwarisuman@hotmail.com>\n"
-"X-Generator: Poedit 2.2.3\n"
+"X-Generator: Poedit 2.4.2\n"
 "Plural-Forms: nplurals=2; plural=n != 1;\n"
 "X-Poedit-SourceCharset: UTF-8\n"
 
@@ -29,58 +29,63 @@ msgstr "निर्दिष्ट नगरिएको"
 #. TRANSLATORS: Used to distinguish the labels representing the gez_ER
 #. and gez_ET locales from gez_ER@abegede respective gez_ET@abegede. The
 #. difference is related to collation.
-#: libgnome-desktop/gnome-languages.c:1377
+#: libgnome-desktop/gnome-languages.c:1382
 msgid "Abegede"
 msgstr "अबेगेडे"
 
-#: libgnome-desktop/gnome-languages.c:1378
+#. TRANSLATORS: Used to distinguish Cyrillic from Latin written language variants.
+#: libgnome-desktop/gnome-languages.c:1384
 msgid "Cyrillic"
 msgstr "सिरिलिक"
 
-#: libgnome-desktop/gnome-languages.c:1379
+#. TRANSLATORS: Also known as "Nagari", a written variant for many languages
+#. of the Indian subcontinent. See:
+#. https://en.wikipedia.org/wiki/Devanagari
+#: libgnome-desktop/gnome-languages.c:1388
 msgid "Devanagari"
 msgstr "देवनागरी"
 
 #. TRANSLATORS: Used to distinguish the label representing the tt_RU
 #. locale from tt_RU@iqtelif. It's a special alphabet for Tatar.
-#: libgnome-desktop/gnome-languages.c:1382
+#: libgnome-desktop/gnome-languages.c:1391
 msgid "IQTElif"
 msgstr "IQTElif"
 
-#. TRANSLATORS: The alphabet/script, not the language.
-#: libgnome-desktop/gnome-languages.c:1384
+#. TRANSLATORS: The alphabet/script, not the language. Used to distinguish
+#. Latin from Cyrillic written language variants.
+#: libgnome-desktop/gnome-languages.c:1394
 msgid "Latin"
 msgstr "ल्याटिन"
 
 #. TRANSLATORS: "Saho" is a variant of the Afar language. Used to
 #. distinguish the label representing the aa_ER locale from aa_ER@saaho.
-#: libgnome-desktop/gnome-languages.c:1387
+#: libgnome-desktop/gnome-languages.c:1397
 msgid "Saho"
 msgstr "साहो"
 
 #. TRANSLATORS: "Valencia" is a dialect of the Catalan language spoken
 #. in Valencia. Used to distinguish the label representing the ca_ES
 #. locale from ca_ES@valencia.
-#: libgnome-desktop/gnome-languages.c:1391
+#: libgnome-desktop/gnome-languages.c:1401
 msgid "Valencia"
 msgstr "भ्यालेन्सिया"
 
-#: libgnome-desktop/gnome-rr-config.c:759
+#: libgnome-desktop/gnome-rr-config.c:754
 #, c-format
 msgid "CRTC %d cannot drive output %s"
 msgstr "सिआर्टिसि %d आउटपुट %s चलाउन सक्दैन"
 
-#: libgnome-desktop/gnome-rr-config.c:766
+#: libgnome-desktop/gnome-rr-config.c:761
 #, c-format
 msgid "output %s does not support mode %dx%d@%dHz"
 msgstr "आउटपुट %s मोड %dx%d@%dHz समर्थन गर्दैन"
 
-#: libgnome-desktop/gnome-rr-config.c:777
+#: libgnome-desktop/gnome-rr-config.c:772
 #, c-format
 msgid "CRTC %d does not support rotation=%d"
 msgstr "सिआर्टिसि %d रोटेसन् %d समर्थन गर्दैन"
 
-#: libgnome-desktop/gnome-rr-config.c:790
+#: libgnome-desktop/gnome-rr-config.c:785
 #, c-format
 msgid ""
 "output %s does not have the same parameters as another cloned output:\n"
@@ -93,24 +98,24 @@ msgstr ""
 "अवस्थित समकक्ष = (%d,%d), नयाँ समकक्ष = (%d,%d)\n"
 "अवस्थित रोटेशन =%d, नयाँ रोटेशन =%d"
 
-#: libgnome-desktop/gnome-rr-config.c:805
+#: libgnome-desktop/gnome-rr-config.c:800
 #, c-format
 msgid "cannot clone to output %s"
 msgstr "आउटपुट %s मा क्लोन हुनसक्दैन"
 
-#: libgnome-desktop/gnome-rr-config.c:931
+#: libgnome-desktop/gnome-rr-config.c:926
 #, c-format
 msgid "Trying modes for CRTC %d\n"
 msgstr ""
 "सिआर्टिसि %d\n"
 "का लागी मोडहरु कोसिस् गरिदै\n"
 
-#: libgnome-desktop/gnome-rr-config.c:955
+#: libgnome-desktop/gnome-rr-config.c:950
 #, c-format
 msgid "CRTC %d: trying mode %dx%d@%dHz with output at %dx%d@%dHz (pass %d)\n"
 msgstr "सिआर्टिसि %d %dx%d@%dHz (pass %d) मा आउटपुट दिदै %dx%d@%dHz कोसिस् गरिदै\n"
 
-#: libgnome-desktop/gnome-rr-config.c:1002
+#: libgnome-desktop/gnome-rr-config.c:997
 #, c-format
 msgid ""
 "could not assign CRTCs to outputs:\n"
@@ -119,7 +124,7 @@ msgstr ""
 "सिआर्टिसिहरु %s\n"
 "आउटपुटहरुमा खटाउन सकियेन"
 
-#: libgnome-desktop/gnome-rr-config.c:1006
+#: libgnome-desktop/gnome-rr-config.c:1001
 #, c-format
 msgid ""
 "none of the selected modes were compatible with the possible modes:\n"
@@ -129,104 +134,101 @@ msgstr "कुनै पनि चयन गरियेका मोडहर�
 #. Translators: the "requested", "minimum", and
 #. * "maximum" words here are not keywords; please
 #. * translate them as usual.
-#: libgnome-desktop/gnome-rr-config.c:1087
+#: libgnome-desktop/gnome-rr-config.c:1082
 #, c-format
 msgid ""
-"required virtual size does not fit available size: requested=(%d, %d), minimum=(%d, %d), "
-"maximum=(%d, %d)"
+"required virtual size does not fit available size: requested=(%d, %d), "
+"minimum=(%d, %d), maximum=(%d, %d)"
 msgstr ""
-"आवश्यक भर्चुअल आकार उपलब्ध आकार संग  फिट गर्दैन: अनुरोधित =(%d, %d), न्यूनतम =(%d, %d), अधिकतम "
-"=(%d, %d)"
+"आवश्यक भर्चुअल आकार उपलब्ध आकार संग  फिट गर्दैन: अनुरोधित =(%d, %d), न्यूनतम =(%d, "
+"%d), अधिकतम =(%d, %d)"
+
+#: libgnome-desktop/gnome-wall-clock.c:258
+msgctxt "time separator"
+msgid "∶"
+msgstr "∶"
 
 #. Translators: This is the time format with full date
 #. plus day used in 24-hour mode. Please keep the under-
 #. score to separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:332
-#| msgid "%a %b %e, %R:%S"
+#: libgnome-desktop/gnome-wall-clock.c:340
 msgid "%a %b %-e_%R:%S"
 msgstr "%a %b %-e_%R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:333
-#| msgid "%a %b %e, %R"
+#: libgnome-desktop/gnome-wall-clock.c:341
 msgid "%a %b %-e_%R"
 msgstr "%a %b %-e_%R"
 
 #. Translators: This is the time format with full date
 #. used in 24-hour mode. Please keep the underscore to
 #. separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:338
-#| msgid "%a %b %e, %R:%S"
+#: libgnome-desktop/gnome-wall-clock.c:346
 msgid "%b %-e_%R:%S"
 msgstr "%b %-e_%R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:339
-#| msgid "%a %b %e, %R"
+#: libgnome-desktop/gnome-wall-clock.c:347
 msgid "%b %-e_%R"
 msgstr "%b %-e_%R"
 
 #. Translators: This is the time format with day used
 #. in 24-hour mode.
-#: libgnome-desktop/gnome-wall-clock.c:343
+#: libgnome-desktop/gnome-wall-clock.c:351
 msgid "%a %R:%S"
 msgstr "%a %R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:344
+#: libgnome-desktop/gnome-wall-clock.c:352
 msgid "%a %R"
 msgstr "%a %R"
 
 #. Translators: This is the time format without date used
 #. in 24-hour mode.
-#: libgnome-desktop/gnome-wall-clock.c:348
+#: libgnome-desktop/gnome-wall-clock.c:356
 msgid "%R:%S"
 msgstr "%R:%S"
 
-#: libgnome-desktop/gnome-wall-clock.c:349
+#: libgnome-desktop/gnome-wall-clock.c:357
 msgid "%R"
 msgstr "%R"
 
 #. Translators: This is a time format with full date
 #. plus day used for AM/PM. Please keep the under-
 #. score to separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:357
-#| msgid "%a %b %e, %l:%M:%S %p"
+#: libgnome-desktop/gnome-wall-clock.c:365
 msgid "%a %b %-e_%l:%M:%S %p"
 msgstr "%a %b %-e_%l:%M:%S %p"
 
-#: libgnome-desktop/gnome-wall-clock.c:358
-#| msgid "%a %b %e, %l:%M %p"
+#: libgnome-desktop/gnome-wall-clock.c:366
 msgid "%a %b %-e_%l:%M %p"
 msgstr "%a %b %-e_%l:%M %p"
 
 #. Translators: This is a time format with full date
 #. used for AM/PM. Please keep the underscore to
 #. separate the date from the time.
-#: libgnome-desktop/gnome-wall-clock.c:363
-#| msgid "%a %b %e, %l:%M:%S %p"
+#: libgnome-desktop/gnome-wall-clock.c:371
 msgid "%b %-e_%l:%M:%S %p"
 msgstr "%b %-e_%l:%M:%S %p"
 
-#: libgnome-desktop/gnome-wall-clock.c:364
-#| msgid "%a %b %e, %l:%M %p"
+#: libgnome-desktop/gnome-wall-clock.c:372
 msgid "%b %-e_%l:%M %p"
 msgstr "%b %-e_%l:%M %p"
 
 #. Translators: This is a time format with day used
 #. for AM/PM.
-#: libgnome-desktop/gnome-wall-clock.c:368
+#: libgnome-desktop/gnome-wall-clock.c:376
 msgid "%a %l:%M:%S %p"
 msgstr "%a %l:%M:%S %p"
 
-#: libgnome-desktop/gnome-wall-clock.c:369
+#: libgnome-desktop/gnome-wall-clock.c:377
 msgid "%a %l:%M %p"
 msgstr "%a %l:%M %p"
 
 #. Translators: This is a time format without date used
 #. for AM/PM.
-#: libgnome-desktop/gnome-wall-clock.c:373
+#: libgnome-desktop/gnome-wall-clock.c:381
 msgid "%l:%M:%S %p"
 msgstr "%l:%M:%S %p"
 
-#: libgnome-desktop/gnome-wall-clock.c:374
+#: libgnome-desktop/gnome-wall-clock.c:382
 msgid "%l:%M %p"
 msgstr "%l∶%M %p"
 
@@ -309,47 +311,49 @@ msgstr "%l∶%M %p"
 #~ msgstr "जिनोमको बारेमा धेरै सिक्नुहोस्"
 
 #~ msgid ""
-#~ "GNOME also includes a complete development platform for applications programmers, "
-#~ "allowing the creation of powerful and complex applications."
+#~ "GNOME also includes a complete development platform for applications "
+#~ "programmers, allowing the creation of powerful and complex applications."
 #~ msgstr ""
-#~ "अनुप्रयोग कार्यक्रमहरूको लागि जिनोमले पनि शक्तिशाली र जटिल अनुप्रयोगहरूको सिर्जनालाई अनुमति दिँदै "
-#~ "एउटा पुर्ण विकास मञ्च समावेश गर्दछ ।"
+#~ "अनुप्रयोग कार्यक्रमहरूको लागि जिनोमले पनि शक्तिशाली र जटिल अनुप्रयोगहरूको सिर्जनालाई "
+#~ "अनुमति दिँदै एउटा पुर्ण विकास मञ्च समावेश गर्दछ ।"
 
 #~ msgid ""
-#~ "GNOME includes most of what you see on your computer, including the file manager, web "
-#~ "browser, menus, and many applications."
+#~ "GNOME includes most of what you see on your computer, including the file "
+#~ "manager, web browser, menus, and many applications."
 #~ msgstr ""
-#~ "जिनोमले तपाईँले आफ्नो कम्प्युरटरमा देखेको फाइल प्रबन्धक, वेब ब्राउजर, मेनुहरू र धेरै अनुप्रयोगहरू समेत धेरै "
-#~ "जसो समावेश गर्दछ ।"
+#~ "जिनोमले तपाईँले आफ्नो कम्प्युरटरमा देखेको फाइल प्रबन्धक, वेब ब्राउजर, मेनुहरू र धेरै "
+#~ "अनुप्रयोगहरू समेत धेरै जसो समावेश गर्दछ ।"
 
 #~ msgid ""
-#~ "GNOME is a Free, usable, stable, accessible desktop environment for the Unix-like "
-#~ "family of operating systems."
+#~ "GNOME is a Free, usable, stable, accessible desktop environment for the "
+#~ "Unix-like family of operating systems."
 #~ msgstr ""
-#~ "सञ्चालन प्रणालीको युनिक्स-जस्तै परिवारका लागि जीनोम स्वतन्त्र, उपयोगी, स्थायी, पहुँचयोग्य डेस्कटप "
-#~ "परिवेश हो ।"
+#~ "सञ्चालन प्रणालीको युनिक्स-जस्तै परिवारका लागि जीनोम स्वतन्त्र, उपयोगी, स्थायी, "
+#~ "पहुँचयोग्य डेस्कटप परिवेश हो ।"
 
 #~ msgid ""
-#~ "GNOME's focus on usability and accessibility, regular release cycle, and strong "
-#~ "corporate backing make it unique among Free Software desktops."
+#~ "GNOME's focus on usability and accessibility, regular release cycle, and "
+#~ "strong corporate backing make it unique among Free Software desktops."
 #~ msgstr ""
-#~ "प्रयोगात्मकता र पहुँचतामा जीनोमको फोकस, नियमित निष्कासन चक्र, र वलियो संगठित समर्थनले यसलाई "
-#~ "स्वतन्त्र सफ्टवेयर डेस्कटपहरू मध्ये अद्वितीय बनाउँदछ ।"
+#~ "प्रयोगात्मकता र पहुँचतामा जीनोमको फोकस, नियमित निष्कासन चक्र, र वलियो संगठित "
+#~ "समर्थनले यसलाई स्वतन्त्र सफ्टवेयर डेस्कटपहरू मध्ये अद्वितीय बनाउँदछ ।"
 
 #~ msgid ""
-#~ "GNOME's greatest strength is our strong community. Virtually anyone, with or without "
-#~ "coding skills, can contribute to making GNOME better."
+#~ "GNOME's greatest strength is our strong community. Virtually anyone, with "
+#~ "or without coding skills, can contribute to making GNOME better."
 #~ msgstr ""
-#~ "जीनोमको सबै भन्दा ठूलो आधार भनेको हाम्रो बलियो समुदाय नै हो । वास्तविक रूपमा जो कोहीले, सङ्केतन "
-#~ "दक्षता वा दक्षता बिना नै, जीनोमलाई राम्रो बनाउन योगदान गर्न सक्दछ । "
+#~ "जीनोमको सबै भन्दा ठूलो आधार भनेको हाम्रो बलियो समुदाय नै हो । वास्तविक रूपमा जो "
+#~ "कोहीले, सङ्केतन दक्षता वा दक्षता बिना नै, जीनोमलाई राम्रो बनाउन योगदान गर्न सक्दछ "
+#~ "। "
 
 #~ msgid ""
-#~ "Hundreds of people have contributed code to GNOME since it was started in 1997; many "
-#~ "more have contributed in other important ways, including translations, documentation, "
-#~ "and quality assurance."
+#~ "Hundreds of people have contributed code to GNOME since it was started in "
+#~ "1997; many more have contributed in other important ways, including "
+#~ "translations, documentation, and quality assurance."
 #~ msgstr ""
-#~ "१९९७ मा जीनोम सुरआत भए देखि नै सयौं मानिसहरूले जीनोममा कोड योगदान गर्नुभएको छ; धेरै धेरैले अनुवाद, "
-#~ "मिसिलिकरण, र गुणात्मक आश्वासन समेत गरेर अन्य महत्वपूर्ण तरिकाले योगदान गर्नुभएको छ,"
+#~ "१९९७ मा जीनोम सुरआत भए देखि नै सयौं मानिसहरूले जीनोममा कोड योगदान गर्नुभएको छ; धेरै "
+#~ "धेरैले अनुवाद, मिसिलिकरण, र गुणात्मक आश्वासन समेत गरेर अन्य महत्वपूर्ण तरिकाले योगदान "
+#~ "गर्नुभएको छ,"
 
 #~ msgid "Error reading file '%s': %s"
 #~ msgstr "'%s' फाइल पढ्दा त्रुटि: %s"

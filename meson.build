@@ -1,6 +1,6 @@
 project('gnome-desktop', 'c',
   meson_version: '>= 0.49.0',
-  version: '3.38.5',
+  version: '40.2',
   license: ['GPL2+', 'LGPL2+']
 )
 
@@ -14,7 +14,7 @@ project('gnome-desktop', 'c',
 # to 0. When bumping the second version, set the third one to zero.
 #
 # A lot easier than libtool, right?
-libversion = '19.0.10'
+libversion = '19.1.4'
 soversion = libversion.split('.')[0]
 
 gdk_pixbuf_req = '>= 2.36.5'
@@ -47,6 +47,8 @@ gio_unix_dep = dependency('gio-unix-2.0', version: glib_req)
 schemas_dep = dependency('gsettings-desktop-schemas', version: schemas_req)
 fontconfig_dep = dependency('fontconfig')
 xkb_config_dep = dependency('xkeyboard-config')
+xkbregistry_dep = dependency('xkbregistry', required: false)
+
 iso_codes_dep = dependency('iso-codes')
 
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
@@ -57,7 +59,7 @@ udev_dep = dependency('libudev', required: get_option('udev'))
 host_os = host_machine.system()
 host_cpu = host_machine.cpu()
 supported_os = ['linux']
-unsupported_cpus = ['alpha', 'ia64', 'm68k', 'riscv64', 'sh4', 'sparc', 'sparc64']
+unsupported_cpus = ['alpha', 'ia64', 'm68k', 'sh4', 'sparc', 'sparc64']
 if supported_os.contains(host_os) and not unsupported_cpus.contains(host_cpu)
   seccomp_dep = dependency('libseccomp')
 else
@@ -88,6 +90,7 @@ conf.set('_GNU_SOURCE', seccomp_dep.found())
 
 conf.set('HAVE_SYSTEMD', libsystemd_dep.found())
 conf.set('HAVE_UDEV', udev_dep.found())
+conf.set('HAVE_XKBREGISTRY', xkbregistry_dep.found())
 
 conf.set('HAVE_TIMERFD', cc.has_function('timerfd_create'))
 conf.set('HAVE_OPENAT', cc.has_function('openat'))
@@ -106,7 +109,7 @@ version_conf = configuration_data()
 
 version_conf.set('GNOME_PLATFORM', version_array[0])
 version_conf.set('GNOME_MINOR', version_array[1])
-version_conf.set('GNOME_MICRO', version_array[2])
+version_conf.set('GNOME_MICRO', 0)
 version_conf.set('GNOME_DISTRIBUTOR', get_option('gnome_distributor'))
 
 if get_option('date_in_gnome_version')

@@ -1,47 +1,29 @@
 #!/usr/bin/make -f
 
+include /usr/share/dpkg/default.mk
+
 LIB_PKG := $(filter-out %-dev %-bin,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
-export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs -Wl,--as-needed
+export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
+export DPKG_GENSYMBOLS_CHECK_LEVEL = 4
+
+export GD_LIBNAME = $(LIB_PKG)
+export GD_SOVERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f1 -d- | rev)
+export GD_API_VERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f2 -d- | rev)
 
 %:
 	dh $@
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		--libexecdir=/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG) \
 		-Dgnome_distributor=$(shell dpkg-vendor --query vendor) \
 		-Ddate_in_gnome_version=false \
 		-Dgtk_doc=true \
 		-Dinstalled_tests=true \
 		-Ddesktop-docs=true
 
-# We put the installed-tests in the -dev package to avoid having to
-# introduce a new package for them, so move their architecture-varying
-# metadata files into a multiarch-friendly location.
-override_dh_auto_install:
-	dh_auto_install
-	mv debian/tmp/usr/share/installed-tests/gnome-desktop/* \
-		debian/tmp/usr/lib/$(DEB_HOST_MULTIARCH)/$(LIB_PKG)/installed-tests/gnome-desktop/
-
-override_dh_installchangelogs:
-	dh_installchangelogs -XChangeLog
-
-override_dh_translations:
-	dh_translations --domain=gnome-desktop-3.0
-
-override_dh_makeshlibs:
-	dh_makeshlibs -- -c4
-
-override_dh_missing:
-	dh_missing --fail-missing
-
-CHECK_RUNTIME_DIR= $(CURDIR)/debian/tmp/run
-
 override_dh_auto_test:
-ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
-	mkdir -p -m0700 $(CHECK_RUNTIME_DIR)
 	debian/tests/run-with-locales \
 		--generate en_US.UTF-8 \
 		--generate he_IL.UTF-8 \
@@ -49,8 +31,8 @@ ifeq ($(filter nocheck,$(DEB_BUILD_OPTIONS)),)
 		-- \
 	env \
 		NO_AT_BRIDGE=1 \
-		XDG_RUNTIME_DIR=$(CHECK_RUNTIME_DIR) \
 		G_MESSAGES_DEBUG=all \
-	xvfb-run -a \
-	dh_auto_test
-endif
+	dh_auto_test -- --wrap="xvfb-run -a"
+
+override_dh_translations:
+	dh_translations --domain=gnome-desktop-3.0
