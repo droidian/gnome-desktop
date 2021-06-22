@@ -1,4 +1,4 @@
-gnome-desktop3 (40.2-1ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop3 (40.2-1ubuntu1) impish; urgency=medium
 
   * Merge with debian, remaining changes:
     - Add 04_compute_average_color.patch: Compute the avergage color in
@@ -13,7 +13,7 @@ gnome-desktop3 (40.2-1ubuntu1) UNRELEASED; urgency=medium
     in the archive and was just needed till gnome-control-center 1:3.32.1-1ubuntu4
     so not really something we should care about breaking.
 
- -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Tue, 22 Jun 2021 18:57:25 +0200
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Tue, 22 Jun 2021 20:50:06 +0200
 
 gnome-desktop3 (40.2-1) experimental; urgency=medium
 
