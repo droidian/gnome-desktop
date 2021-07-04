@@ -1,10 +1,11 @@
-gnome-desktop3 (3.38.5-3) UNRELEASED; urgency=medium
+gnome-desktop3 (3.38.5-3) unstable; urgency=medium
 
+  * Team upload
   * d/p/xkbinfo-only-insert-new-layouts-skip-over-duplicate-ones.patch:
     Fix segfault when adding input sources while show-all-sources is
     "true" (closes: #989045).
 
- -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Sun, 04 Jul 2021 03:26:28 +0200
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Sun, 04 Jul 2021 15:40:52 +0200
 
 gnome-desktop3 (3.38.5-2) unstable; urgency=medium
 
