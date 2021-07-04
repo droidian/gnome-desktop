@@ -1,0 +1,53 @@
+From: Peter Hutterer <peter.hutterer@who-t.net>
+Date: Thu, 22 Apr 2021 01:29:18 +0000
+Subject: xkbinfo: only insert new layouts, skip over duplicate ones
+
+This matches the behavior to the one in the old code path before
+libxkbregistry.
+
+This also fixes a use-after-free bug when a duplicate layout is present. The
+same layout struct is a member of multiple hashtables, specifically
+priv->layouts_table, priv->layouts_by_language and  priv->layouts_by_country.
+
+When the duplicate layout is added, add_layouts calls g_hash_table_replace
+(priv->layouts_table, l->id, l) which frees the original layout - but the
+layouts_by_{country|language} still have that now-freed layout.
+Immediately afterwards, add_layouts calls add_layout_to_locale_tables () which
+calls add_layout_to_table () which triggers a use-after-free.
+
+Avoid all this by simply skipping any duplicate layout.
+
+Reproducible with
+  gsettings set org.gnome.desktop.input-sources show-all-sources true
+  valgrind /usr/libexec/gnome-desktop-debug/test-xkb-info
+
+Requires xkeyboard-config <= 2.32, it has a duplicate cm(mmuock) entry
+(one is marked exotic, hence the need for show-all-sources).
+
+Origin: concatenation of:
+ https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/a39dd0d2
+ https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/81c6cd79
+Bug: https://gitlab.gnome.org/GNOME/gnome-desktop/-/issues/190
+Bug-Debian: https://bugs.debian.org/989045
+Bug-Ubuntu: https://launchpad.net/bugs/1933022
+---
+ libgnome-desktop/gnome-xkb-info.c | 6 ++++++
+ 1 file changed, 6 insertions(+)
+
+diff --git a/libgnome-desktop/gnome-xkb-info.c b/libgnome-desktop/gnome-xkb-info.c
+index b2eca699..f2a3214b 100644
+--- a/libgnome-desktop/gnome-xkb-info.c
++++ b/libgnome-desktop/gnome-xkb-info.c
+@@ -268,6 +268,12 @@ add_layouts (GnomeXkbInfo        *self,
+           l->iso3166Ids = g_slist_prepend (l->iso3166Ids, id);
+         }
+ 
++      if (g_hash_table_contains (priv->layouts_table, l->id))
++        {
++          g_clear_pointer (&l, free_layout);
++          continue;
++        }
++
+       g_hash_table_replace (priv->layouts_table, l->id, l);
+       add_layout_to_locale_tables (l,
+                                    priv->layouts_by_language,
