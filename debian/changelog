@@ -1,3 +1,10 @@
+gnome-desktop3 (40.2-2) experimental; urgency=medium
+
+  * force usage of gnome-pkg-tools (>= 0.22) to ensure gnome:NextVersion gets
+    generated properly
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 10 Jul 2021 21:13:45 +0200
+
 gnome-desktop3 (40.2-1) experimental; urgency=medium
 
   [ Marco Trevisan (Treviño) ]
