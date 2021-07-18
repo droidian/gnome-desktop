@@ -1,3 +1,13 @@
+gnome-desktop3 (40.2-2ubuntu1) UNRELEASED; urgency=medium
+
+  [ Marco Trevisan (Treviño) ]
+  * debian/control: Use versioned dh-sequence-gnome instead of duplicating
+
+  [ Jeremy Bicha ]
+  * debian/watch: Watch for stable releases
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sun, 18 Jul 2021 11:33:27 -0400
+
 gnome-desktop3 (40.2-2) experimental; urgency=medium
 
   * force usage of gnome-pkg-tools (>= 0.22) to ensure gnome:NextVersion gets
