@@ -1,9 +1,12 @@
-gnome-desktop3 (40.2-3) UNRELEASED; urgency=medium
+gnome-desktop3 (40.4-1) UNRELEASED; urgency=medium
 
   [ Marco Trevisan (Treviño) ]
   * debian/control: Use versioned dh-sequence-gnome instead of duplicating
 
- -- Jeremy Bicha <jbicha@debian.org>  Sun, 18 Jul 2021 11:33:27 -0400
+  [ Jeremy Bicha ]
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 28 Aug 2021 16:30:34 -0400
 
 gnome-desktop3 (40.2-2) experimental; urgency=medium
 
