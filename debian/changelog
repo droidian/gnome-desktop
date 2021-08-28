@@ -1,12 +1,13 @@
-gnome-desktop3 (40.4-1) UNRELEASED; urgency=medium
+gnome-desktop3 (40.4-1) experimental; urgency=medium
+
+  [ Jeremy Bicha ]
+  * New upstream release
+  * debian/rules: Set translation domain for Ubuntu
 
   [ Marco Trevisan (Treviño) ]
   * debian/control: Use versioned dh-sequence-gnome instead of duplicating
 
-  [ Jeremy Bicha ]
-  * New upstream release
-
- -- Jeremy Bicha <jbicha@debian.org>  Sat, 28 Aug 2021 16:30:34 -0400
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 28 Aug 2021 17:13:53 -0400
 
 gnome-desktop3 (40.2-2) experimental; urgency=medium
 
