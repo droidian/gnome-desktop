@@ -1,3 +1,14 @@
+gnome-desktop3 (40.4-2) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable. This is not *technically* involved in the
+    transition of GNOME core components from version 3.38 to 40, but the
+    version number of libgnome-desktop is often used as a proxy for the
+    version of GNOME as a whole, so it seems less confusing for everyone
+    if it reaches testing at around the same time as gnome-shell.
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 11 Sep 2021 21:26:23 +0100
+
 gnome-desktop3 (40.4-1) experimental; urgency=medium
 
   [ Jeremy Bicha ]
