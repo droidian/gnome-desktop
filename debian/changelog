@@ -1,12 +1,12 @@
 gnome-desktop3 (40.4-2ubuntu1) UNRELEASED; urgency=medium
 
   * Merge with debian, remaining changes:
-    - Add 04_compute_average_color.patch: Compute the avergage color in
-      gnome-desktop itself, not in unity to fix some races (LP #963140)
-    - Add tweak_color_computation.patch, Patch from Gord, no patch header,
-      no bug link.
+    - Add 2 patches to adjust background color detection for Unity
+      + tweak_color_computation.patch
+      + 04_compute_average_color.patch
 
  -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Tue, 22 Jun 2021 20:50:06 +0200
+
 gnome-desktop3 (40.4-2) unstable; urgency=medium
 
   * Team upload

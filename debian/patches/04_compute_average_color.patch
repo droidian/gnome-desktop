@@ -7,11 +7,11 @@ instead of in Unity to fix some races (LP: #963140)
  libgnome-desktop/gnome-bg.c | 141 ++++++++++++++++++++++++++++++++++++++++++++
  1 file changed, 141 insertions(+)
 
-Index: gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.c
-===================================================================
---- gnome-desktop3-3.36.1.orig/libgnome-desktop/gnome-bg.c
-+++ gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.c
-@@ -53,6 +53,19 @@ Author: Soren Sandmann <sandmann@redhat.
+diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
+index 6a453b6..d5ed15e 100644
+--- a/libgnome-desktop/gnome-bg.c
++++ b/libgnome-desktop/gnome-bg.c
+@@ -53,6 +53,19 @@ Author: Soren Sandmann <sandmann@redhat.com>
     in the slideshow is less than 60 seconds away */
  #define KEEP_EXPENSIVE_CACHE_SECS 60
  

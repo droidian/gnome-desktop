@@ -1,5 +1,5 @@
-From: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
-Date: Sat, 10 Feb 2018 15:01:27 -0500
+From: Gord <example@example.com>
+Date: Thu, 5 Apr 2012 17:59:41 +0200
 Subject: tweak color computation looking to the unity launcher side
 
 UbuntuSpecific: tweak for unity, nothing upstream uses the color computation
@@ -8,10 +8,10 @@ yet anyway so it's not an issue. Thanks gord.
  libgnome-desktop/gnome-bg.c | 4 ++--
  1 file changed, 2 insertions(+), 2 deletions(-)
 
-Index: gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.c
-===================================================================
---- gnome-desktop3-3.36.1.orig/libgnome-desktop/gnome-bg.c
-+++ gnome-desktop3-3.36.1/libgnome-desktop/gnome-bg.c
+diff --git a/libgnome-desktop/gnome-bg.c b/libgnome-desktop/gnome-bg.c
+index d5ed15e..42f584e 100644
+--- a/libgnome-desktop/gnome-bg.c
++++ b/libgnome-desktop/gnome-bg.c
 @@ -2044,7 +2044,7 @@ pixbuf_average_value (GdkPixbuf *pixbuf,
  	if (gdk_pixbuf_get_has_alpha (pixbuf)) {
  		for (row = 0; row < height; row++) {
