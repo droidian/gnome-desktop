@@ -7,10 +7,10 @@ Section: gnome
 Priority: optional
 Maintainer: Ubuntu Developers <ubuntu-devel-discuss@lists.ubuntu.com>
 XSBC-Original-Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Iain Lane <laney@debian.org>, Jeremy Bicha <jbicha@debian.org>, Laurent Bigonville <bigon@debian.org>, Tim Lunn <tim@feathertop.org>
+Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org>, Jeremy Bicha <jbicha@debian.org>, Laurent Bigonville <bigon@debian.org>, Sjoerd Simons <sjoerd@debian.org>, Tim Lunn <tim@feathertop.org>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
-               dh-sequence-gnome,
+               dh-sequence-gnome (>= 0.22),
                docbook-xml,
                fonts-cantarell <!nocheck>,
                gsettings-desktop-schemas-dev (>= 3.27.0),

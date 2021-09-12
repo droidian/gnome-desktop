@@ -1,3 +1,41 @@
+gnome-desktop3 (40.4-2ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with debian, remaining changes:
+    - Add 04_compute_average_color.patch: Compute the avergage color in
+      gnome-desktop itself, not in unity to fix some races (LP #963140)
+    - Add tweak_color_computation.patch, Patch from Gord, no patch header,
+      no bug link.
+
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Tue, 22 Jun 2021 20:50:06 +0200
+gnome-desktop3 (40.4-2) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable. This is not *technically* involved in the
+    transition of GNOME core components from version 3.38 to 40, but the
+    version number of libgnome-desktop is often used as a proxy for the
+    version of GNOME as a whole, so it seems less confusing for everyone
+    if it reaches testing at around the same time as gnome-shell.
+
+ -- Simon McVittie <smcv@debian.org>  Sat, 11 Sep 2021 21:26:23 +0100
+
+gnome-desktop3 (40.4-1) experimental; urgency=medium
+
+  [ Jeremy Bicha ]
+  * New upstream release
+  * debian/rules: Set translation domain for Ubuntu
+
+  [ Marco Trevisan (Treviño) ]
+  * debian/control: Use versioned dh-sequence-gnome instead of duplicating
+
+ -- Jeremy Bicha <jbicha@debian.org>  Sat, 28 Aug 2021 17:13:53 -0400
+
+gnome-desktop3 (40.2-2) experimental; urgency=medium
+
+  * force usage of gnome-pkg-tools (>= 0.22) to ensure gnome:NextVersion gets
+    generated properly
+
+ -- Sjoerd Simons <sjoerd@debian.org>  Sat, 10 Jul 2021 21:13:45 +0200
+
 gnome-desktop3 (40.2-1ubuntu1) impish; urgency=medium
 
   * Merge with debian, remaining changes:
@@ -36,6 +74,15 @@ gnome-desktop3 (40.2-1) experimental; urgency=medium
   * debian/*.install: Use debhelper-13 variable substitutions
 
  -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Mon, 21 Jun 2021 18:31:01 +0100
+
+gnome-desktop3 (3.38.5-3) unstable; urgency=medium
+
+  * Team upload
+  * d/p/xkbinfo-only-insert-new-layouts-skip-over-duplicate-ones.patch:
+    Fix segfault when adding input sources while show-all-sources is
+    "true" (closes: #989045).
+
+ -- Gunnar Hjalmarsson <gunnarhj@debian.org>  Sun, 04 Jul 2021 15:40:52 +0200
 
 gnome-desktop3 (3.38.5-2) unstable; urgency=medium
 

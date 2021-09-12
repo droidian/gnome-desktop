@@ -34,5 +34,6 @@ override_dh_auto_test:
 		G_MESSAGES_DEBUG=all \
 	dh_auto_test -- --wrap="xvfb-run -a"
 
+# Ubuntu-specific
 override_dh_translations:
 	dh_translations --domain=gnome-desktop-3.0
