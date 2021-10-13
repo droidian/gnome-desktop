@@ -1,0 +1,58 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Thu, 14 Oct 2021 00:31:33 +0100
+Subject: languages: Look at $LOCPATH before compile-time LIBLOCALEDIR
+
+This allows unit testing on a minimal system with no locales set up, by
+generating some locales in a directory and setting LOCPATH.
+
+Signed-off-by: Simon McVittie <smcv@debian.org>
+---
+ libgnome-desktop/gnome-languages.c | 18 ++++++++++++++++--
+ 1 file changed, 16 insertions(+), 2 deletions(-)
+
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index bd62489..fe26e22 100644
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
+@@ -457,8 +457,15 @@ add_locale (const char *language_name,
+ static int
+ select_dirs (const struct dirent *dirent)
+ {
++        const char *locpath;
+         int result = 0;
+ 
++        locpath = g_getenv ("LOCPATH");
++
++        if (locpath == NULL) {
++            locpath = LIBLOCALEDIR;
++        }
++
+         if (strcmp (dirent->d_name, ".") != 0 && strcmp (dirent->d_name, "..") != 0) {
+                 mode_t mode = 0;
+ 
+@@ -471,7 +478,7 @@ select_dirs (const struct dirent *dirent)
+                                 struct stat st;
+                                 g_autofree char *path = NULL;
+ 
+-                                path = g_build_filename (LIBLOCALEDIR, dirent->d_name, NULL);
++                                path = g_build_filename (locpath, dirent->d_name, NULL);
+                                 if (g_stat (path, &st) == 0) {
+                                         mode = st.st_mode;
+                                 }
+@@ -490,8 +497,15 @@ collect_locales_from_directory (void)
+         struct dirent **dirents;
+         int             ndirents;
+         int             cnt;
++        const char     *locpath;
++
++        locpath = g_getenv ("LOCPATH");
++
++        if (locpath == NULL) {
++            locpath = LIBLOCALEDIR;
++        }
+ 
+-        ndirents = scandir (LIBLOCALEDIR, &dirents, select_dirs, alphasort);
++        ndirents = scandir (locpath, &dirents, select_dirs, alphasort);
+ 
+         for (cnt = 0; cnt < ndirents; ++cnt) {
+                 if (add_locale (dirents[cnt]->d_name, TRUE))
