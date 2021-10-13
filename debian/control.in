@@ -64,6 +64,7 @@ Depends: bubblewrap [linux-any],
          gnome-desktop3-data (>= ${source:Version}),
          gnome-desktop3-data (<< ${gnome:NextVersion}),
          gsettings-desktop-schemas (>= 3.27.0),
+         iso-codes,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Utility library for loading .desktop files - runtime files
