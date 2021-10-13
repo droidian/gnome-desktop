@@ -48,6 +48,7 @@ Package: gnome-desktop-3-tests
 Architecture: any
 Depends: libgnome-desktop-3-19 (= ${binary:Version}),
          gnome-desktop3-data (= ${source:Version}),
+         locales | locales-all,
          ${misc:Depends},
          ${shlibs:Depends}
 Breaks: libgnome-desktop-3-19 (<< 40),
@@ -67,6 +68,7 @@ Depends: bubblewrap [linux-any],
          iso-codes,
          ${misc:Depends},
          ${shlibs:Depends}
+Recommends: locales | locales-all
 Description: Utility library for loading .desktop files - runtime files
  This library is used by GNOME to load the .desktop files.
 
