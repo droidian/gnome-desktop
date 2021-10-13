@@ -2,6 +2,7 @@
 
 include /usr/share/dpkg/default.mk
 
+built_binaries := $(shell dh_listpackages)
 LIB_PKG := $(filter-out %-dev %-bin,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
@@ -33,6 +34,14 @@ override_dh_auto_test:
 		NO_AT_BRIDGE=1 \
 		G_MESSAGES_DEBUG=all \
 	dh_auto_test -- --wrap="xvfb-run -a"
+
+# debhelper >= 13.4 makes all of /usr/libexec executable, which is not
+# quite right for installed-tests
+override_dh_fixperms:
+	dh_fixperms -Xusr/libexec/installed-tests
+ifneq ($(filter %-tests,$(built_binaries)),)
+	chmod --recursive --changes a+rX,u+w,og-w debian/*-tests/usr/libexec/installed-tests
+endif
 
 # Ubuntu-specific
 override_dh_translations:
