@@ -1,9 +1,21 @@
-gnome-desktop3 (41.0-1) UNRELEASED; urgency=medium
+gnome-desktop3 (41.0-1) unstable; urgency=medium
 
   * Build-depend on libgl-dev instead of transitional libgl1-mesa-dev
   * New upstream release
+  * Add Lintian override for #970275
+  * d/upstream/metadata: Add
+  * Standards-Version: 4.6.0 (no changes required)
+  * Don't make all installed-tests files executable
+  * Make the library depend on iso-codes.
+    The iso-codes XML is read at runtime, as demonstrated by autopkgtest
+    failures if this dependency is not added.
+  * Recommend locales | locales-all, and depend on them for the tests
+  * d/p/languages-Look-at-LOCPATH-before-compile-time-LIBLOCALEDI.patch:
+    Add patch to make locale APIs follow $LOCPATH.
+    This is necessary to make the autopkgtest pass on a system with no
+    non-fallback locales configured, without having to pull in locales-all.
 
- -- Simon McVittie <smcv@debian.org>  Wed, 13 Oct 2021 22:32:22 +0100
+ -- Simon McVittie <smcv@debian.org>  Thu, 14 Oct 2021 00:48:12 +0100
 
 gnome-desktop3 (40.4-2) unstable; urgency=medium
 
