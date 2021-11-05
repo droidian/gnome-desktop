@@ -1,8 +1,12 @@
-gnome-desktop3 (41.1-1) UNRELEASED; urgency=medium
+gnome-desktop3 (41.1-1) unstable; urgency=medium
 
+  * Team upload
   * New upstream release
+  * d/rules: Fix spelling of desktop_docs Meson option.
+    This was accepted with a warning under Meson 0.59, but causes FTBFS
+    under Meson 0.60. (Closes: #998584)
 
- -- Simon McVittie <smcv@debian.org>  Fri, 05 Nov 2021 10:28:39 +0000
+ -- Simon McVittie <smcv@debian.org>  Fri, 05 Nov 2021 10:58:32 +0000
 
 gnome-desktop3 (41.0-1) unstable; urgency=medium
 
