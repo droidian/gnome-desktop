@@ -22,7 +22,7 @@ override_dh_auto_configure:
 		-Ddate_in_gnome_version=false \
 		-Dgtk_doc=true \
 		-Dinstalled_tests=true \
-		-Ddesktop-docs=true
+		-Ddesktop_docs=true
 
 override_dh_auto_test:
 	debian/tests/run-with-locales \
