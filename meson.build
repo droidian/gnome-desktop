@@ -1,6 +1,6 @@
 project('gnome-desktop', 'c',
   meson_version: '>= 0.49.0',
-  version: '40.4',
+  version: '41.1',
   license: ['GPL2+', 'LGPL2+']
 )
 
@@ -14,7 +14,7 @@ project('gnome-desktop', 'c',
 # to 0. When bumping the second version, set the third one to zero.
 #
 # A lot easier than libtool, right?
-libversion = '19.1.5'
+libversion = '19.1.7'
 soversion = libversion.split('.')[0]
 
 gdk_pixbuf_req = '>= 2.36.5'
@@ -94,6 +94,8 @@ conf.set('HAVE_XKBREGISTRY', xkbregistry_dep.found())
 
 conf.set('HAVE_TIMERFD', cc.has_function('timerfd_create'))
 conf.set('HAVE_OPENAT', cc.has_function('openat'))
+conf.set('HAVE_USELOCALE', cc.has_function('uselocale'))
+conf.set('HAVE_XLOCALE', cc.has_header('xlocale.h'))
 
 config_h = declare_dependency(
   sources: configure_file(

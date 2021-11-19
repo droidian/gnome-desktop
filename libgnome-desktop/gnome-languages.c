@@ -28,13 +28,14 @@
 #include <string.h>
 #include <errno.h>
 #include <dirent.h>
-#include <locale.h>
 #include <langinfo.h>
 #include <sys/stat.h>
 
 #include <glib.h>
 #include <glib/gi18n-lib.h>
 #include <glib/gstdio.h>
+
+#include "gnome-gettext-portable.h"
 
 #define GNOME_DESKTOP_USE_UNSTABLE_API
 #include "gnome-languages.h"
@@ -103,13 +104,13 @@ normalize_codeset (const char *codeset)
 /**
  * gnome_parse_locale:
  * @locale: a locale string
- * @language_codep: (out) (allow-none) (transfer full): location to
+ * @language_codep: (out) (optional) (transfer full): location to
  * store the language code, or %NULL
- * @country_codep: (out) (allow-none) (transfer full): location to
+ * @country_codep: (out) (optional) (nullable) (transfer full): location to
  * store the country code, or %NULL
- * @codesetp: (out) (allow-none) (transfer full): location to
+ * @codesetp: (out) (optional) (nullable) (transfer full): location to
  * store the codeset, or %NULL
- * @modifierp: (out) (allow-none) (transfer full): location to
+ * @modifierp: (out) (optional) (nullable) (transfer full): location to
  * store the modifier, or %NULL
  *
  * Extracts the various components of a locale string of the form
@@ -288,6 +289,9 @@ language_name_is_valid (const char *language_name)
 {
         locale_t locale;
 
+        if (language_name == NULL)
+                return FALSE;
+
         locale = newlocale (LC_MESSAGES_MASK, language_name, (locale_t) 0);
         if (locale != (locale_t) 0) {
                 freelocale (locale);
@@ -303,16 +307,17 @@ language_name_get_codeset_details (const char  *language_name,
                                    gboolean    *is_utf8)
 {
         locale_t locale;
-        locale_t old_locale;
         const char *codeset = NULL;
 
+        if (language_name == NULL) {
+                language_name = setlocale (LC_MESSAGES, NULL);
+        }
         locale = newlocale (LC_CTYPE_MASK, language_name, (locale_t) 0);
         if (locale == (locale_t) 0)
                 return;
 
-        old_locale = uselocale (locale);
 
-        codeset = nl_langinfo (CODESET);
+        codeset = nl_langinfo_l (CODESET, locale);
 
         if (pcodeset != NULL) {
                 *pcodeset = g_strdup (codeset);
@@ -324,7 +329,6 @@ language_name_get_codeset_details (const char  *language_name,
                 *is_utf8 = strcmp (normalized_codeset, "UTF-8") == 0;
         }
 
-        uselocale (old_locale);
         freelocale (locale);
 }
 
@@ -704,28 +708,24 @@ get_translated_language (const char *code,
         if (language != NULL) {
                 const char *translated_name;
                 locale_t loc = 0;
-                locale_t old_locale = 0;
 
-                if (locale != NULL) {
-                        loc = newlocale (LC_MESSAGES_MASK, locale, (locale_t) 0);
-                        if (loc == (locale_t) 0)
-                                return NULL;
-                        old_locale = uselocale (loc);
+                if (locale == NULL) {
+                        locale = setlocale (LC_MESSAGES, NULL);
                 }
+                loc = newlocale (LC_MESSAGES_MASK, locale, (locale_t) 0);
+                if (loc == (locale_t) 0)
+                        return NULL;
 
                 if (is_fallback_language (code)) {
                         name = g_strdup (_("Unspecified"));
                 } else {
                         g_autofree char *tmp = NULL;
-                        translated_name = dgettext ("iso_639", language);
+                        translated_name = dgettext_l (loc, "iso_639", language);
                         tmp = get_first_item_in_semicolon_list (translated_name);
                         name = capitalize_utf8_string (tmp);
                 }
 
-                if (locale != NULL) {
-                        uselocale (old_locale);
-                        freelocale (loc);
-                }
+                freelocale (loc);
         }
 
         return name;
@@ -762,24 +762,20 @@ get_translated_territory (const char *code,
         if (territory != NULL) {
                 const char *translated_territory;
                 locale_t loc;
-                locale_t old_locale = 0;
                 g_autofree char *tmp = NULL;
 
-                if (locale != NULL) {
-                        loc = newlocale (LC_MESSAGES_MASK, locale, (locale_t) 0);
-                        if (loc == (locale_t) 0)
-                                return NULL;
-                        old_locale = uselocale (loc);
+                if (locale == NULL) {
+                        locale = setlocale (LC_MESSAGES, NULL);
                 }
+                loc = newlocale (LC_MESSAGES_MASK, locale, (locale_t) 0);
+                if (loc == (locale_t) 0)
+                        return NULL;
 
-                translated_territory = dgettext ("iso_3166", territory);
+                translated_territory = dgettext_l (loc, "iso_3166", territory);
                 tmp = get_first_item_in_semicolon_list (translated_territory);
                 name = capitalize_utf8_string (tmp);
 
-                if (locale != NULL) {
-                        uselocale (old_locale);
-                        freelocale (loc);
-                }
+                freelocale (loc);
         }
 
         return name;
@@ -1075,7 +1071,7 @@ territories_init (void)
 /**
  * gnome_get_language_from_locale:
  * @locale: a locale string
- * @translation: (allow-none): a locale string
+ * @translation: (nullable): a locale string
  *
  * Gets the language description for @locale. If @translation is
  * provided the returned string is translated accordingly.
@@ -1167,7 +1163,7 @@ gnome_get_language_from_locale (const char *locale,
 /**
  * gnome_get_country_from_locale:
  * @locale: a locale string
- * @translation: (allow-none): a locale string
+ * @translation: (nullable): a locale string
  *
  * Gets the country description for @locale. If @translation is
  * provided the returned string is translated accordingly.
@@ -1294,7 +1290,7 @@ gnome_get_all_locales (void)
 /**
  * gnome_get_language_from_code:
  * @code: an ISO 639 code string
- * @translation: (allow-none): a locale string
+ * @translation: (nullable): a locale string
  *
  * Gets the language name for @code. If @translation is provided the
  * returned string is translated accordingly.
@@ -1318,7 +1314,7 @@ gnome_get_language_from_code (const char *code,
 /**
  * gnome_get_country_from_code:
  * @code: an ISO 3166 code string
- * @translation: (allow-none): a locale string
+ * @translation: (nullable): a locale string
  *
  * Gets the country name for @code. If @translation is provided the
  * returned string is translated accordingly.
@@ -1342,7 +1338,7 @@ gnome_get_country_from_code (const char *code,
 /**
  * gnome_get_translated_modifier:
  * @modifier: the modifier part of a locale name
- * @translation: (allow-none): a locale string
+ * @translation: (nullable): a locale string
  *
  * Gets a translation of the raw @modifier string. If @translation
  * is provided the returned string is translated accordingly.
@@ -1359,16 +1355,15 @@ gnome_get_translated_modifier (const char *modifier,
         char *retval;
         GHashTable *modifiers_map;
         locale_t loc;
-        locale_t old_locale;
 
         g_return_val_if_fail (modifier != NULL, NULL);
 
-        if (translation != NULL) {
-                loc = newlocale (LC_MESSAGES_MASK, translation, (locale_t) 0);
-                if (loc == (locale_t) 0) {
-                        return NULL;
-                }
-                old_locale = uselocale (loc);
+        if (translation == NULL) {
+                translation = setlocale (LC_MESSAGES, NULL);
+        }
+        loc = newlocale (LC_MESSAGES_MASK, translation, (locale_t) 0);
+        if (loc == (locale_t) 0) {
+                return NULL;
         }
 
         /* Modifiers as listed in glibc's SUPPORTED file:
@@ -1379,26 +1374,26 @@ gnome_get_translated_modifier (const char *modifier,
         /* TRANSLATORS: Used to distinguish the labels representing the gez_ER
            and gez_ET locales from gez_ER@abegede respective gez_ET@abegede. The
            difference is related to collation. */
-        g_hash_table_insert (modifiers_map, "abegede", _("Abegede"));
+        g_hash_table_insert (modifiers_map, "abegede", _l(loc, "Abegede"));
         /* TRANSLATORS: Used to distinguish Cyrillic from Latin written language variants. */
-        g_hash_table_insert (modifiers_map, "cyrillic", _("Cyrillic"));
+        g_hash_table_insert (modifiers_map, "cyrillic", _l(loc, "Cyrillic"));
         /* TRANSLATORS: Also known as "Nagari", a written variant for many languages
            of the Indian subcontinent. See:
            https://en.wikipedia.org/wiki/Devanagari */
-        g_hash_table_insert (modifiers_map, "devanagari", _("Devanagari"));
+        g_hash_table_insert (modifiers_map, "devanagari", _l(loc, "Devanagari"));
         /* TRANSLATORS: Used to distinguish the label representing the tt_RU
            locale from tt_RU@iqtelif. It's a special alphabet for Tatar. */
-        g_hash_table_insert (modifiers_map, "iqtelif", _("IQTElif"));
+        g_hash_table_insert (modifiers_map, "iqtelif", _l(loc, "IQTElif"));
         /* TRANSLATORS: The alphabet/script, not the language. Used to distinguish
            Latin from Cyrillic written language variants. */
-        g_hash_table_insert (modifiers_map, "latin", _("Latin"));
+        g_hash_table_insert (modifiers_map, "latin", _l(loc, "Latin"));
         /* TRANSLATORS: "Saho" is a variant of the Afar language. Used to
            distinguish the label representing the aa_ER locale from aa_ER@saaho. */
-        g_hash_table_insert (modifiers_map, "saaho", _("Saho"));
+        g_hash_table_insert (modifiers_map, "saaho", _l(loc, "Saho"));
         /* TRANSLATORS: "Valencia" is a dialect of the Catalan language spoken
            in Valencia. Used to distinguish the label representing the ca_ES
            locale from ca_ES@valencia. */
-        g_hash_table_insert (modifiers_map, "valencia", _("Valencia"));
+        g_hash_table_insert (modifiers_map, "valencia", _l(loc, "Valencia"));
 
         if (g_hash_table_contains (modifiers_map, modifier))
                 retval = g_strdup (g_hash_table_lookup (modifiers_map, modifier));
@@ -1407,10 +1402,7 @@ gnome_get_translated_modifier (const char *modifier,
 
         g_hash_table_destroy (modifiers_map);
 
-        if (translation != NULL) {
-                uselocale (old_locale);
-                freelocale (loc);
-        }
+        freelocale (loc);
 
         return retval;
 }
