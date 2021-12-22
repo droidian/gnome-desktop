@@ -1,8 +1,9 @@
-gnome-desktop3 (41.2-1) UNRELEASED; urgency=medium
+gnome-desktop3 (41.2-1) unstable; urgency=medium
 
+  * Team upload
   * New upstream release
 
- -- Simon McVittie <smcv@debian.org>  Wed, 22 Dec 2021 10:58:29 +0000
+ -- Simon McVittie <smcv@debian.org>  Wed, 22 Dec 2021 10:58:58 +0000
 
 gnome-desktop3 (41.1-1) unstable; urgency=medium
 
