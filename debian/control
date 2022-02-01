@@ -127,7 +127,9 @@ Package: libgnome-desktop-4-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
+Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
+         gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
+         gir1.2-gnomerr-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          iso-codes,
          libgnome-desktop-4-1 (= ${binary:Version}),
@@ -164,7 +166,8 @@ Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
-Breaks: gnome-shell (<< 3.34)
+Provides: gir1.2-gnomebg-4.0 (= ${binary:Version}),
+          gir1.2-gnomerr-4.0 (= ${binary:Version})
 Description: Introspection data for GnomeDesktop
  This package provides the include files and static library for the GNOME
  desktop library functions.
