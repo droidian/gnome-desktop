@@ -2,7 +2,7 @@
 #
 # Modifications should be made to debian/control.in instead.
 # This file is regenerated automatically in the clean target.
-Source: gnome-desktop3
+Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>

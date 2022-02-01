@@ -1,4 +1,4 @@
-Source: gnome-desktop3
+Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
