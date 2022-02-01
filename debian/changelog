@@ -1,8 +1,8 @@
-gnome-desktop3 (41.3-1) UNRELEASED; urgency=medium
+gnome-desktop3 (41.3-1) unstable; urgency=medium
 
   * New upstream release
 
- -- Jeremy Bicha <jeremy.bicha@canonical.com>  Tue, 01 Feb 2022 11:00:25 -0500
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Tue, 01 Feb 2022 11:01:09 -0500
 
 gnome-desktop3 (41.2-1) unstable; urgency=medium
 
