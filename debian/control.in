@@ -24,7 +24,6 @@ Build-Depends: debhelper-compat (= 13),
                libsystemd-dev [linux-any],
                libudev-dev [linux-any],
                libxkbregistry-dev,
-               libxml2-dev (>= 2.4.20),
                locales <!nocheck> | locales-all <!nocheck>,
                meson (>= 0.47.0),
                xauth <!nocheck>,
@@ -86,7 +85,6 @@ Depends: gir1.2-gnomedesktop-3.0 (= ${binary:Version}),
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          libxkbregistry-dev,
-         libxml2-dev,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Utility library for loading .desktop files - development files
@@ -134,7 +132,6 @@ Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          libxkbregistry-dev,
-         libxml2-dev,
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Utility library for loading .desktop files - development files
