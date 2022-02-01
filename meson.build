@@ -1,7 +1,10 @@
 project('gnome-desktop', 'c',
-  meson_version: '>= 0.49.0',
-  version: '41.3',
-  license: ['GPL2+', 'LGPL2+']
+  meson_version: '>= 0.56.2',
+  version: '42.alpha.1',
+  license: ['GPL-2.0-or-later', 'LGPL-2.1-or-later'],
+  default_options: [
+    'c_std=gnu99',
+  ],
 )
 
 # Before making a release, the libversion string should be modified.
@@ -14,11 +17,16 @@ project('gnome-desktop', 'c',
 # to 0. When bumping the second version, set the third one to zero.
 #
 # A lot easier than libtool, right?
-libversion = '19.1.9'
+libversion = '1.0.1'
 soversion = libversion.split('.')[0]
 
+# Compatibility versions for libgnome-desktop-3
+compat_libversion = '19.2.0'
+compat_soversion = compat_libversion.split('.')[0]
+
 gdk_pixbuf_req = '>= 2.36.5'
-gtk_req = '>= 3.3.6'
+gtk3_req = '>= 3.3.6'
+gtk4_req = '>= 4.4.0'
 glib_req = '>= 2.53.0'
 xrandr_req = '>= 1.3'
 schemas_req = '>= 3.27.0'
@@ -30,17 +38,18 @@ pkg = import('pkgconfig')
 
 prefix = get_option('prefix')
 
-datadir = join_paths(prefix, get_option('datadir'))
-libexecdir = join_paths(prefix, get_option('libexecdir'))
+datadir = prefix / get_option('datadir')
+libexecdir = prefix / get_option('libexecdir')
 
-liblocaledir = join_paths(get_option('prefix'), 'lib', 'locale')
-localedir = join_paths(datadir, 'locale')
-test_metadir = join_paths(datadir, 'installed-tests', meson.project_name())
-test_execdir = join_paths(libexecdir, 'installed-tests', meson.project_name())
-versiondir = join_paths(datadir, 'gnome')
+liblocaledir = get_option('prefix') / 'lib/locale'
+localedir = datadir / 'locale'
+test_metadir = datadir / 'installed-tests' / meson.project_name()
+test_execdir = libexecdir / 'installed-tests' / meson.project_name()
+versiondir = datadir / 'gnome'
 
 gdk_pixbuf_dep = dependency('gdk-pixbuf-2.0', version: gdk_pixbuf_req)
-gtk_dep = dependency('gtk+-3.0', version: gtk_req)
+gtk3_dep = dependency('gtk+-3.0', version: gtk3_req, required: get_option('legacy_library'))
+gtk4_dep = dependency('gtk4', version: gtk4_req, required: get_option('build_gtk4'))
 glib_dep = dependency('glib-2.0', version: glib_req)
 gio_dep = dependency('gio-2.0', version: glib_req)
 gio_unix_dep = dependency('gio-unix-2.0', version: glib_req)
@@ -48,11 +57,8 @@ schemas_dep = dependency('gsettings-desktop-schemas', version: schemas_req)
 fontconfig_dep = dependency('fontconfig')
 xkb_config_dep = dependency('xkeyboard-config')
 xkbregistry_dep = dependency('xkbregistry', required: false)
-
 iso_codes_dep = dependency('iso-codes')
-
 libsystemd_dep = dependency('libsystemd', required: get_option('systemd'))
-
 udev_dep = dependency('libudev', required: get_option('udev'))
 
 # Check for bubblewrap compatible platform
@@ -65,10 +71,10 @@ if supported_os.contains(host_os) and not unsupported_cpus.contains(host_cpu)
 else
   seccomp_dep = dependency('', required: false)
 endif
-fontconfig_cache_path = fontconfig_dep.get_pkgconfig_variable('cachedir')
 
-xkb_base = xkb_config_dep.get_pkgconfig_variable('xkb_base')
-iso_codes_prefix = iso_codes_dep.get_pkgconfig_variable('prefix')
+fontconfig_cache_path = fontconfig_dep.get_variable(pkgconfig: 'cachedir')
+xkb_base = xkb_config_dep.get_variable(pkgconfig: 'xkb_base')
+iso_codes_prefix = iso_codes_dep.get_variable(pkgconfig: 'prefix')
 
 cc = meson.get_compiler('c')
 
@@ -78,33 +84,6 @@ rt_dep = cc.find_library('rt', required: false)
 if not cc.has_function('clock_gettime', dependencies: rt_dep)
   rt_dep = dependency('', required: false)
 endif
-
-conf = configuration_data()
-
-conf.set_quoted('GETTEXT_PACKAGE', '@0@-3.0'.format(meson.project_name()))
-conf.set_quoted('INSTALL_PREFIX', prefix)
-
-conf.set('ENABLE_SECCOMP', seccomp_dep.found())
-conf.set('HAVE_BWRAP', seccomp_dep.found())
-conf.set('_GNU_SOURCE', seccomp_dep.found())
-
-conf.set('HAVE_SYSTEMD', libsystemd_dep.found())
-conf.set('HAVE_UDEV', udev_dep.found())
-conf.set('HAVE_XKBREGISTRY', xkbregistry_dep.found())
-
-conf.set('HAVE_TIMERFD', cc.has_function('timerfd_create'))
-conf.set('HAVE_OPENAT', cc.has_function('openat'))
-conf.set('HAVE_USELOCALE', cc.has_function('uselocale'))
-conf.set('HAVE_XLOCALE', cc.has_header('xlocale.h'))
-
-config_h = declare_dependency(
-  sources: configure_file(
-    configuration: conf,
-    input: 'config.h.meson',
-    output: 'config.h'
-  ),
-  include_directories: include_directories('.')
-)
 
 version_array = meson.project_version().split('.')
 version_conf = configuration_data()
@@ -128,9 +107,10 @@ endif
 version_xml = configure_file(
   configuration: version_conf,
   input: 'gnome-version.xml.in',
-  output: 'gnome-version.xml'
+  output: 'gnome-version.xml',
+  install: true,
+  install_dir: versiondir,
 )
-install_data(version_xml, install_dir: versiondir)
 
 subdir('libgnome-desktop')
 subdir('po')
@@ -145,3 +125,29 @@ endif
 if get_option('gtk_doc')
   subdir('docs/reference/gnome-desktop3')
 endif
+
+summary({
+    'prefix': get_option('prefix'),
+    'datadir': datadir,
+    'libexecdir': libexecdir,
+    'localedir': localedir,
+    'versiondir': versiondir,
+  },
+  section: 'Directories',
+)
+
+summary({
+    'Use systemd': get_option('systemd').enabled() or get_option('systemd').auto(),
+    'Use udev': get_option('udev').enabled() or get_option('udev').auto(),
+    'Build GTK4 libraries': get_option('build_gtk4'),
+    'Build legacy libgnome-desktop': get_option('legacy_library'),
+    'Desktop documentation': get_option('desktop_docs'),
+    'API documentation': get_option('gtk_doc'),
+    'Date in gnome-version.xml': get_option('date_in_gnome_version'),
+    'GNOME distributor': get_option('gnome_distributor'),
+    'Debug tools': get_option('debug_tools'),
+    'Installed tests': get_option('installed_tests'),
+  },
+  section: 'Build options',
+  bool_yn: true,
+)
