@@ -1,3 +1,26 @@
+gnome-desktop3 (41.3-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian, remaining changes:
+    - Add 2 patches to adjust background color detection for Unity
+      + tweak_color_computation.patch
+      + 04_compute_average_color.patch
+    - Build-Depend on language-pack-gnome-he for build tests
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Thu, 03 Feb 2022 13:06:18 -0500
+
+gnome-desktop3 (41.3-1) unstable; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Tue, 01 Feb 2022 11:01:09 -0500
+
+gnome-desktop3 (41.2-1) unstable; urgency=medium
+
+  * Team upload
+  * New upstream release
+
+ -- Simon McVittie <smcv@debian.org>  Wed, 22 Dec 2021 10:58:58 +0000
+
 gnome-desktop3 (41.1-1ubuntu1) jammy; urgency=medium
 
   * Merge with Debian, remaining changes:
