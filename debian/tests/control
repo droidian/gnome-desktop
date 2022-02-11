@@ -1,5 +1,17 @@
-Tests: build
-Depends: build-essential, libgnome-desktop-3-dev
+Tests: libgnome-desktop-3-dev
+Depends: build-essential, libgnome-desktop-3-dev, pkg-config
+Restrictions: allow-stderr superficial
+
+Tests: libgnome-bg-4-dev
+Depends: build-essential, libgnome-bg-4-dev, pkg-config
+Restrictions: allow-stderr superficial
+
+Tests: libgnome-desktop-4-dev
+Depends: build-essential, libgnome-desktop-4-dev, pkg-config
+Restrictions: allow-stderr superficial
+
+Tests: libgnome-rr-4-dev
+Depends: build-essential, libgnome-rr-4-dev, pkg-config
 Restrictions: allow-stderr superficial
 
 Tests: installed-tests

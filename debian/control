@@ -77,6 +77,10 @@ Description: Utility library for the GNOME desktop - runtime files
  This library provides various utility functions that are used in multiple
  components of the GNOME desktop, but do not have a sufficiently stable API
  to be included in core libraries such as GLib and GTK.
+ .
+ This package provides a legacy GTK-3-based library with functionality similar
+ to a combination of libgnome-bg-4-1, libgnome-desktop-4-1 and libgnome-rr-4-1,
+ for compatibility with older GNOME components.
 
 Package: libgnome-desktop-3-dev
 Section: libdevel
@@ -108,6 +112,22 @@ Description: Utility library for the GNOME desktop - Debugging utilities
  .
  This package contains development and debugging utilities.
 
+Package: libgnome-bg-4-1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: gsettings-desktop-schemas (>= 3.27.0),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: locales | locales-all
+Description: Utility library for background images - runtime files
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This library provides utilities for managing background images (wallpaper).
+
 Package: libgnome-desktop-4-1
 Section: libs
 Architecture: any
@@ -121,21 +141,64 @@ Depends: bubblewrap [linux-any],
          ${shlibs:Depends}
 Recommends: locales | locales-all
 Description: Utility library for the GNOME desktop - runtime files
- This library provides various utility functions that are used in multiple
- components of the GNOME desktop, but do not have a sufficiently stable API
- to be included in core libraries such as GLib and GTK.
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This library provides miscellaneous non-GUI utilities, including
+ sandboxed image thumbnailing, localization-related utilities, idle time
+ monitoring, a simplified interface to the udev hardware database,
+ putting processes into systemd scopes, user-facing time representation
+ and keyboard layout information.
+
+Package: libgnome-rr-4-1
+Section: libs
+Architecture: any
+Multi-Arch: same
+Depends: gnome-desktop3-data (>= ${source:Version}),
+         gnome-desktop3-data (<< ${gnome:NextVersion}),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Recommends: locales | locales-all
+Description: Utility library for display information - runtime files
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This library provides utilities for display mode-setting, resizing and
+ rotation using the XRandR protocol or Wayland.
+
+Package: libgnome-bg-4-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
+         gsettings-desktop-schemas-dev,
+         libgnome-bg-4-1 (= ${binary:Version}),
+         libgnome-desktop-4-dev (= ${binary:Version}),
+         libgtk-4-dev (>= 3.3.6),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Background image library for GNOME - development files (GTK 4)
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This package contains development files to compile programs that deal with
+ background images.
 
 Package: libgnome-desktop-4-dev
 Section: libdevel
 Architecture: any
 Multi-Arch: same
-Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
-         gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
-         gir1.2-gnomerr-4.0 (= ${binary:Version}),
+Depends: gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          iso-codes,
+         libgdk-pixbuf-2.0-dev (>= 2.36.5),
          libgnome-desktop-4-1 (= ${binary:Version}),
-         libgtk-4-dev (>= 3.3.6),
          libseccomp-dev [!hurd-any !kfreebsd-any !linux-alpha !linux-ia64 !linux-m68k !linux-sh4 !linux-sparc64],
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
@@ -143,8 +206,33 @@ Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Utility library for the GNOME desktop - development files (GTK 4)
- This package provides the include files and static library for the GNOME
- desktop library functions.
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This package contains development files to compile programs that use
+ miscellaneous non-GUI utility functions.
+
+Package: libgnome-rr-4-dev
+Section: libdevel
+Architecture: any
+Multi-Arch: same
+Depends: gir1.2-gnomerr-4.0 (= ${binary:Version}),
+         gsettings-desktop-schemas-dev,
+         libgnome-desktop-4-dev (= ${binary:Version}),
+         libgnome-rr-4-1 (= ${binary:Version}),
+         libgtk-4-dev (>= 3.3.6),
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Display information library for GNOME - development files (GTK 4)
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This package contains development files to compile programs that deal with
+ display modes.
 
 Package: gir1.2-gnomedesktop-3.0
 Section: introspection
@@ -160,6 +248,22 @@ Description: Introspection data for GnomeDesktop (GTK 3)
  .
  This package contains the introspection data for GnomeDesktop
 
+Package: gir1.2-gnomebg-4.0
+Section: introspection
+Architecture: any
+Multi-Arch: same
+Depends: ${gir:Depends},
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Introspection data for GnomeBG (GTK 4)
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This package contains GObject-Introspection bindings for background image
+ (wallpaper) management.
+
 Package: gir1.2-gnomedesktop-4.0
 Section: introspection
 Architecture: any
@@ -167,10 +271,27 @@ Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
-Provides: gir1.2-gnomebg-4.0 (= ${binary:Version}),
-          gir1.2-gnomerr-4.0 (= ${binary:Version})
 Description: Introspection data for GnomeDesktop (GTK 4)
- This package provides the include files and static library for the GNOME
- desktop library functions.
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
  .
- This package contains the introspection data for GnomeDesktop
+ This package contains GObject-Introspection bindings for miscellaneous
+ utility functions.
+
+Package: gir1.2-gnomerr-4.0
+Section: introspection
+Architecture: any
+Multi-Arch: same
+Depends: ${gir:Depends},
+         ${misc:Depends},
+         ${shlibs:Depends}
+Description: Introspection data for GnomeRR (GTK 4)
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This package contains GObject-Introspection bindings for display mode
+ management.
