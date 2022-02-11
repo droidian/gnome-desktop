@@ -76,7 +76,7 @@ Depends: bubblewrap [linux-any],
          ${misc:Depends},
          ${shlibs:Depends}
 Recommends: locales | locales-all
-Description: Utility library for the GNOME desktop - runtime files
+Description: Utility library for the GNOME desktop - GTK 3 version
  This library provides various utility functions that are used in multiple
  components of the GNOME desktop, but do not have a sufficiently stable API
  to be included in core libraries such as GLib and GTK.
