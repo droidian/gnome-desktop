@@ -3,7 +3,7 @@
 include /usr/share/dpkg/default.mk
 
 built_binaries := $(shell dh_listpackages)
-LIB_PKG := $(filter-out %-dev %-bin,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
+LIB_PKG := $(filter-out %-dev %-bin %-doc,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
 
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs

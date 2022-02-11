@@ -287,3 +287,21 @@ Description: Introspection data for GnomeRR (GTK 4)
  .
  This package contains GObject-Introspection bindings for display mode
  management.
+
+Package: libgnome-desktop-doc
+Build-Profiles: <!nodoc>
+Architecture: all
+Multi-Arch: foreign
+Section: doc
+Pre-Depends: ${misc:Pre-Depends}
+Depends: ${misc:Depends}
+Breaks: libgnome-desktop-3-dev (<< 42~),
+Replaces: libgnome-desktop-3-dev (<< 42~),
+Description: API documentation for libgnome-desktop
+ The gnome-desktop set of libraries provides various utility functions
+ that are used in multiple components of the GNOME desktop, but do not
+ have a sufficiently stable API to be included in core libraries such
+ as GLib and GTK.
+ .
+ This package contains API documentation, currently only available for
+ the GTK 3 version of the library.
