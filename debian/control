@@ -73,8 +73,10 @@ Depends: bubblewrap [linux-any],
          ${misc:Depends},
          ${shlibs:Depends}
 Recommends: locales | locales-all
-Description: Utility library for loading .desktop files - runtime files
- This library is used by GNOME to load the .desktop files.
+Description: Utility library for the GNOME desktop - runtime files
+ This library provides various utility functions that are used in multiple
+ components of the GNOME desktop, but do not have a sufficiently stable API
+ to be included in core libraries such as GLib and GTK.
 
 Package: libgnome-desktop-3-dev
 Section: libdevel
@@ -91,7 +93,7 @@ Depends: gir1.2-gnomedesktop-3.0 (= ${binary:Version}),
          libxkbregistry-dev,
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Utility library for loading .desktop files - development files
+Description: Utility library for the GNOME desktop - development files (GTK 3)
  This package provides the include files and static library for the GNOME
  desktop library functions.
 
@@ -101,7 +103,7 @@ Architecture: any
 Depends: libgnome-desktop-3-19 (= ${binary:Version}),
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Utility library for loading .desktop files - Debugging utilities
+Description: Utility library for the GNOME desktop - Debugging utilities
  This library is used by GNOME to load the .desktop files.
  .
  This package contains development and debugging utilities.
@@ -118,8 +120,10 @@ Depends: bubblewrap [linux-any],
          ${misc:Depends},
          ${shlibs:Depends}
 Recommends: locales | locales-all
-Description: Utility library for loading .desktop files - runtime files
- This library is used by GNOME to load the .desktop files.
+Description: Utility library for the GNOME desktop - runtime files
+ This library provides various utility functions that are used in multiple
+ components of the GNOME desktop, but do not have a sufficiently stable API
+ to be included in core libraries such as GLib and GTK.
 
 Package: libgnome-desktop-4-dev
 Section: libdevel
@@ -138,7 +142,7 @@ Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          libxkbregistry-dev,
          ${misc:Depends},
          ${shlibs:Depends}
-Description: Utility library for loading .desktop files - development files
+Description: Utility library for the GNOME desktop - development files (GTK 4)
  This package provides the include files and static library for the GNOME
  desktop library functions.
 
@@ -150,7 +154,7 @@ Depends: ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
 Breaks: gnome-shell (<< 3.34)
-Description: Introspection data for GnomeDesktop
+Description: Introspection data for GnomeDesktop (GTK 3)
  This package provides the include files and static library for the GNOME
  desktop library functions.
  .
@@ -165,7 +169,7 @@ Depends: ${gir:Depends},
          ${shlibs:Depends}
 Provides: gir1.2-gnomebg-4.0 (= ${binary:Version}),
           gir1.2-gnomerr-4.0 (= ${binary:Version})
-Description: Introspection data for GnomeDesktop
+Description: Introspection data for GnomeDesktop (GTK 4)
  This package provides the include files and static library for the GNOME
  desktop library functions.
  .
