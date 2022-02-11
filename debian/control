@@ -170,7 +170,7 @@ Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          libgnome-bg-4-1 (= ${binary:Version}),
          libgnome-desktop-4-dev (= ${binary:Version}),
-         libgtk-4-dev (>= 3.3.6),
+         libgtk-4-dev (>= 4.4.0),
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Background image library for GNOME - development files (GTK 4)
@@ -214,7 +214,7 @@ Depends: gir1.2-gnomerr-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          libgnome-desktop-4-dev (= ${binary:Version}),
          libgnome-rr-4-1 (= ${binary:Version}),
-         libgtk-4-dev (>= 3.3.6),
+         libgtk-4-dev (>= 4.4.0),
          ${misc:Depends},
          ${shlibs:Depends}
 Description: Display information library for GNOME - development files (GTK 4)
