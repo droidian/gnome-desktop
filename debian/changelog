@@ -1,4 +1,4 @@
-gnome-desktop (42~alpha.1-1ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop (42~alpha.1-1ubuntu1) jammy; urgency=medium
 
   * Merge with Debian, remaining changes:
     - Add 2 patches to adjust background color detection for Unity
@@ -6,7 +6,7 @@ gnome-desktop (42~alpha.1-1ubuntu1) UNRELEASED; urgency=medium
       + 04_compute_average_color.patch
     - Build-Depend on language-pack-gnome-he for build tests
 
- -- Jeremy Bicha <jeremy.bicha@canonical.com>  Thu, 03 Feb 2022 13:13:37 -0500
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Sun, 13 Feb 2022 03:47:14 -0500
 
 gnome-desktop (42~alpha.1-1) experimental; urgency=medium
 
