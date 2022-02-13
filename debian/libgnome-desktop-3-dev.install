@@ -1,5 +1,4 @@
-usr/include/gnome-desktop-${env:GD_API_VERSION}.*/
-usr/lib/${DEB_HOST_MULTIARCH}/libgnome-desktop-${env:GD_API_VERSION}.so
-usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig
-usr/share/gir-1.0
-usr/share/gtk-doc
+usr/include/gnome-desktop-3.0
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-desktop-3.so
+usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/gnome-desktop-3.0.pc
+usr/share/gir-1.0/GnomeDesktop-3.0.gir

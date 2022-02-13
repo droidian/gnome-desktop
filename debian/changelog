@@ -1,3 +1,46 @@
+gnome-desktop (42~alpha.1-1ubuntu1) UNRELEASED; urgency=medium
+
+  * Merge with Debian, remaining changes:
+    - Add 2 patches to adjust background color detection for Unity
+      + tweak_color_computation.patch
+      + 04_compute_average_color.patch
+    - Build-Depend on language-pack-gnome-he for build tests
+
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Thu, 03 Feb 2022 13:13:37 -0500
+
+gnome-desktop (42~alpha.1-1) experimental; urgency=medium
+
+  [ Jeremy Bicha ]
+  * Rename source package to gnome-desktop
+  * New upstream release
+  * Build-Depend on gtk4
+  * debian/control.in: Drop obsolete libxml2-dev dependency.
+    It's not required for the build and it's not in the pkgconfig file
+
+  [ Simon McVittie ]
+  * Remove compatibility with pre-bullseye packaging of libgdk-pixbuf
+  * d/control.in: Improve package descriptions.
+    This might originally have been a library to load .desktop files, but
+    it has changed a lot since then.
+  * Package each shared library separately.
+    According to the upstream commit history, the long-term plan is for
+    GnomeBG and GnomeRR to become independent components, and it will be
+    difficult to package that correctly if we initially bundled these
+    libraries into one package.
+  * Move manual tests into gnome-desktop-3-tests.
+    We don't really need a separate libgnome-desktop-3-dev-bin package
+    for this.
+  * Move the API documentation to its own package while we're going
+    through NEW anyway
+  * Add symlinks to make HTML documentation visible in /usr/share/doc.
+    The files are not physically in /usr/share/doc, because the way gtk-doc
+    processes cross-references means they are technically a programmatic
+    interface.
+  * Add a doc-base file for the API reference
+  * d/copyright: Update
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 11 Feb 2022 12:18:06 +0000
+
 gnome-desktop3 (41.3-1ubuntu1) jammy; urgency=medium
 
   * Merge with Debian, remaining changes:

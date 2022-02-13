@@ -1,0 +1,4 @@
+usr/include/gnome-desktop-${env:GD_API_VERSION}.*/gnome-rr
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-rr-${env:GD_API_VERSION}.so
+usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/gnome-rr-4.pc
+usr/share/gir-1.0/GnomeRR-4.0.gir

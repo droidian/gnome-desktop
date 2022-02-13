@@ -1,0 +1,4 @@
+usr/include/gnome-desktop-${env:GD_API_VERSION}.*/gnome-bg
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-bg-${env:GD_API_VERSION}.so
+usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/gnome-bg-4.pc
+usr/share/gir-1.0/GnomeBG-4.0.gir
