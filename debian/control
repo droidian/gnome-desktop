@@ -309,3 +309,16 @@ Description: API documentation for libgnome-desktop
  .
  This package contains API documentation, currently only available for
  the GTK 3 version of the library.
+
+Package: libgnome-desktop-3-dev-bin
+Architecture: all
+Section: oldlibs
+Depends: ${misc:Depends},
+         gnome-desktop-3-tests
+Description: Installed test files for GNOME desktop - transitional
+ This package contains test programs designed to be run as part of a
+ regression testsuite, and manual test programs designed to be run by
+ developers.
+ .
+ This empty transitional package is here to ensure smooth upgrades.
+ It can be removed when you see fit.
