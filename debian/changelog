@@ -1,9 +1,9 @@
-gnome-desktop (42~beta-1-0ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop (42~beta-0ubuntu1) jammy; urgency=medium
 
   * New upstream release
   * Add transitional libgnome-desktop-3-dev-bin package for smoother updates
 
- -- Jeremy Bicha <jeremy.bicha@canonical.com>  Sat, 19 Feb 2022 06:32:07 -0500
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Sat, 19 Feb 2022 06:47:23 -0500
 
 gnome-desktop (42~alpha.1-1) experimental; urgency=medium
 
