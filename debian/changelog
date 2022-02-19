@@ -1,8 +1,11 @@
-gnome-desktop (42~beta-1) UNRELEASED; urgency=medium
+gnome-desktop (42~beta-1) unstable; urgency=medium
 
   * New upstream release
+  * debian/*symbols: Add new symbols
+  * Add transitional libgnome-desktop-3-dev-bin package for smoother updates
+  * Release to unstable (Closes: #1006037)
 
- -- Jeremy Bicha <jeremy.bicha@canonical.com>  Sat, 19 Feb 2022 06:32:07 -0500
+ -- Jeremy Bicha <jeremy.bicha@canonical.com>  Sat, 19 Feb 2022 10:37:12 -0500
 
 gnome-desktop (42~alpha.1-1) experimental; urgency=medium
 
