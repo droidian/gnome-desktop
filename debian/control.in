@@ -259,6 +259,7 @@ Multi-Arch: same
 Depends: ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
+Breaks: gnome-shell (<< 42~alpha)
 Description: Introspection data for GnomeDesktop (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
