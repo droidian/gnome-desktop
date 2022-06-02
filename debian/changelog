@@ -1,5 +1,6 @@
-gnome-desktop (42.2-1) UNRELEASED; urgency=medium
+gnome-desktop (42.2-1) unstable; urgency=medium
 
+  * Team upload
   * New upstream release
 
  -- Nathan Pratta Teodosio <nathan.teodosio@canonical.com>  Thu, 02 Jun 2022 09:54:13 -0300
