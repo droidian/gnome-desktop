@@ -32,6 +32,16 @@ configure_file(
   configuration: conf,
 )
 
+version_conf = configuration_data()
+version_array = meson.project_version().split('.')
+version_conf.set('GNOME_PLATFORM', version_array[0])
+
+gnome_desktop_header_file = configure_file(
+  input: 'gnome-desktop-version.h.in',
+  output: 'gnome-desktop-version.h',
+  configuration: version_conf,
+)
+
 dbus_xrandr_built_sources = gnome.gdbus_codegen('meta-dbus-xrandr',
   'xrandr.xml',
   namespace: 'MetaDBus',
@@ -53,6 +63,7 @@ endif
 
 ### gnome-desktop-base
 libgnome_desktop_base_sources = [
+  'gnome-desktop-version.c',
   'gnome-desktop-thumbnail.c',
   'gnome-idle-monitor.c',
   'gnome-languages.c',
@@ -69,6 +80,7 @@ libgnome_desktop_base_private_sources = [
 ]
 
 libgnome_desktop_base_headers = [
+  gnome_desktop_header_file,
   'gnome-desktop-thumbnail.h',
   'gnome-idle-monitor.h',
   'gnome-languages.h',
@@ -117,17 +129,19 @@ if get_option('build_gtk4')
     ],
   )
 
-  libgnome_desktop_base_gir = gnome.generate_gir(libgnome_desktop_base,
-    sources: [libgnome_desktop_base_headers, libgnome_desktop_base_sources],
-    export_packages: 'gnome-desktop-4',
-    namespace: 'GnomeDesktop',
-    nsversion: '4.0',
-    includes: ['GObject-2.0', 'Gio-2.0', 'GDesktopEnums-3.0', 'GdkPixbuf-2.0'],
-    extra_args: ['-DGNOME_DESKTOP_USE_UNSTABLE_API', '--quiet', '--warn-all'],
-    identifier_prefix: 'Gnome',
-    symbol_prefix: 'gnome',
-    install: true,
-  )
+  if get_option('introspection')
+    libgnome_desktop_base_gir = gnome.generate_gir(libgnome_desktop_base,
+      sources: [libgnome_desktop_base_headers, libgnome_desktop_base_sources],
+      export_packages: 'gnome-desktop-4',
+      namespace: 'GnomeDesktop',
+      nsversion: '4.0',
+      includes: ['GObject-2.0', 'Gio-2.0', 'GDesktopEnums-3.0', 'GdkPixbuf-2.0'],
+      extra_args: ['-DGNOME_DESKTOP_USE_UNSTABLE_API', '--quiet', '--warn-all'],
+      identifier_prefix: 'Gnome',
+      symbol_prefix: 'gnome',
+      install: true,
+    )
+  endif
 
   pkg.generate(
     libgnome_desktop_base,
@@ -158,6 +172,7 @@ endif
 ### Legacy ###
 if get_option('legacy_library')
   introspection_sources = [
+    'gnome-desktop-version.c',
     'gnome-desktop-thumbnail.c',
     'gnome-bg.c',
     'gnome-bg-slide-show.c',
@@ -183,6 +198,7 @@ if get_option('legacy_library')
   ]
 
   libgnome_desktop_headers = [
+    gnome_desktop_header_file,
     'gnome-bg.h',
     'gnome-bg-crossfade.h',
     'gnome-bg-slide-show.h',
@@ -245,17 +261,19 @@ if get_option('legacy_library')
     ],
   )
 
-  gnome.generate_gir(libgnome_desktop,
-    sources: introspection_sources + libgnome_desktop_headers,
-    export_packages: 'gnome-desktop-3.0',
-    namespace: 'GnomeDesktop',
-    nsversion: '3.0',
-    includes: ['GObject-2.0', 'Gtk-3.0', 'GDesktopEnums-3.0'],
-    extra_args: ['-DGNOME_DESKTOP_USE_UNSTABLE_API', '--quiet', '--warn-all'],
-    identifier_prefix: 'Gnome',
-    symbol_prefix: 'gnome',
-    install: true
-  )
+  if get_option('introspection')
+    gnome.generate_gir(libgnome_desktop,
+      sources: introspection_sources + libgnome_desktop_headers,
+      export_packages: 'gnome-desktop-3.0',
+      namespace: 'GnomeDesktop',
+      nsversion: '3.0',
+      includes: ['GObject-2.0', 'Gtk-3.0', 'GDesktopEnums-3.0'],
+      extra_args: ['-DGNOME_DESKTOP_USE_UNSTABLE_API', '--quiet', '--warn-all'],
+      identifier_prefix: 'Gnome',
+      symbol_prefix: 'gnome',
+      install: true
+    )
+  endif
 
   pkg.generate(
     libraries: libgnome_desktop,
