@@ -6,7 +6,7 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Laurent Bigonville <bigon@debian.org>, Sjoerd Simons <sjoerd@debian.org>, Tim Lunn <tim@feathertop.org>
+Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Laurent Bigonville <bigon@debian.org>, Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
                dh-sequence-gnome (>= 0.22),
@@ -50,7 +50,7 @@ Description: Common files for GNOME desktop apps
 
 Package: gnome-desktop-3-tests
 Architecture: any
-Depends: libgnome-desktop-3-19 (= ${binary:Version}),
+Depends: libgnome-desktop-3-20 (= ${binary:Version}),
          gnome-desktop3-data (= ${source:Version}),
          locales | locales-all,
          ${misc:Depends},
@@ -64,7 +64,7 @@ Description: Installed test files for GNOME desktop
  regression testsuite, and manual test programs designed to be run by
  developers.
 
-Package: libgnome-desktop-3-19
+Package: libgnome-desktop-3-20
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -82,7 +82,7 @@ Description: Utility library for the GNOME desktop - GTK 3 version
  to be included in core libraries such as GLib and GTK.
  .
  This package provides a legacy GTK-3-based library with functionality similar
- to a combination of libgnome-bg-4-1, libgnome-desktop-4-1 and libgnome-rr-4-1,
+ to a combination of libgnome-bg-4-2, libgnome-desktop-4-2 and libgnome-rr-4-2,
  for compatibility with older GNOME components.
 
 Package: libgnome-desktop-3-dev
@@ -92,7 +92,7 @@ Multi-Arch: same
 Depends: gir1.2-gnomedesktop-3.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          iso-codes,
-         libgnome-desktop-3-19 (= ${binary:Version}),
+         libgnome-desktop-3-20 (= ${binary:Version}),
          libgtk-3-dev (>= 3.3.6),
          libseccomp-dev [!hurd-any !kfreebsd-any !linux-alpha !linux-ia64 !linux-m68k !linux-sh4 !linux-sparc64],
          libsystemd-dev [linux-any],
@@ -104,7 +104,7 @@ Description: Utility library for the GNOME desktop - development files (GTK 3)
  This package provides the include files and static library for the GNOME
  desktop library functions.
 
-Package: libgnome-bg-4-1
+Package: libgnome-bg-4-2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -120,7 +120,7 @@ Description: Utility library for background images - runtime files
  .
  This library provides utilities for managing background images (wallpaper).
 
-Package: libgnome-desktop-4-1
+Package: libgnome-desktop-4-2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -144,7 +144,7 @@ Description: Utility library for the GNOME desktop - runtime files
  putting processes into systemd scopes, user-facing time representation
  and keyboard layout information.
 
-Package: libgnome-rr-4-1
+Package: libgnome-rr-4-2
 Section: libs
 Architecture: any
 Multi-Arch: same
@@ -168,7 +168,7 @@ Architecture: any
 Multi-Arch: same
 Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
-         libgnome-bg-4-1 (= ${binary:Version}),
+         libgnome-bg-4-2 (= ${binary:Version}),
          libgnome-desktop-4-dev (= ${binary:Version}),
          libgtk-4-dev (>= 4.4.0),
          ${misc:Depends},
@@ -190,7 +190,7 @@ Depends: gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          iso-codes,
          libgdk-pixbuf-2.0-dev (>= 2.36.5),
-         libgnome-desktop-4-1 (= ${binary:Version}),
+         libgnome-desktop-4-2 (= ${binary:Version}),
          libseccomp-dev [!hurd-any !kfreebsd-any !linux-alpha !linux-ia64 !linux-m68k !linux-sh4 !linux-sparc64],
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
@@ -213,7 +213,7 @@ Multi-Arch: same
 Depends: gir1.2-gnomerr-4.0 (= ${binary:Version}),
          gsettings-desktop-schemas-dev,
          libgnome-desktop-4-dev (= ${binary:Version}),
-         libgnome-rr-4-1 (= ${binary:Version}),
+         libgnome-rr-4-2 (= ${binary:Version}),
          libgtk-4-dev (>= 4.4.0),
          ${misc:Depends},
          ${shlibs:Depends}

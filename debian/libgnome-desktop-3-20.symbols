@@ -1,5 +1,76 @@
-libgnome-rr-4.so.1 libgnome-rr-4-1 #MINVER#
-* Build-Depends-Package: libgnome-desktop-4-dev
+libgnome-desktop-3.so.20 libgnome-desktop-3-20 #MINVER#
+* Build-Depends-Package: libgnome-desktop-3-dev
+ gnome_bg_changes_with_time@Base 3.17.92
+ gnome_bg_create_frame_thumbnail@Base 3.17.92
+ gnome_bg_create_surface@Base 3.17.92
+ gnome_bg_create_thumbnail@Base 3.17.92
+ gnome_bg_crossfade_get_type@Base 3.17.92
+ gnome_bg_crossfade_is_started@Base 3.17.92
+ gnome_bg_crossfade_new@Base 3.17.92
+ gnome_bg_crossfade_set_end_surface@Base 3.17.92
+ gnome_bg_crossfade_set_start_surface@Base 3.17.92
+ gnome_bg_crossfade_start@Base 3.17.92
+ gnome_bg_crossfade_stop@Base 3.17.92
+ gnome_bg_draw@Base 3.17.92
+ gnome_bg_get_filename@Base 3.17.92
+ gnome_bg_get_image_size@Base 3.17.92
+ gnome_bg_get_placement@Base 3.17.92
+ gnome_bg_get_rgba@Base 3.27.90
+ gnome_bg_get_type@Base 3.17.92
+ gnome_bg_has_multiple_sizes@Base 3.17.92
+ gnome_bg_is_dark@Base 3.17.92
+ gnome_bg_load_from_preferences@Base 3.17.92
+ gnome_bg_new@Base 3.17.92
+ gnome_bg_save_to_preferences@Base 3.17.92
+ gnome_bg_set_filename@Base 3.17.92
+ gnome_bg_set_placement@Base 3.17.92
+ gnome_bg_set_rgba@Base 3.27.90
+ gnome_bg_slide_show_get_current_slide@Base 3.17.92
+ gnome_bg_slide_show_get_has_multiple_sizes@Base 3.17.92
+ gnome_bg_slide_show_get_num_slides@Base 3.17.92
+ gnome_bg_slide_show_get_slide@Base 3.17.92
+ gnome_bg_slide_show_get_start_time@Base 3.17.92
+ gnome_bg_slide_show_get_total_duration@Base 3.17.92
+ gnome_bg_slide_show_get_type@Base 3.17.92
+ gnome_bg_slide_show_load@Base 3.17.92
+ gnome_bg_slide_show_load_async@Base 3.17.92
+ gnome_bg_slide_show_new@Base 3.17.92
+ gnome_desktop_thumbnail_factory_can_thumbnail@Base 3.17.92
+ gnome_desktop_thumbnail_factory_create_failed_thumbnail@Base 3.17.92
+ gnome_desktop_thumbnail_factory_create_failed_thumbnail_async@Base 42~beta
+ gnome_desktop_thumbnail_factory_create_failed_thumbnail_finish@Base 42~beta
+ gnome_desktop_thumbnail_factory_generate_thumbnail@Base 3.17.92
+ gnome_desktop_thumbnail_factory_generate_thumbnail_async@Base 42~beta
+ gnome_desktop_thumbnail_factory_generate_thumbnail_finish@Base 42~beta
+ gnome_desktop_thumbnail_factory_get_type@Base 3.17.92
+ gnome_desktop_thumbnail_factory_has_valid_failed_thumbnail@Base 3.17.92
+ gnome_desktop_thumbnail_factory_lookup@Base 3.17.92
+ gnome_desktop_thumbnail_factory_new@Base 3.17.92
+ gnome_desktop_thumbnail_factory_save_thumbnail@Base 3.17.92
+ gnome_desktop_thumbnail_factory_save_thumbnail_async@Base 42~beta
+ gnome_desktop_thumbnail_factory_save_thumbnail_finish@Base 42~beta
+ gnome_desktop_thumbnail_is_valid@Base 3.17.92
+ gnome_desktop_thumbnail_path_for_uri@Base 3.17.92
+ gnome_desktop_thumbnail_script_exec@Base 3.25.90
+ gnome_get_all_locales@Base 3.17.92
+ gnome_get_country_from_code@Base 3.17.92
+ gnome_get_country_from_locale@Base 3.17.92
+ gnome_get_input_source_from_locale@Base 3.17.92
+ gnome_get_language_from_code@Base 3.17.92
+ gnome_get_language_from_locale@Base 3.17.92
+ gnome_get_translated_modifier@Base 3.33.4
+ gnome_idle_monitor_add_idle_watch@Base 3.17.92
+ gnome_idle_monitor_add_user_active_watch@Base 3.17.92
+ gnome_idle_monitor_get_idletime@Base 3.17.92
+ gnome_idle_monitor_get_type@Base 3.17.92
+ gnome_idle_monitor_new@Base 3.17.92
+ gnome_idle_monitor_remove_watch@Base 3.17.92
+ gnome_language_has_translations@Base 3.17.92
+ gnome_normalize_locale@Base 3.17.92
+ gnome_parse_locale@Base 3.17.92
+ gnome_pnp_ids_get_pnp_id@Base 3.17.92
+ gnome_pnp_ids_get_type@Base 3.17.92
+ gnome_pnp_ids_new@Base 3.17.92
  gnome_rr_config_applicable@Base 3.17.92
  gnome_rr_config_apply@Base 3.17.92
  gnome_rr_config_apply_persistent@Base 3.17.92
@@ -81,12 +152,10 @@ libgnome-rr-4.so.1 libgnome-rr-4-1 #MINVER#
  gnome_rr_output_supports_color_transform@Base 3.37.90.1
  gnome_rr_output_supports_mode@Base 3.17.92
  gnome_rr_output_supports_underscanning@Base 3.17.92
- gnome_rr_screen_finalize@Base 42~alpha.1
  gnome_rr_screen_get_crtc_by_id@Base 3.17.92
  gnome_rr_screen_get_dpms_mode@Base 3.17.92
  gnome_rr_screen_get_output_by_id@Base 3.17.92
  gnome_rr_screen_get_output_by_name@Base 3.17.92
- gnome_rr_screen_get_property@Base 42~alpha.1
  gnome_rr_screen_get_ranges@Base 3.17.92
  gnome_rr_screen_get_type@Base 3.17.92
  gnome_rr_screen_list_clone_modes@Base 3.17.92
@@ -98,4 +167,21 @@ libgnome-rr-4.so.1 libgnome-rr-4-1 #MINVER#
  gnome_rr_screen_new_finish@Base 3.17.92
  gnome_rr_screen_refresh@Base 3.17.92
  gnome_rr_screen_set_dpms_mode@Base 3.17.92
- gnome_rr_screen_set_property@Base 42~alpha.1
+ gnome_start_systemd_scope@Base 3.34.2
+ gnome_start_systemd_scope_finish@Base 3.34.2
+ gnome_wall_clock_get_clock@Base 3.17.92
+ gnome_wall_clock_get_timezone@Base 3.17.92
+ gnome_wall_clock_get_type@Base 3.17.92
+ gnome_wall_clock_new@Base 3.17.92
+ gnome_wall_clock_string_for_datetime@Base 3.17.92
+ gnome_xkb_info_description_for_group@Base 3.17.92
+ gnome_xkb_info_description_for_option@Base 3.17.92
+ gnome_xkb_info_get_all_layouts@Base 3.17.92
+ gnome_xkb_info_get_all_option_groups@Base 3.17.92
+ gnome_xkb_info_get_languages_for_layout@Base 3.17.92
+ gnome_xkb_info_get_layout_info@Base 3.17.92
+ gnome_xkb_info_get_layouts_for_country@Base 3.17.92
+ gnome_xkb_info_get_layouts_for_language@Base 3.17.92
+ gnome_xkb_info_get_options_for_group@Base 3.17.92
+ gnome_xkb_info_get_type@Base 3.17.92
+ gnome_xkb_info_new@Base 3.17.92

@@ -1,4 +1,4 @@
-libgnome-bg-4.so.1 libgnome-bg-4-1 #MINVER#
+libgnome-bg-4.so.2 libgnome-bg-4-2 #MINVER#
 * Build-Depends-Package: libgnome-desktop-4-dev
  gnome_bg_changes_with_time@Base 3.17.92
  gnome_bg_create_frame_thumbnail@Base 3.17.92

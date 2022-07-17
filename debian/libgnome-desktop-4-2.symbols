@@ -1,4 +1,4 @@
-libgnome-desktop-4.so.1 libgnome-desktop-4-1 #MINVER#
+libgnome-desktop-4.so.2 libgnome-desktop-4-2 #MINVER#
 * Build-Depends-Package: libgnome-desktop-4-dev
  gnome_desktop_thumbnail_factory_can_thumbnail@Base 3.17.92
  gnome_desktop_thumbnail_factory_create_failed_thumbnail@Base 3.17.92
