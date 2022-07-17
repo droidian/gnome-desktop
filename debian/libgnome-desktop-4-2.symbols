@@ -23,6 +23,7 @@ libgnome-desktop-4.so.2 libgnome-desktop-4-2 #MINVER#
  gnome_get_input_source_from_locale@Base 3.17.92
  gnome_get_language_from_code@Base 3.17.92
  gnome_get_language_from_locale@Base 3.17.92
+ gnome_get_platform_version@Base 43~alpha
  gnome_get_translated_modifier@Base 3.33.4
  gnome_idle_monitor_add_idle_watch@Base 3.17.92
  gnome_idle_monitor_add_user_active_watch@Base 3.17.92
