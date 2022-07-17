@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-include /usr/share/dpkg/default.mk
-
 built_binaries := $(shell dh_listpackages)
 LIB_PKG := $(filter-out %-dev %-bin %-doc,$(filter lib%,$(shell awk '/^Package: / { print $$2 }' debian/control)))
 
@@ -18,8 +16,6 @@ export GD_API_VERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f2 -d- | rev)
 
 override_dh_auto_configure:
 	dh_auto_configure -- \
-		-Dgnome_distributor=$(shell dpkg-vendor --query vendor) \
-		-Ddate_in_gnome_version=false \
 		-Dgtk_doc=true \
 		-Dinstalled_tests=true \
 		-Ddesktop_docs=true
