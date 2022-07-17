@@ -1,8 +1,12 @@
-gnome-desktop (43~alpha-1) UNRELEASED; urgency=medium
+gnome-desktop (43~alpha-1) experimental; urgency=medium
 
   * New upstream release
+  * debian/rules: Drop obsolete build options
+  * Update library names to match soname bump
+  * debian/*.symbols: Add new symbols
+  * /usr/share/gnome/gnome-version.xml is no longer provided
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Sat, 16 Jul 2022 16:29:45 +0200
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Sun, 17 Jul 2022 14:01:13 +0200
 
 gnome-desktop (42.3-1) unstable; urgency=medium
 
