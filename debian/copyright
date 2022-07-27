@@ -16,6 +16,14 @@ Copyright: 2007-2020 Red Hat, Inc.
            2020 Nvidia Corporation
 License: LGPL-2+
 
+Files: libgnome-desktop/gnome-rr-private.h
+Copyright: 2009 Novell, Inc
+           2014 Endless
+           2009, 2014 Red Hat, Inc
+           2019 System76
+           2021 Emmanuele Bassi
+License: LGPL-2+
+
 Files:
  libgnome-desktop/gnome-systemd.*
 Copyright: 2019 Benjamin Berg
