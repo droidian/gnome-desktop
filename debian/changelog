@@ -1,3 +1,9 @@
+gnome-desktop (43~alpha-2) experimental; urgency=medium
+
+  * Update debian/copyright. Thanks to Thorsten Alteholz
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 27 Jul 2022 08:07:30 -0400
+
 gnome-desktop (43~alpha-1) experimental; urgency=medium
 
   * New upstream release
