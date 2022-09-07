@@ -1,8 +1,8 @@
-gnome-desktop (43~rc-1) UNRELEASED; urgency=medium
+gnome-desktop (43~rc-1) unstable; urgency=medium
 
   * New upstream release
 
- -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 07 Sep 2022 08:31:40 -0400
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 07 Sep 2022 08:37:43 -0400
 
 gnome-desktop (43~alpha-3) unstable; urgency=medium
 
