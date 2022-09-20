@@ -6,10 +6,10 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Laurent Bigonville <bigon@debian.org>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
-               dh-sequence-gnome (>= 0.22),
+               dh-sequence-gnome (>= 0.22.7~),
                docbook-xml,
                fonts-cantarell <!nocheck>,
                gsettings-desktop-schemas-dev (>= 3.27.0),
