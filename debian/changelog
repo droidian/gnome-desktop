@@ -1,3 +1,14 @@
+gnome-desktop (43-2) unstable; urgency=medium
+
+  * Team upload
+  * Require a dh-sequence-gnome that generates gnome:NextVersion correctly.
+    Older versions expected the version number to be like 43.0 or 43~rc,
+    but not a plain integer like 43, producing an uninstallable package
+    with a dependency on gnome-desktop3-data (<< 1).
+  * Standards-Version: 4.6.1 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Tue, 20 Sep 2022 09:56:51 +0100
+
 gnome-desktop (43-1) unstable; urgency=medium
 
   * New upstream release
