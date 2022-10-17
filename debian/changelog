@@ -1,6 +1,6 @@
-gnome-desktop (42.5-0ubuntu1) UNRELEASED; urgency=medium
+gnome-desktop (42.5-0ubuntu1) jammy; urgency=medium
 
-  * New upstream release
+  * New upstream release (LP: #1992852)
 
  -- Zoe Spellman <zoe.spellman@canonical.com>  Thu, 13 Oct 2022 13:21:18 -0700
 
