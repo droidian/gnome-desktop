@@ -156,7 +156,7 @@ gnome_parse_locale (const char *locale,
         if (locale == NULL)
                 return ret;
 
-        regex = g_regex_new ("^(?P<language>[a-z][a-z][a-z]?)"
+        regex = g_regex_new ("^(?P<language>[A-Za-z][a-z]?[a-z]?)"
                              "(_(?P<territory>[A-Z][A-Z]))?"
                              "(\\.(?P<codeset>[A-Za-z0-9][A-Za-z-0-9]*))?"
                              "(@(?P<modifier>[a-z]*))?$",
@@ -1182,6 +1182,10 @@ gnome_get_country_from_locale (const char *locale,
         }
 
         translated_territory = get_translated_territory (territory_code, translation);
+        if (translated_territory == NULL) {
+                goto out;
+        }
+
         g_string_append (full_name, translated_territory);
 
 	if (is_unique_territory (territory_code)) {
