@@ -6,7 +6,7 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Jeremy Bicha <jbicha@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>
+Uploaders: Jeremy Bicha <jbicha@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
                dh-sequence-gnome (>= 0.22.7~),
@@ -34,8 +34,8 @@ Build-Depends: debhelper-compat (= 13),
                xkb-data,
                xvfb <!nocheck>
 Rules-Requires-Root: no
-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
+Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop -b debian/bookworm
+Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git/tree/debian/bookworm
 Standards-Version: 4.6.1
 
 Package: gnome-desktop3-data
