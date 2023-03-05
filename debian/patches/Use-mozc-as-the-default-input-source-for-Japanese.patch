@@ -1,0 +1,34 @@
+From: YOSHINO Yoshihito <yy.y.ja.jp@gmail.com>
+Date: Sat, 28 Jan 2023 16:46:35 +0900
+Subject: Use mozc as the default input source for Japanese
+
+Upstream prefers ibus-anthy for Japanese input, while Debian uses
+ibus-mozc as the default. In particular, task-japanese-gnome-desktop
+Recommends ibus-mozc on architectures where it is available.
+
+There seems to be consensus that mozc is a better default for Debian. It
+is also the default in Ubuntu since 16.04 at the request of Japanese
+Ubuntu users, according to Ubuntu developer Gunnar Hjalmarsson.
+
+[smcv: Add more context to commit message]
+
+Bug-Debian: https://bugs.debian.org/1029821
+Co-authored-by: Simon McVittie <smcv@debian.org>
+Origin: vendor, Debian
+---
+ libgnome-desktop/default-input-sources.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libgnome-desktop/default-input-sources.h b/libgnome-desktop/default-input-sources.h
+index 04ba10b..beaa80d 100644
+--- a/libgnome-desktop/default-input-sources.h
++++ b/libgnome-desktop/default-input-sources.h
+@@ -36,7 +36,7 @@ static DefaultInputSource default_input_sources[] =
+   { "hi_IN",    "ibus",         "m17n:hi:inscript" },
+   { "id_ID",    "xkb",          "us" },
+   { "it_IT",    "xkb",          "it" },
+-  { "ja_JP",    "ibus",         "anthy" },
++  { "ja_JP",    "ibus",         "mozc-jp" },
+   { "kn_IN",    "ibus",         "m17n:kn:kgp" },
+   { "ko_KR",    "ibus",         "hangul" },
+   { "mai_IN",   "ibus",         "m17n:mai:inscript" },
