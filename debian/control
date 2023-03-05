@@ -34,8 +34,8 @@ Build-Depends: debhelper-compat (= 13),
                xkb-data,
                xvfb <!nocheck>
 Rules-Requires-Root: no
-Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop -b debian/bookworm
-Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git/tree/debian/bookworm
+Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop/tree/debian/bookworm
+Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git -b debian/bookworm
 Standards-Version: 4.6.1
 
 Package: gnome-desktop3-data
