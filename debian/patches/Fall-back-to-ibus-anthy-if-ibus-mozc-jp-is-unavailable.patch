@@ -1,0 +1,39 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Sun, 5 Mar 2023 12:52:01 +0000
+Subject: Fall back to ibus:anthy if ibus:mozc-jp is unavailable
+
+According to discussion on #1029821, mozc only supports little-endian
+CPU architectures (for example i386 and arm64) and does not support
+big-endian CPU architectures (for example powerpc and s390x), which
+is why task-japanese-desktop and task-japanese-gnome-desktop have a
+fallback dependency on uim-anthy and ibus-anthy respectively. Reflect
+this by falling back to anthy if mozc doesn't appear to be installed.
+
+Bug-Debian: https://bugs.debian.org/1029821
+Origin: vendor, Debian
+Signed-off-by: Simon McVittie <smcv@debian.org>
+Forwarded: no
+---
+ libgnome-desktop/gnome-languages.c | 9 +++++++++
+ 1 file changed, 9 insertions(+)
+
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index 2d25817..4d3e737 100644
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
+@@ -1448,6 +1448,15 @@ gnome_get_input_source_from_locale (const char  *locale,
+         if (dis) {
+                 *type = dis->type;
+                 *id = dis->id;
++
++                /* We default to ibus:mozc-jp for Japanese locales, but mozc
++                 * isn't available for all CPU architectures. Fall back to
++                 * ibus:anthy if necessary. */
++                if (g_strcmp0 (*type, "ibus") == 0
++                    && g_strcmp0 (*id, "mozc-jp") == 0
++                    && !g_file_test ("/usr/share/ibus/component/mozc.xml", G_FILE_TEST_EXISTS)) {
++                        *id = "anthy";
++                }
+         }
+         return dis != NULL;
+ }

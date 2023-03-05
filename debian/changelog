@@ -4,6 +4,38 @@ gnome-desktop (44~beta-1) experimental; urgency=medium
 
  -- Jeremy Bicha <jbicha@ubuntu.com>  Tue, 14 Feb 2023 07:50:24 -0500
 
+gnome-desktop (43.2-2) unstable; urgency=medium
+
+  * Team upload
+  * d/control.in: Fix Vcs-Git and Vcs-Browser syntax
+  * d/p/Use-mozc-as-the-default-input-source-for-Japanese.patch:
+    Change the default input method for Japanese to mozc-jp, matching
+    tasksel.
+    mozc is pulled in as the most-preferred input method by
+    task-japanese-desktop (uim-mozc) and task-japanese-gnome-desktop
+    (ibus-mozc) on the architectures where it is available, notably
+    x86 and ARM. There seems to be consensus among Japanese-speaking
+    Debian and Ubuntu users that mozc is the best default input method,
+    so make the default in gnome-initial-setup consistent with that.
+    Thanks to YOSHINO Yoshihito (Closes: #1029821)
+  * d/p/Fall-back-to-ibus-anthy-if-ibus-mozc-jp-is-unavailable.patch:
+    Fall back to ibus-anthy if ibus-mozc isn't available. According
+    to discussion on #1029821, mozc only supports little-endian CPU
+    architectures (for example i386 and arm64) and does not support
+    big-endian CPU architectures (for example powerpc and s390x), so we
+    need to be prepared to fall back.
+  * d/libgnome-desktop-doc.lintian-overrides: Remove unused override.
+    This is unnecessary now that #970275 was fixed.
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 05 Mar 2023 18:11:37 +0000
+
+gnome-desktop (43.2-1) unstable; urgency=medium
+
+  * New upstream release
+  * Branch for bookworm
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Wed, 15 Feb 2023 11:15:51 -0500
+
 gnome-desktop (43.1-1) unstable; urgency=medium
 
   * New upstream release
