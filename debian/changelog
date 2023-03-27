@@ -1,9 +1,13 @@
-gnome-desktop (44~beta-2) UNRELEASED; urgency=medium
+gnome-desktop (44.0-1) UNRELEASED; urgency=medium
 
+  [ Simon McVittie ]
   * Merge packaging changes from unstable
     - Default to mozc-jp where possible (Closes: #1029821)
 
- -- Simon McVittie <smcv@debian.org>  Sun, 05 Mar 2023 18:40:14 +0000
+  [ Jeremy Bicha ]
+  * New upstream release
+
+ -- Jeremy Bicha <jbicha@ubuntu.com>  Mon, 27 Mar 2023 08:34:14 -0400
 
 gnome-desktop (44~beta-1) experimental; urgency=medium
 
