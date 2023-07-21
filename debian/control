@@ -6,7 +6,7 @@ Source: gnome-desktop
 Section: gnome
 Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
-Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org>, Laurent Bigonville <bigon@debian.org>, Marco Trevisan (Treviño) <marco@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>, Tim Lunn <tim@feathertop.org>
+Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org>, Jeremy Bícha <jbicha@ubuntu.com>, Laurent Bigonville <bigon@debian.org>, Marco Trevisan (Treviño) <marco@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>, Tim Lunn <tim@feathertop.org>
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
                dh-sequence-gnome (>= 0.22.7~),
