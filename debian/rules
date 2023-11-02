@@ -14,6 +14,9 @@ export GD_API_VERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f2 -d- | rev)
 %:
 	dh $@
 
+override_dh_gnome_clean:
+	dh_gnome_clean --no-control
+
 override_dh_auto_configure:
 	dh_auto_configure -- \
 		-Dgtk_doc=true \
