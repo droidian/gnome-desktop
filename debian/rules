@@ -8,8 +8,8 @@ export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
 export DPKG_GENSYMBOLS_CHECK_LEVEL = 4
 
 export GD_LIBNAME = $(LIB_PKG)
-export GD_SOVERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f1 -d- | rev)
-export GD_API_VERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f2 -d- | rev)
+export GD_SOVERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f1 -d- | rev | sed 's/t64//')
+export GD_API_VERSION = $(shell echo $(GD_LIBNAME) | rev | cut -f2 -d- | rev | sed 's/t64//')
 
 %:
 	dh $@

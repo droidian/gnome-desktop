@@ -1,4 +1,4 @@
-libgnome-rr-4.so.2 libgnome-rr-4-2 #MINVER#
+libgnome-rr-4.so.2 libgnome-rr-4-2t64 #MINVER#
 * Build-Depends-Package: libgnome-desktop-4-dev
  gnome_rr_config_applicable@Base 3.17.92
  gnome_rr_config_apply@Base 3.17.92
