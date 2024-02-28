@@ -1,4 +1,4 @@
-gnome-desktop (44.0-3) unstable; urgency=medium
+gnome-desktop (44.0-4) unstable; urgency=medium
 
   [ Simon McVittie ]
   * d/control: Stop generating from a template
@@ -7,7 +7,7 @@ gnome-desktop (44.0-3) unstable; urgency=medium
   [ Jeremy Bícha ]
   * Release to unstable (Closes: #1062450)
 
- -- Simon McVittie <smcv@debian.org>  Thu, 02 Nov 2023 10:33:34 +0000
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Wed, 28 Feb 2024 07:44:45 -0500
 
 gnome-desktop (44.0-2.1~exp1) experimental; urgency=medium
 
