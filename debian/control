@@ -6,6 +6,7 @@ Uploaders: Gunnar Hjalmarsson <gunnarhj@debian.org>, Iain Lane <laney@debian.org
 Build-Depends: debhelper-compat (= 13),
                dh-sequence-gir,
                dh-sequence-gnome (>= 0.22.7~),
+               dpkg-dev (>= 1.22.5),
                docbook-xml,
                fonts-cantarell <!nocheck>,
                gsettings-desktop-schemas-dev,
