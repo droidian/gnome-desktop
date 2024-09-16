@@ -1,70 +1,70 @@
-# SOME DESCRIPTIVE TITLE.
-# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
-# This file is distributed under the same license as the PACKAGE package.
-# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+# Burmese translation for gnome-desktop.
+# Copyright (C) 2024 gnome-desktop's COPYRIGHT HOLDER
+# This file is distributed under the same license as the gnome-desktop package.
+# zayar lwin <zyl.pol.mm@zohomail.com>, 2024.
 #
 msgid ""
 msgstr ""
-"Project-Id-Version: \n"
+"Project-Id-Version: gnome-desktop master\n"
 "Report-Msgid-Bugs-To: https://gitlab.gnome.org/GNOME/gnome-desktop/"
 "issues\n"
-"POT-Creation-Date: 2023-09-24 20:01+0000\n"
-"PO-Revision-Date: 2023-10-12 21:03+0200\n"
-"Last-Translator: Brage <bragefuglseth@gnome.org>\n"
-"Language-Team: \n"
-"Language: nb\n"
+"POT-Creation-Date: 2024-01-09 01:35+0000\n"
+"PO-Revision-Date: 2024-02-06 00:02+0630\n"
+"Last-Translator: Zayar Lwin <zyl.pol.mm@zohomail.com>\n"
+"Language-Team: Burmese <my@li.org>\n"
+"Language: my\n"
 "MIME-Version: 1.0\n"
 "Content-Type: text/plain; charset=UTF-8\n"
 "Content-Transfer-Encoding: 8bit\n"
-"X-Generator: Poedit 3.4\n"
+"X-Generator: Poedit 3.4.2\n"
 
 #: libgnome-desktop/gnome-desktop-thumbnail.c:1014
 #, c-format
 msgid "File %s does not have a preview icon attribute"
-msgstr "%s har ikke ikon"
+msgstr "ဖိုင် %s မှာ ကြိုတင်ပြအိုင်ကွန် တန််ဖိုး မရှိပါ"
 
 #: libgnome-desktop/gnome-desktop-thumbnail.c:1024
 #, c-format
 msgid "No loadable icon for %s"
-msgstr "%s har ikke innlastbart ikon"
+msgstr "%sအတွက် တွန်းတင်၍ရသောအိုင်ကွန်မရှိပါ"
 
 #: libgnome-desktop/gnome-desktop-thumbnail.c:1153
 #, c-format
 msgid "Could not find thumbnailer for mime-type '%s'"
-msgstr "Fant ikke forhåndsviser for filtypen “%s”"
+msgstr "'%s' mime-typeအတွက် ကြိုတင်ပြပုံဖေါ်ကိရိယာ ရှာမတွေ့ပါ"
 
 #: libgnome-desktop/gnome-desktop-thumbnail.c:1283
 #, c-format
 msgid "Failed to create folder '%s'"
-msgstr "Oppretting av mappen “%s” mislyktes"
+msgstr "ဖိုင်တွဲ '%s' ဖန်တီးမှု မအောင်မြင်ခဲ့ပါ"
 
 #: libgnome-desktop/gnome-desktop-thumbnail.c:1296
 #, c-format
 msgid "The output folder '%s' is not writable"
-msgstr "Utdatamappen “%s” er skrivebeskyttet"
+msgstr "အထွက်ဖိုင်တွဲ '%s' တွင် ရေး၍မရပါ"
 
 #: libgnome-desktop/gnome-languages.c:698
 msgid "Unspecified"
-msgstr "Ikke oppgitt"
+msgstr "သတ်မှတ်မထား"
 
 #. TRANSLATORS: Used to distinguish the labels representing the gez_ER
 #. and gez_ET locales from gez_ER@abegede respective gez_ET@abegede. The
 #. difference is related to collation.
 #: libgnome-desktop/gnome-languages.c:1363
 msgid "Abegede"
-msgstr "Abegede"
+msgstr "အဘီဂီဒီ"
 
 #. TRANSLATORS: Used to distinguish Cyrillic from Latin written language variants.
 #: libgnome-desktop/gnome-languages.c:1365
 msgid "Cyrillic"
-msgstr "Kyrillisk"
+msgstr "ဆီရီလစ်"
 
 #. TRANSLATORS: Also known as "Nagari", a written variant for many languages
 #. of the Indian subcontinent. See:
 #. https://en.wikipedia.org/wiki/Devanagari
 #: libgnome-desktop/gnome-languages.c:1369
 msgid "Devanagari"
-msgstr "Devangari"
+msgstr "ဒီဗာနာဂရီ"
 
 #. TRANSLATORS: Used to distinguish the label representing the tt_RU
 #. locale from tt_RU@iqtelif. It's a special alphabet for Tatar.
@@ -76,38 +76,38 @@ msgstr "IQTElif"
 #. Latin from Cyrillic written language variants.
 #: libgnome-desktop/gnome-languages.c:1375
 msgid "Latin"
-msgstr "Latin"
+msgstr "လက်တင်"
 
 #. TRANSLATORS: "Saho" is a variant of the Afar language. Used to
 #. distinguish the label representing the aa_ER locale from aa_ER@saaho.
 #: libgnome-desktop/gnome-languages.c:1378
 msgid "Saho"
-msgstr "Saho"
+msgstr "ဆာဟို"
 
 #. TRANSLATORS: "Valencia" is a dialect of the Catalan language spoken
 #. in Valencia. Used to distinguish the label representing the ca_ES
 #. locale from ca_ES@valencia.
 #: libgnome-desktop/gnome-languages.c:1382
 msgid "Valencia"
-msgstr "Valencia"
+msgstr "ဗလန်စီယာ"
 
 #: libgnome-desktop/gnome-rr-config.c:754
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:712
 #, c-format
 msgid "CRTC %d cannot drive output %s"
-msgstr "CRTC %d kan ikke drive utgangen %s"
+msgstr "CRTC %d သည် အထွက် %s ကိုမမောင်းနှင်နိုင်ပါ"
 
 #: libgnome-desktop/gnome-rr-config.c:761
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:719
 #, c-format
 msgid "output %s does not support mode %dx%d@%dHz"
-msgstr "utgangen %s støtter ikke modus  %dx%d@%dHz"
+msgstr "ရုပ်ပြ %s သည် %dx%d@%dHz ကို မလုပ်ဆောင်ပေးနိုုင်ပါ"
 
 #: libgnome-desktop/gnome-rr-config.c:772
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:730
 #, c-format
 msgid "CRTC %d does not support rotation=%d"
-msgstr "CRTC %d støtter ikke %d i rotasjon"
+msgstr "CRTC %d သည် အလှည့်=%d ကို မလုပ်ပေးနိုင်ပါ"
 
 #: libgnome-desktop/gnome-rr-config.c:785
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:743
@@ -118,22 +118,22 @@ msgid ""
 "existing coordinates = (%d, %d), new coordinates = (%d, %d)\n"
 "existing rotation = %d, new rotation = %d"
 msgstr ""
-"utgang %s har ikke samme verdier som en annen klonet utgang:\n"
-"foreløpig modus = %d, ny modus = %d\n"
-"foreløpige koordinater = (%d, %d), nye koordinater = (%d, %d)\n"
-"foreløpig rotasjon = %d, ny rotasjon = %d"
+"ရုပ်ပြ %s သည် အခြားပုံပွားရုပ်ပြနှင့် အချက်အလက်များ မတူပါ\n"
+"နည်းအဟောင်း = %d ၊ နည်းအသစ် = %d\n"
+"ကိုဩဒီနိတ်အဟောင်း = (%d, %d) ၊ ကိုဩဒီနိတ်အသစ် = (%d, %d)\n"
+"အလှည့်တန်ဖိုးအဟောင်း = %d ၊ အလှည့်တန်ဖိုးအစသ် = %d"
 
 #: libgnome-desktop/gnome-rr-config.c:800
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:758
 #, c-format
 msgid "cannot clone to output %s"
-msgstr "kan ikke klone til utgang %s"
+msgstr "အထွက် %s သို့ ပုံတူမပွားနိုင်ပါ"
 
 #: libgnome-desktop/gnome-rr-config.c:926
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:883
 #, c-format
 msgid "Trying modes for CRTC %d\n"
-msgstr "Prøver moduser for CRTC %d\n"
+msgstr "CRTC %d အတွက် စနစ်များ စမ်းနေပါသည်\n"
 
 #: libgnome-desktop/gnome-rr-config.c:950
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:907
@@ -141,8 +141,7 @@ msgstr "Prøver moduser for CRTC %d\n"
 msgid ""
 "CRTC %d: trying mode %dx%d@%dHz with output at %dx%d@%dHz (pass %d)\n"
 msgstr ""
-"CRTC %d: prøver modus %dx%d@%dHz med utdata på %dx%d@%dHz (passering\n"
-" %d)\n"
+"CRTC %d: ရုပ်ပြအထွက် %dx%d@%dHz (pass %d) ၌ %dx%d@%dHz ကို ကြိုးစားနေသည်\n"
 
 #: libgnome-desktop/gnome-rr-config.c:997
 #: libgnome-desktop/gnome-rr/gnome-rr-config.c:954
@@ -151,7 +150,7 @@ msgid ""
 "could not assign CRTCs to outputs:\n"
 "%s"
 msgstr ""
-"kunne ikke tildele CRTC-er til utganger:\n"
+"ရုပ်ပြအထွက်များသို့ CRTCများ တွဲဖက်မချနိုင်ခဲ့ပါ\n"
 "%s"
 
 #: libgnome-desktop/gnome-rr-config.c:1001
@@ -161,7 +160,7 @@ msgid ""
 "none of the selected modes were compatible with the possible modes:\n"
 "%s"
 msgstr ""
-"ingen av de valgte modusene er kompatible med tilgjengelige moduser:\n"
+"ရွေးချယ်ထားသောပုံစံစနစ်များအနက် တစ်ခုမှပင် လုပ်ဆောင်နိုင်သည့်ပုံစံစနစ်များဖြင့်ကိုက်ညီမှုမရှိ -\n"
 "%s"
 
 #. Translators: the "requested", "minimum", and
@@ -174,39 +173,35 @@ msgid ""
 "required virtual size does not fit available size: requested=(%d, %d), "
 "minimum=(%d, %d), maximum=(%d, %d)"
 msgstr ""
-"nødvendig virtuell størrelse passer ikke tilgjengelig størrelse: "
-"forespurt=(%d, %d), minsteverdi=(%d, %d), maksverdi=(%d, %d)"
+"လိုအပ်သော အရွယ်အစားအတုသည် ရရှိနိုင်သော အရွယ်အစားနှင့်မဆံ့ပါ - တောင်းဆိုချက်=(%d, %d), "
+"အနည်းဆုံး=(%d, %d), အများဆုံး=(%d, %d)"
 
 #: libgnome-desktop/gnome-wall-clock.c:282
 msgctxt "time separator"
 msgid "∶"
 msgstr "∶"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #. Translators: This is the time format with full date
 #. plus day used in 24-hour mode. Please keep the under-
 #. score to separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:359
 msgid "%a %b %-e_%R:%S"
-msgstr "%a %-e. %b_%R:%S"
+msgstr "%a %b %-e_%R:%S"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #: libgnome-desktop/gnome-wall-clock.c:360
 msgid "%a %b %-e_%R"
-msgstr "%a %-e. %b_%R"
+msgstr "%a %b %-e_%R"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #. Translators: This is the time format with full date
 #. used in 24-hour mode. Please keep the underscore to
 #. separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:365
 msgid "%b %-e_%R:%S"
-msgstr "%-e. %b_%R:%S"
+msgstr "%b %-e_%R:%S"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #: libgnome-desktop/gnome-wall-clock.c:366
 msgid "%b %-e_%R"
-msgstr "%-e. %b_%R"
+msgstr "%b %-e_%R"
 
 #. Translators: This is the time format with day used
 #. in 24-hour mode.
@@ -228,31 +223,27 @@ msgstr "%R:%S"
 msgid "%R"
 msgstr "%R"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #. Translators: This is a time format with full date
 #. plus day used for AM/PM. Please keep the under-
 #. score to separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:384
 msgid "%a %b %-e_%l:%M:%S %p"
-msgstr "%a %-e. %b_%l:%M:%S %p"
+msgstr "%a %b %-e_%l:%M:%S %p"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #: libgnome-desktop/gnome-wall-clock.c:385
 msgid "%a %b %-e_%l:%M %p"
-msgstr "%a %-e. %b_%l:%M%p"
+msgstr "%a %b %-e_%l:%M %p"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #. Translators: This is a time format with full date
 #. used for AM/PM. Please keep the underscore to
 #. separate the date from the time.
 #: libgnome-desktop/gnome-wall-clock.c:390
 msgid "%b %-e_%l:%M:%S %p"
-msgstr "%-e. %b_%l:%M:%S %p"
+msgstr "%b %-e_%l:%M:%S %p"
 
-# Eventuelle advarsler her kommer av at oversettelsesappen misforstår syntaksen.
 #: libgnome-desktop/gnome-wall-clock.c:391
 msgid "%b %-e_%l:%M %p"
-msgstr "%-e. %b_%l:%M %p"
+msgstr "%b %-e_%l:%M %p"
 
 #. Translators: This is a time format with day used
 #. for AM/PM.
