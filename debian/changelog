@@ -1,8 +1,14 @@
-gnome-desktop (44.1-1) UNRELEASED; urgency=medium
+gnome-desktop (44.1-1) unstable; urgency=medium
 
   * New upstream release
+    - Fix compatibility with muslc (!158)
+    - Fix GNOME_DESKTOP_IS_THUMBNAIL_FACTORY (!160)
+    - Update default Indic input methods (!163)
+    - Use ibus-chewing as the default input source for zh_TW (!164)
+  * Refresh patches
+  * Bump Standards Version to 4.7.0
 
- -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 15:38:44 -0400
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 15:41:42 -0400
 
 gnome-desktop (44.0-5) unstable; urgency=medium
 
