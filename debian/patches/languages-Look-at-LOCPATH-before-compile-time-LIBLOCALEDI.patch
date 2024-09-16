@@ -11,10 +11,10 @@ Signed-off-by: Simon McVittie <smcv@debian.org>
  1 file changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
-index adfc4ee..2d25817 100644
+index 8a0485c..3fa1b84 100644
 --- a/libgnome-desktop/gnome-languages.c
 +++ b/libgnome-desktop/gnome-languages.c
-@@ -434,8 +434,15 @@ add_locale (const char *language_name,
+@@ -441,8 +441,15 @@ add_locale (const char *language_name,
  static int
  select_dirs (const struct dirent *dirent)
  {
@@ -30,7 +30,7 @@ index adfc4ee..2d25817 100644
          if (strcmp (dirent->d_name, ".") != 0 && strcmp (dirent->d_name, "..") != 0) {
                  mode_t mode = 0;
  
-@@ -448,7 +455,7 @@ select_dirs (const struct dirent *dirent)
+@@ -455,7 +462,7 @@ select_dirs (const struct dirent *dirent)
                                  struct stat st;
                                  g_autofree char *path = NULL;
  
@@ -39,7 +39,7 @@ index adfc4ee..2d25817 100644
                                  if (g_stat (path, &st) == 0) {
                                          mode = st.st_mode;
                                  }
-@@ -467,8 +474,15 @@ collect_locales_from_directory (void)
+@@ -474,8 +481,15 @@ collect_locales_from_directory (void)
          struct dirent **dirents;
          int             ndirents;
          int             cnt;

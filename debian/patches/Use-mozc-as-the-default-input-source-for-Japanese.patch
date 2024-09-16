@@ -20,15 +20,15 @@ Origin: vendor, Debian
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/libgnome-desktop/default-input-sources.h b/libgnome-desktop/default-input-sources.h
-index 04ba10b..beaa80d 100644
+index 83f6a71..00f6e62 100644
 --- a/libgnome-desktop/default-input-sources.h
 +++ b/libgnome-desktop/default-input-sources.h
 @@ -36,7 +36,7 @@ static DefaultInputSource default_input_sources[] =
-   { "hi_IN",    "ibus",         "m17n:hi:inscript" },
+   { "hi_IN",    "ibus",         "m17n:hi:inscript2" },
    { "id_ID",    "xkb",          "us" },
    { "it_IT",    "xkb",          "it" },
 -  { "ja_JP",    "ibus",         "anthy" },
 +  { "ja_JP",    "ibus",         "mozc-jp" },
-   { "kn_IN",    "ibus",         "m17n:kn:kgp" },
+   { "kn_IN",    "ibus",         "m17n:kn:inscript2" },
    { "ko_KR",    "ibus",         "hangul" },
-   { "mai_IN",   "ibus",         "m17n:mai:inscript" },
+   { "mai_IN",   "ibus",         "m17n:mai:inscript2" },
