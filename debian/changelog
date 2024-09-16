@@ -1,3 +1,9 @@
+gnome-desktop (44.1-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Mon, 16 Sep 2024 15:38:44 -0400
+
 gnome-desktop (44.0-5) unstable; urgency=medium
 
   * Build-depend on dpkg-dev (>= 1.22.5) (Closes: #1065288)
