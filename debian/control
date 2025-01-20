@@ -98,8 +98,10 @@ Depends: gir1.2-gnomedesktop-3.0 (= ${binary:Version}),
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          libxkbregistry-dev,
+         ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
+Provides: ${gir:Provides}
 Description: Utility library for the GNOME desktop - development files (GTK 3)
  This package provides the include files and static library for the GNOME
  desktop library functions.
@@ -180,8 +182,10 @@ Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          libgnome-bg-4-2t64 (= ${binary:Version}),
          libgnome-desktop-4-dev (= ${binary:Version}),
          libgtk-4-dev (>= 4.4.0),
+         ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
+Provides: ${gir:Provides}
 Description: Background image library for GNOME - development files (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -204,8 +208,10 @@ Depends: gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          libxkbregistry-dev,
+         ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
+Provides: ${gir:Provides}
 Description: Utility library for the GNOME desktop - development files (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -224,8 +230,10 @@ Depends: gir1.2-gnomerr-4.0 (= ${binary:Version}),
          libgnome-desktop-4-dev (= ${binary:Version}),
          libgnome-rr-4-2t64 (= ${binary:Version}),
          libgtk-4-dev (>= 4.4.0),
+         ${gir:Depends},
          ${misc:Depends},
          ${shlibs:Depends}
+Provides: ${gir:Provides}
 Description: Display information library for GNOME - development files (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
