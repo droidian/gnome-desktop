@@ -82,9 +82,9 @@ Description: Utility library for the GNOME desktop - GTK 3 version
  components of the GNOME desktop, but do not have a sufficiently stable API
  to be included in core libraries such as GLib and GTK.
  .
- This package provides a legacy GTK-3-based library with functionality similar
- to a combination of libgnome-bg-4-2t64, libgnome-desktop-4-2t64 and libgnome-rr-4-2t64,
- for compatibility with older GNOME components.
+ This package provides a legacy GTK-3-based library with functionality
+ similar to a combination of libgnome-bg-4-2t64, libgnome-desktop-4-2t64
+ and libgnome-rr-4-2t64, for compatibility with older GNOME components.
 
 Package: libgnome-desktop-3-dev
 Section: libdevel
