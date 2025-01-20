@@ -27,6 +27,7 @@ Build-Depends: debhelper-compat (= 13),
                libxkbregistry-dev,
                locales <!nocheck> | locales-all <!nocheck>,
                meson,
+               pkgconf,
                xauth <!nocheck>,
                xkb-data,
                xvfb <!nocheck>
