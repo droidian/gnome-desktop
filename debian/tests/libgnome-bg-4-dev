@@ -6,6 +6,12 @@
 
 set -eux
 
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+
 mode=dynamic
 
 getopt_temp="$(getopt -o '' --long 'static' -n debian/tests/build -- "$@")"
@@ -54,7 +60,8 @@ case "$mode" in
         ;;
 esac
 
-gcc $cflags -o "$mode" gnome-bg.c `pkgconf $pcflags --cflags --libs gnome-bg-4 gobject-2.0`
+# shellcheck disable=SC2046
+"${CROSS_COMPILE}gcc" $cflags -o "$mode" gnome-bg.c $("${CROSS_COMPILE}pkgconf" $pcflags --cflags --libs gnome-bg-4 gobject-2.0)
 echo "build ($mode): OK"
 [ -x "$mode" ]
 "./$mode"
