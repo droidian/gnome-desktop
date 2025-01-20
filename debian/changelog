@@ -1,3 +1,28 @@
+gnome-desktop (44.1-2) unstable; urgency=medium
+
+  * Team upload
+  * d/p/gnome-bg-only-parse-XML-files-as-slideshows.patch:
+    Add patch from upstream to improve performance of
+    gnome-control-center's Background panel, by not attempting to parse
+    binary image files as XML
+  * d/upstream/metadata: Add Archive and Security-Contact
+  * d/control: Add ${gir:Depends}, ${gir:Provides} to all -dev packages
+  * d/control: Explicitly build-depend on pkgconf
+  * d/control: Wrap a long line
+  * d/control: Use dpkg build API v1
+  * d/control: Remove transitional libgnome-desktop-3-dev-bin package.
+    This was already an empty transitional package in Debian 12.
+  * d/control: Remove Gunnar Hjalmarsson from Uploaders, with thanks for
+    previous work on this package (Closes: #1069560)
+  * d/tests: Use pkgconf in preference to pkg-config
+  * d/tests: Rely on $AUTOPKGTEST_TMP
+  * d/tests: Use a cross gcc and pkgconf if appropriate
+  * Remove unused lintian overrides left over from the t64 transition.
+    lintian now recognises t64 as a valid suffix to be applied to
+    systematically-named shared library packages.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 20 Jan 2025 11:47:32 +0000
+
 gnome-desktop (44.1-1) unstable; urgency=medium
 
   * New upstream release
