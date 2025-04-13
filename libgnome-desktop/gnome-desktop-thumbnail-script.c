@@ -629,7 +629,6 @@ add_bwrap (GPtrArray   *array,
   add_args (array, "--ro-bind-try", "/etc/alternatives", "/etc/alternatives", NULL);
 
   add_args (array,
-	    "--proc", "/proc",
 	    "--dev", "/dev",
 	    "--chdir", "/",
 	    "--setenv", "GIO_USE_VFS", "local",
