@@ -1,4 +1,3 @@
-gnome-bg-only-parse-XML-files-as-slideshows.patch
 languages-Look-at-LOCPATH-before-compile-time-LIBLOCALEDI.patch
 Use-mozc-as-the-default-input-source-for-Japanese.patch
 Fall-back-to-ibus-anthy-if-ibus-mozc-jp-is-unavailable.patch
