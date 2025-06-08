@@ -40,7 +40,6 @@ Files:
  tests/bg-slide-show.c
  tests/languages.c
  tests/wall-clock.c
- tests/wallclock-reftest.c
 Copyright:
  2007 William Jon McCann
  2008-2014 Red Hat, Inc.
