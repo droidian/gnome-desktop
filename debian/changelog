@@ -1,6 +1,18 @@
 gnome-desktop (44.3-1) UNRELEASED; urgency=medium
 
   * New upstream release
+    - zh_HK, Chinese (Hong Kong) now defaults to ibus-cangjie instead of
+      ibus-table-cangjie5, reverting a change made before bookworm
+      (see #1107525)
+    - format times with U+003A COLON instead of U+2236 RATIO, avoiding display
+      issues in right-to-left languages and in fonts that don't contain U+2236
+    - only build GObject-Introspection data if requested
+      (unnecessary but harmless in Debian)
+    - make build system compatible with being used from a subproject
+      (unnecessary but harmless in Debian)
+    - silence a false-positive compiler warning with -Wmaybe-uninitialized
+    - translation updates
+    - CI/release-management changes (not relevant to Debian)
 
  -- Simon McVittie <smcv@debian.org>  Sun, 08 Jun 2025 16:16:58 +0100
 
