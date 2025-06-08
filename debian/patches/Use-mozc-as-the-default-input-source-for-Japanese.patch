@@ -20,7 +20,7 @@ Origin: vendor, Debian
  1 file changed, 1 insertion(+), 1 deletion(-)
 
 diff --git a/libgnome-desktop/default-input-sources.h b/libgnome-desktop/default-input-sources.h
-index 83f6a71..00f6e62 100644
+index 22b5224..ef7655c 100644
 --- a/libgnome-desktop/default-input-sources.h
 +++ b/libgnome-desktop/default-input-sources.h
 @@ -36,7 +36,7 @@ static DefaultInputSource default_input_sources[] =

@@ -11,7 +11,7 @@ Signed-off-by: Simon McVittie <smcv@debian.org>
  1 file changed, 16 insertions(+), 2 deletions(-)
 
 diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
-index 8a0485c..3fa1b84 100644
+index 47456a0..1e91dcb 100644
 --- a/libgnome-desktop/gnome-languages.c
 +++ b/libgnome-desktop/gnome-languages.c
 @@ -441,8 +441,15 @@ add_locale (const char *language_name,
