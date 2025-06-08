@@ -1,5 +1,6 @@
-gnome-desktop (44.3-1) UNRELEASED; urgency=medium
+gnome-desktop (44.3-1) experimental; urgency=medium
 
+  * Team upload
   * New upstream release
     - zh_HK, Chinese (Hong Kong) now defaults to ibus-cangjie instead of
       ibus-table-cangjie5, reverting a change made before bookworm
@@ -16,8 +17,9 @@ gnome-desktop (44.3-1) UNRELEASED; urgency=medium
   * d/p/gnome-bg-only-parse-XML-files-as-slideshows.patch:
     Drop patch, included in the new upstream release
   * d/patches: Refresh remaining patches (no functional changes)
+  * d/copyright: Remove details of tests/wallclock-reftest, no longer included
 
- -- Simon McVittie <smcv@debian.org>  Sun, 08 Jun 2025 17:08:07 +0100
+ -- Simon McVittie <smcv@debian.org>  Sun, 08 Jun 2025 18:02:58 +0100
 
 gnome-desktop (44.1-2) unstable; urgency=medium
 
