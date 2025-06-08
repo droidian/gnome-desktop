@@ -13,8 +13,11 @@ gnome-desktop (44.3-1) UNRELEASED; urgency=medium
     - silence a false-positive compiler warning with -Wmaybe-uninitialized
     - translation updates
     - CI/release-management changes (not relevant to Debian)
+  * d/p/gnome-bg-only-parse-XML-files-as-slideshows.patch:
+    Drop patch, included in the new upstream release
+  * d/patches: Refresh remaining patches (no functional changes)
 
- -- Simon McVittie <smcv@debian.org>  Sun, 08 Jun 2025 16:16:58 +0100
+ -- Simon McVittie <smcv@debian.org>  Sun, 08 Jun 2025 17:08:07 +0100
 
 gnome-desktop (44.1-2) unstable; urgency=medium
 
