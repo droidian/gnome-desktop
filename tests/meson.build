@@ -19,7 +19,6 @@ if get_option('legacy_library')
   test_programs += [
     'bg-slide-show',
     'wall-clock',
-    'wallclock-reftest',
     'languages'
   ]
 
@@ -27,7 +26,7 @@ if get_option('legacy_library')
 endif
 
 foreach program: test_programs
-  exe = executable(program, program + '.c',
+  executable(program, program + '.c',
     dependencies: libgnome_desktop_dep,
     c_args: test_args,
     install_dir: test_execdir,
@@ -52,15 +51,7 @@ endforeach
 
 if get_option('installed_tests')
   test_data = files(
-    'C.ref.ui',
-    'C.ui',
-    'en_US.utf-8.ref.ui',
-    'en_US.utf-8.ui',
-    'he_IL.utf8.ref.ui',
-    'he_IL.utf8.ui',
-    'ja_JP.utf8.ref.ui',
-    'ja_JP.utf8.ui',
-    'starttime.xml'
+    'starttime.xml',
   )
   install_data(test_data, install_dir: test_execdir)
   install_data(test_metas, install_dir: test_metadir)
