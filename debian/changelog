@@ -1,3 +1,17 @@
+gnome-desktop (44.3-2) experimental; urgency=medium
+
+  * Team upload
+  * d/p/debian/Revert-default-IM-for-zh_HK-to-ibus-table-cangjie5.patch:
+    Revert default IM for zh_HK to ibus-table-cangjie5 for now.
+    I've asked on #1107525 whether we should follow upstream by moving to
+    the ibus-cangjie package as the default input method for
+    Chinese (Hong Kong), or keep Debian 12 behaviour by using the
+    ibus-table-cangjie5 package. Until we have a recommendation from
+    Chinese speakers, it seems like the conservative option is to keep
+    the Debian 12 behaviour.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 09 Jun 2025 18:53:43 +0100
+
 gnome-desktop (44.3-1) experimental; urgency=medium
 
   * Team upload
