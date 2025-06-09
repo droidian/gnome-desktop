@@ -1,3 +1,4 @@
 languages-Look-at-LOCPATH-before-compile-time-LIBLOCALEDI.patch
 Use-mozc-as-the-default-input-source-for-Japanese.patch
 Fall-back-to-ibus-anthy-if-ibus-mozc-jp-is-unavailable.patch
+debian/Revert-default-IM-for-zh_HK-to-ibus-table-cangjie5.patch
