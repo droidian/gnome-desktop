@@ -1,3 +1,10 @@
+gnome-desktop (44.3-3) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 12 Jun 2025 21:10:40 +0100
+
 gnome-desktop (44.3-2) experimental; urgency=medium
 
   * Team upload
