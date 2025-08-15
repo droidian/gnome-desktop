@@ -1,3 +1,17 @@
+gnome-desktop (44.3-4) unstable; urgency=medium
+
+  * Team upload
+  * Build-depend on gir1.2-*-dev and gobject-introspection.
+    libgirepository1.0-dev is not Multi-Arch-friendly and should be
+    phased out.
+  * Explicitly Build-Depend on required gir1.2-*-dev packages.
+    In practice these are provided by the lib*-dev build-dependencies,
+    but listing them explicitly is an enabler for being able to implement
+    the <!nogir> build-profile in those packages.
+  * Standards-Version: 4.7.2 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 15 Aug 2025 10:56:28 +0100
+
 gnome-desktop (44.3-3) unstable; urgency=medium
 
   * Team upload
