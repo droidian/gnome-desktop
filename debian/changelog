@@ -1,3 +1,9 @@
+gnome-desktop (44.4-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 04 Sep 2025 14:14:43 -0400
+
 gnome-desktop (44.3-4) unstable; urgency=medium
 
   * Team upload
