@@ -206,25 +206,24 @@ thumbnailer_unref (Thumbnailer *thumb)
 static Thumbnailer *
 thumbnailer_load (Thumbnailer *thumb)
 {
-  GKeyFile *key_file;
-  GError *error = NULL;
+  g_autoptr (GError) error = NULL;
+  g_autoptr (GKeyFile) key_file = NULL;
+  g_autofree char *try_exec = NULL;
+  g_autofree char *exec_path = NULL;
 
   key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (key_file, thumb->path, 0, &error))
     {
-      g_warning ("Failed to load thumbnailer from \"%s\": %s\n", thumb->path, error->message);
-      g_error_free (error);
+      g_warning ("Failed to load thumbnailer from \"%s\": %s", thumb->path, error->message);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
 
   if (!g_key_file_has_group (key_file, THUMBNAILER_ENTRY_GROUP))
     {
-      g_warning ("Invalid thumbnailer: missing group \"%s\"\n", THUMBNAILER_ENTRY_GROUP);
+      g_warning ("Invalid thumbnailer: missing group \"%s\" in \"%s\"", THUMBNAILER_ENTRY_GROUP, thumb->path);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
@@ -232,9 +231,8 @@ thumbnailer_load (Thumbnailer *thumb)
   thumb->command = g_key_file_get_string (key_file, THUMBNAILER_ENTRY_GROUP, "Exec", NULL);
   if (!thumb->command)
     {
-      g_warning ("Invalid thumbnailer: missing Exec key\n");
+      g_warning ("Invalid thumbnailer: missing Exec key in \"%s\"", thumb->path);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
@@ -242,14 +240,24 @@ thumbnailer_load (Thumbnailer *thumb)
   thumb->mime_types = g_key_file_get_string_list (key_file, THUMBNAILER_ENTRY_GROUP, "MimeType", NULL, NULL);
   if (!thumb->mime_types)
     {
-      g_warning ("Invalid thumbnailer: missing MimeType key\n");
+      g_warning ("Invalid thumbnailer: missing MimeType key in \"%s\"", thumb->path);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
 
-  g_key_file_free (key_file);
+  try_exec = g_key_file_get_string (key_file, THUMBNAILER_ENTRY_GROUP, "TryExec", NULL);
+  if (try_exec)
+    {
+      exec_path = g_find_program_in_path (try_exec);
+      if (!exec_path)
+        {
+          g_info ("Skipping thumbnailer: Program not found in PATH for TryExec=%s in \"%s\"", try_exec, thumb->path);
+          thumbnailer_unref (thumb);
+
+          return NULL;
+        }
+    }
 
   return thumb;
 }
