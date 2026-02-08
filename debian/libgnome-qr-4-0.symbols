@@ -1,0 +1,6 @@
+libgnome-qr-4.so.0 libgnome-qr-4-0 #MINVER#
+ gnome_qr_ecc_level_get_type@Base 44.5-1ubuntu1
+ gnome_qr_generate_qr_code_async@Base 44.5-1ubuntu1
+ gnome_qr_generate_qr_code_finish@Base 44.5-1ubuntu1
+ gnome_qr_generate_qr_code_sync@Base 44.5-1ubuntu1
+ gnome_qr_pixel_format_get_type@Base 44.5-1ubuntu1

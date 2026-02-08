@@ -1,0 +1,4 @@
+usr/include/gnome-desktop-${env:GD_API_VERSION}.*/gnome-qr
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-qr-${env:GD_QR_API_VERSION}.so
+usr/lib/${DEB_HOST_MULTIARCH}/pkgconfig/gnome-qr-${env:GD_QR_API_VERSION}.pc
+usr/share/gir-1.0/GnomeQR-4.0.gir
