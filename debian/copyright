@@ -47,6 +47,12 @@ Copyright:
  2017-2018 Collabora Ltd.
  2016-2020 Simon McVittie
 
+Files:
+ subprojects/qrcodegen/c/*
+License: Expat
+Copyright:
+ Project Nayuki
+
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
  it under the terms of the GNU General Public License as published by
