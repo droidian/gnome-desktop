@@ -51,7 +51,6 @@ libgnome-desktop-3.so.20 libgnome-desktop-3-20t64 #MINVER#
  gnome_desktop_thumbnail_factory_save_thumbnail_finish@Base 42~beta
  gnome_desktop_thumbnail_is_valid@Base 3.17.92
  gnome_desktop_thumbnail_path_for_uri@Base 3.17.92
- gnome_desktop_thumbnail_script_exec@Base 3.25.90
  gnome_get_all_locales@Base 3.17.92
  gnome_get_country_from_code@Base 3.17.92
  gnome_get_country_from_locale@Base 3.17.92
