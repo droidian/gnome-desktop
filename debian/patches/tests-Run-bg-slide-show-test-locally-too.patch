@@ -1,0 +1,25 @@
+From: =?utf-8?b?Ik1hcmNvIFRyZXZpc2FuIChUcmV2acOxbyki?= <mail@3v1n0.net>
+Date: Wed, 4 Feb 2026 20:10:20 +0100
+Subject: tests: Run bg-slide-show test locally too
+
+It was not working in CI due to the leak we fixed in previous commit, so
+we can enable it for every case now
+
+Origin: https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/eb529d3
+---
+ tests/meson.build | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/tests/meson.build b/tests/meson.build
+index 2bfab1d..af7a8cb 100644
+--- a/tests/meson.build
++++ b/tests/meson.build
+@@ -17,7 +17,7 @@ test_metas = []
+ # XXX: The current batch of tests relies on the legacy library
+ if get_option('legacy_library')
+   test_programs += {
+-    'bg-slide-show': {'local-test': false},
++    'bg-slide-show': {},
+     'wall-clock': {},
+     'languages': {},
+   }

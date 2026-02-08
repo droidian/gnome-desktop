@@ -1,0 +1,46 @@
+From: =?utf-8?b?Ik1hcmNvIFRyZXZpc2FuIChUcmV2acOxbyki?= <mail@3v1n0.net>
+Date: Wed, 4 Feb 2026 21:25:54 +0100
+Subject: gnome-desktop-thumbnail-script: Improve the error handling on
+ g_mkdtemp
+
+Use the errno to provide more information
+
+Origin: https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/443372e
+---
+ libgnome-desktop/gnome-desktop-thumbnail-script.c | 14 ++++++++++----
+ 1 file changed, 10 insertions(+), 4 deletions(-)
+
+diff --git a/libgnome-desktop/gnome-desktop-thumbnail-script.c b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+index 80dada8..068e913 100644
+--- a/libgnome-desktop/gnome-desktop-thumbnail-script.c
++++ b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+@@ -979,9 +979,12 @@ script_exec_new (const char  *uri,
+       exec->outdir = g_mkdtemp (tmpl);
+       if (!exec->outdir)
+         {
++          int errsv = errno;
++
+           g_clear_pointer (&tmpl, g_free);
+-          g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+-                               "Could not create temporary sandbox directory");
++          g_set_error (error, G_IO_ERROR, g_io_error_from_errno (errsv),
++                       "Could not create temporary sandbox directory: %s",
++                       g_strerror (errsv));
+           goto bail;
+         }
+       exec->outfile = g_build_filename (exec->outdir, "gnome-desktop-thumbnailer.png", NULL);
+@@ -1031,9 +1034,12 @@ script_exec_new (const char  *uri,
+       exec->outdir = g_mkdtemp (tmpl);
+       if (!exec->outdir)
+         {
++          int errsv = errno;
++
+           g_clear_pointer (&tmpl, g_free);
+-          g_set_error_literal (error, G_IO_ERROR, G_IO_ERROR_FAILED,
+-                               "Could not create temporary sandbox directory");
++          g_set_error (error, G_IO_ERROR, g_io_error_from_errno (errsv),
++                       "Could not create temporary sandbox directory: %s",
++                       g_strerror (errsv));
+           goto bail;
+         }
+ 

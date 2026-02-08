@@ -1,0 +1,28 @@
+From: =?utf-8?b?Ik1hcmNvIFRyZXZpc2FuIChUcmV2acOxbyki?= <mail@3v1n0.net>
+Date: Fri, 5 Dec 2025 03:06:51 +0100
+Subject: tests/languages: Plug leaks for pleasing CI
+
+Part-of: <https://gitlab.gnome.org/GNOME/gnome-desktop/-/merge_requests/188>
+
+Origin: https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/ada9f5f913de65f675de6a91f0524415062bf945
+---
+ tests/languages.c | 6 +++---
+ 1 file changed, 3 insertions(+), 3 deletions(-)
+
+diff --git a/tests/languages.c b/tests/languages.c
+index 34c1cc0..42271bd 100644
+--- a/tests/languages.c
++++ b/tests/languages.c
+@@ -29,9 +29,9 @@
+ static void
+ test_using_null_locale (void)
+ {
+-	const char *translated_territory;
+-	const char *translated_language;
+-	const char *translated_modifier;
++	g_autofree char *translated_territory = NULL;
++	g_autofree char *translated_language = NULL;
++	g_autofree char *translated_modifier = NULL;
+ 
+ 	translated_territory = gnome_get_country_from_code("US", NULL);
+ 	g_assert (translated_territory != NULL);

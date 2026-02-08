@@ -1,0 +1,24 @@
+From: =?utf-8?b?Ik1hcmNvIFRyZXZpc2FuIChUcmV2acOxbyki?= <mail@3v1n0.net>
+Date: Fri, 5 Dec 2025 03:15:48 +0100
+Subject: gnome-languages: Do not leak the directory entries
+
+Part-of: <https://gitlab.gnome.org/GNOME/gnome-desktop/-/merge_requests/188>
+
+Origin: https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/07d2075d96555d8b5232114e1d990d28e98f9c6d
+---
+ libgnome-desktop/gnome-languages.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
+index d4d861f..e92a1fe 100644
+--- a/libgnome-desktop/gnome-languages.c
++++ b/libgnome-desktop/gnome-languages.c
+@@ -494,6 +494,8 @@ collect_locales_from_directory (void)
+         for (cnt = 0; cnt < ndirents; ++cnt) {
+                 if (add_locale (dirents[cnt]->d_name, TRUE))
+                         found_locales = TRUE;
++
++                free (dirents[cnt]);
+         }
+ 
+         if (ndirents > 0) {

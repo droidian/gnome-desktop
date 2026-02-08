@@ -1,0 +1,22 @@
+From: =?utf-8?b?Ik1hcmNvIFRyZXZpc2FuIChUcmV2acOxbyki?= <mail@3v1n0.net>
+Date: Wed, 4 Feb 2026 21:02:54 +0100
+Subject: gnome-bg-crossfade: Chain-up the parent class finalizer
+
+Origin: https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/60f3c0f
+---
+ libgnome-desktop/gnome-bg-crossfade.c | 2 ++
+ 1 file changed, 2 insertions(+)
+
+diff --git a/libgnome-desktop/gnome-bg-crossfade.c b/libgnome-desktop/gnome-bg-crossfade.c
+index 34aa60c..6c4532d 100644
+--- a/libgnome-desktop/gnome-bg-crossfade.c
++++ b/libgnome-desktop/gnome-bg-crossfade.c
+@@ -134,6 +134,8 @@ gnome_bg_crossfade_finalize (GObject *object)
+ 		g_object_unref (fade->priv->end_surface);
+ 		fade->priv->end_surface = NULL;
+ 	}
++
++	G_OBJECT_CLASS (gnome_bg_crossfade_parent_class)->finalize (object);
+ }
+ 
+ static void
