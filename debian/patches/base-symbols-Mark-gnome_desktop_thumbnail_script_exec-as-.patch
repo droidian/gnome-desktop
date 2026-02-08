@@ -1,0 +1,24 @@
+From: =?utf-8?b?Ik1hcmNvIFRyZXZpc2FuIChUcmV2acOxbyki?= <mail@3v1n0.net>
+Date: Thu, 4 Dec 2025 03:34:18 +0100
+Subject: base-symbols: Mark gnome_desktop_thumbnail_script_exec as local
+
+This never meant to be a public symbol but it ended being exported
+
+So we're good in breaking the ABI now
+
+Origin: https://gitlab.gnome.org/GNOME/gnome-desktop/-/commit/428a044
+---
+ libgnome-desktop/base-symbol.map | 1 +
+ 1 file changed, 1 insertion(+)
+
+diff --git a/libgnome-desktop/base-symbol.map b/libgnome-desktop/base-symbol.map
+index 671c156..9a0a60d 100644
+--- a/libgnome-desktop/base-symbol.map
++++ b/libgnome-desktop/base-symbol.map
+@@ -2,5 +2,6 @@
+ global:
+   gnome_*;
+ local:
++  gnome_desktop_thumbnail_script_exec;
+   *;
+ };

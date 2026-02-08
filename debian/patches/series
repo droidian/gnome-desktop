@@ -13,3 +13,6 @@ tests-Run-the-bg-slide-show-test-with-libgnome-bg-too.patch
 gnome-desktop-thumbnail-script-Free-template-on-error.patch
 gnome-desktop-thumbnail-script-Improve-the-error-handling.patch
 thumbnail-support-m-expansion.patch
+build-Set-the-base-symbol-map-file-as-link-dependency.patch
+base-symbols-Mark-gnome_desktop_thumbnail_script_exec-as-.patch
+build-Use-the-symbol-file-for-legacy-library-too.patch
