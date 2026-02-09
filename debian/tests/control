@@ -10,6 +10,10 @@ Tests: libgnome-desktop-4-dev
 Depends: build-essential, libgnome-desktop-4-dev, pkgconf
 Restrictions: allow-stderr superficial
 
+Tests: libgnome-qr-4-dev
+Depends: build-essential, libgnome-qr-4-dev, pkgconf
+Restrictions: allow-stderr superficial
+
 Tests: installed-tests
 Depends: dbus (>= 1.8), gnome-desktop-testing, gnome-desktop-3-tests, locales | locales-all, xauth, xvfb
 Restrictions: allow-stderr superficial
