@@ -1,3 +1,9 @@
+gnome-desktop (44.5-1) UNRELEASED; urgency=medium
+
+  * New upstream release
+
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Mon, 09 Feb 2026 02:05:03 +0100
+
 gnome-desktop (44.4-2) unstable; urgency=medium
 
   * d/p: Add upstream patches including memory and tests fixes
