@@ -11,29 +11,41 @@ test_env = [
   'G_ENABLE_DIAGNOSTIC=0'
 ]
 
-test_programs = []
+test_programs = {}
+test_programs_legacy = {}
 test_metas = []
 
-# XXX: The current batch of tests relies on the legacy library
-if get_option('legacy_library')
-  test_programs += [
-    'bg-slide-show',
-    'wall-clock',
-    'languages'
-  ]
-
-  test_metas += []
+if get_option('build_gtk4')
+  test_programs += {
+    'bg-slide-show': {'dependencies': [libgnome_bg_dep]},
+  }
 endif
 
-foreach program: test_programs
-  executable(program, program + '.c',
-    dependencies: libgnome_desktop_dep,
+# XXX: Some tests relies on the legacy library
+if get_option('legacy_library')
+  test_programs_legacy += {
+    'bg-slide-show-legacy': {'sources': ['bg-slide-show.c']},
+    'wall-clock': {},
+    'languages': {},
+  }
+endif
+
+foreach program, options: test_programs_legacy + test_programs
+  is_legacy = program in test_programs_legacy
+  sources = options.get('sources', [program + '.c'])
+  installed = get_option('installed_tests') and options.get('installed', true)
+  test_exe = executable(program, sources,
+    dependencies: options.get('dependencies', []) + (is_legacy ? libgnome_desktop_dep : []),
     c_args: test_args,
     install_dir: test_execdir,
-    install: get_option('installed_tests')
+    install: installed
   )
 
-  if get_option('installed_tests')
+  if options.get('local-test', true)
+    test(program, test_exe, env: test_env)
+  endif
+
+  if installed
     meta_data = configuration_data()
     meta_data.set('TEST_EXEC', join_paths(test_execdir, program))
 

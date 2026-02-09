@@ -15,15 +15,15 @@ include:
 - component: gitlab.gnome.org/GNOME/citemplates/gnomeos-basic-ci@master
   inputs:
     job-stage: "test"
-    # We don't have any meson tests defined atm
-    run-tests: "no"
+    meson-options: "-Dgtk_doc=true"
+- component: "gitlab.gnome.org/GNOME/citemplates/basic-deploy-docs@master"
 
 build_stable:
   image: fedora:latest
   needs: []
   variables:
     _BUILDDIR: "_builddir"
-    LAST_ABI_BREAK: 0da1fcac914ad4c67f016bda7864c4b153cbfbaa
+    LAST_ABI_BREAK: 25c1a5b13a4353ef77b748e6eb2973507103e9a9
     DEPENDENCIES: gtk3-devel gtk4-devel gsettings-desktop-schemas-devel gettext
                   gtk-doc libxkbcommon-devel xkeyboard-config-devel itstool
                   gobject-introspection-devel systemd-devel iso-codes-devel
