@@ -1,0 +1,81 @@
+#!/bin/sh
+# (C) 2026 Canonical Ltd.
+# Authors: Marco Trevisan
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+set -eux
+
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+
+mode=dynamic
+
+getopt_temp="$(getopt -o '' --long 'static' -n debian/tests/build -- "$@")"
+eval set -- "$getopt_temp"
+
+while true; do
+    case "$1" in
+        (--static)
+            mode=static
+            shift
+            continue
+            ;;
+
+        (--)
+            shift
+            break
+            ;;
+
+        (*)
+            echo "getopt: Internal error" >&2
+            exit 2
+    esac
+done
+
+cd "$AUTOPKGTEST_TMP"
+cat <<EOF > gnome-qr-gtk.c
+#include <gnome-qr-gtk/gnome-qr-widget.h>
+
+int main(void)
+{
+    g_autoptr(GtkWidget) qr = NULL;
+
+    gtk_init ();
+    qr = gnome_qr_widget_new ("https://debian.org/");
+    g_assert_nonnull (qr);
+    g_object_ref_sink (qr);
+
+    g_assert_cmpstr (gnome_qr_widget_get_text (GNOME_QR_WIDGET (qr)), ==, "https://debian.org/");
+
+    gnome_qr_widget_set_ecc_level (GNOME_QR_WIDGET (qr), GNOME_QR_ECC_LEVEL_LOW);
+    g_assert_cmpuint (gnome_qr_widget_get_ecc_level (GNOME_QR_WIDGET (qr)), ==, GNOME_QR_ECC_LEVEL_LOW);
+
+    gnome_qr_widget_set_alternative_text (GNOME_QR_WIDGET (qr), "Visit debian.org!");
+    g_assert_cmpstr (gnome_qr_widget_get_alternative_text (GNOME_QR_WIDGET (qr)), ==, "Visit debian.org!");
+
+    gnome_qr_widget_set_size (GNOME_QR_WIDGET (qr), 100);
+    g_assert_cmpuint (gnome_qr_widget_get_size (GNOME_QR_WIDGET (qr)), ==, 100);
+
+    return 0;
+}
+EOF
+
+cflags=
+pcflags=
+
+case "$mode" in
+    (static)
+        cflags=-static
+        pcflags=--static
+        ;;
+esac
+
+# shellcheck disable=SC2046
+"${CROSS_COMPILE}gcc" $cflags -o "$mode" gnome-qr-gtk.c $("${CROSS_COMPILE}pkgconf" $pcflags --cflags --libs gnome-qr-gtk-4)
+echo "build ($mode): OK"
+[ -x "$mode" ]
+env GTK_A11Y=none xvfb-run -a "./$mode"
+echo "run ($mode): OK"
