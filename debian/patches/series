@@ -2,17 +2,3 @@ languages-Look-at-LOCPATH-before-compile-time-LIBLOCALEDI.patch
 Use-mozc-as-the-default-input-source-for-Japanese.patch
 Fall-back-to-ibus-anthy-if-ibus-mozc-jp-is-unavailable.patch
 debian/Revert-default-IM-for-zh_HK-to-ibus-table-cangjie5.patch
-tests-languages-Plug-leaks-for-pleasing-CI.patch
-gnome-languages-Do-not-leak-the-directory-entries.patch
-build-ci-Enable-some-tests-again.patch
-build-Fix-no-introspection-build.patch
-gnome-bg-slide-show-Chain-up-the-finalize-method.patch
-gnome-bg-crossfade-Chain-up-the-parent-class-finalizer.patch
-tests-Run-bg-slide-show-test-locally-too.patch
-tests-Run-the-bg-slide-show-test-with-libgnome-bg-too.patch
-gnome-desktop-thumbnail-script-Free-template-on-error.patch
-gnome-desktop-thumbnail-script-Improve-the-error-handling.patch
-thumbnail-support-m-expansion.patch
-build-Set-the-base-symbol-map-file-as-link-dependency.patch
-base-symbols-Mark-gnome_desktop_thumbnail_script_exec-as-.patch
-build-Use-the-symbol-file-for-legacy-library-too.patch
