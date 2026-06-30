@@ -27,4 +27,5 @@ libgnome-bg-4.so.2 libgnome-bg-4-2t64 #MINVER#
  gnome_bg_slide_show_get_type@Base 3.17.92
  gnome_bg_slide_show_load@Base 3.17.92
  gnome_bg_slide_show_load_async@Base 3.17.92
+ gnome_bg_slide_show_load_finish@Base 51~alpha
  gnome_bg_slide_show_new@Base 3.17.92
