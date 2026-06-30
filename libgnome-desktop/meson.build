@@ -171,7 +171,10 @@ if get_option('build_gtk4')
   )
 
   subdir('gnome-bg')
-  subdir('gnome-rr')
+  if use_qr_feature
+    subdir('gnome-qr')
+    subdir('gnome-qr-gtk')
+  endif
 endif
 
 ### Legacy ###
@@ -182,9 +185,6 @@ if get_option('legacy_library')
     'gnome-bg.c',
     'gnome-bg-slide-show.c',
     'gnome-bg-crossfade.c',
-    'gnome-rr.c',
-    'gnome-rr-config.c',
-    'gnome-rr-output-info.c',
     'gnome-systemd.c',
     'gnome-pnp-ids.c',
     'gnome-wall-clock.c',
@@ -208,8 +208,6 @@ if get_option('legacy_library')
     'gnome-bg-crossfade.h',
     'gnome-bg-slide-show.h',
     'gnome-desktop-thumbnail.h',
-    'gnome-rr.h',
-    'gnome-rr-config.h',
     'gnome-systemd.h',
     'gnome-pnp-ids.h',
     'gnome-wall-clock.h',
@@ -278,6 +276,7 @@ if get_option('legacy_library')
       extra_args: ['-DGNOME_DESKTOP_USE_UNSTABLE_API', '--quiet', '--warn-all'],
       identifier_prefix: 'Gnome',
       symbol_prefix: 'gnome',
+      fatal_warnings: true,
       install: true
     )
   endif
@@ -294,7 +293,6 @@ if get_option('legacy_library')
 
   ### Tests
   test_programs = [
-    'gnome-rr-debug',
     'test-xkb-info',
     'test-pnp-ids',
     'test-wall-clock',

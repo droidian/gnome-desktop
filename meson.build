@@ -1,6 +1,6 @@
 project('gnome-desktop', 'c',
-  meson_version: '>= 0.56.2',
-  version: '44.5',
+  meson_version: '>= 1.1.0',
+  version: '51.alpha',
   license: ['GPL-2.0-or-later', 'LGPL-2.1-or-later'],
   default_options: [
     'c_std=gnu99',
@@ -26,13 +26,25 @@ project('gnome-desktop', 'c',
 libversion = '2.1.4'
 soversion = libversion.split('.')[0]
 
+# Compatibilty versions for libgnome-bg
+bg_libversion = '2.1.4'
+bg_soversion = bg_libversion.split('.')[0]
+
+# Compatibilty versions for libgnome-qr
+qr_libversion = '0.0.1'
+qr_soversion = qr_libversion.split('.')[0]
+
+# Compatibilty versions for libgnome-qr
+qr_gtk_libversion = '0.0.1'
+qr_gtk_soversion = qr_gtk_libversion.split('.')[0]
+
 # Compatibility versions for libgnome-desktop-3
-compat_libversion = '20.0.0'
+compat_libversion = '21.0.0'
 compat_soversion = compat_libversion.split('.')[0]
 
 gdk_pixbuf_req = '>= 2.36.5'
 gtk3_req = '>= 3.3.6'
-gtk4_req = '>= 4.4.0'
+gtk4_req = '>= 4.12.0'
 glib_req = '>= 2.53.0'
 xrandr_req = '>= 1.3'
 schemas_req = '>= 3.27.0'
@@ -84,16 +96,23 @@ iso_codes_prefix = iso_codes_dep.get_variable(pkgconfig: 'prefix')
 
 cc = meson.get_compiler('c')
 
-m_dep = cc.find_library('m', required: false)
+m_dep = cc.find_library('m', required: true)
 rt_dep = cc.find_library('rt', required: false)
 
 if not cc.has_function('clock_gettime', dependencies: rt_dep)
   rt_dep = dependency('', required: false)
 endif
 
+use_qr_feature = get_option('qr').disable_if(not gtk4_dep.found()).allowed()
+if use_qr_feature
+  qrcodegen = subproject('qrcodegen')
+  qrcodegen_dep = qrcodegen.get_variable('qrcodegen_dep')
+endif
+
 subdir('libgnome-desktop')
 subdir('po')
 subdir('tests')
+subdir('examples')
 
 if get_option('desktop_docs')
   subdir('desktop-docs/fdl')
@@ -119,6 +138,7 @@ summary({
     'Use systemd': get_option('systemd').enabled() or get_option('systemd').auto(),
     'Use udev': get_option('udev').enabled() or get_option('udev').auto(),
     'Build GTK4 libraries': get_option('build_gtk4'),
+    'Build QR code widget': use_qr_feature,
     'Build legacy libgnome-desktop': get_option('legacy_library'),
     'Desktop documentation': get_option('desktop_docs'),
     'API documentation': get_option('gtk_doc'),
