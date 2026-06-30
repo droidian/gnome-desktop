@@ -159,27 +159,6 @@ Description: Utility library for the GNOME desktop - runtime files
  putting processes into systemd scopes, user-facing time representation
  and keyboard layout information.
 
-Package: libgnome-rr-4-2t64
-Provides: ${t64:Provides}
-Replaces: libgnome-rr-4-2
-Breaks: libgnome-rr-4-2 (<< ${source:Version})
-Section: libs
-Architecture: any
-Multi-Arch: same
-Depends: gnome-desktop3-data (>= ${source:Version}),
-         gnome-desktop3-data (<< ${gnome:NextVersion}),
-         ${misc:Depends},
-         ${shlibs:Depends}
-Recommends: locales | locales-all
-Description: Utility library for display information - runtime files
- The gnome-desktop set of libraries provides various utility functions
- that are used in multiple components of the GNOME desktop, but do not
- have a sufficiently stable API to be included in core libraries such
- as GLib and GTK.
- .
- This library provides utilities for display mode-setting, resizing and
- rotation using the XRandR protocol or Wayland.
-
 Package: libgnome-bg-4-dev
 Section: libdevel
 Architecture: any
@@ -228,28 +207,6 @@ Description: Utility library for the GNOME desktop - development files (GTK 4)
  This package contains development files to compile programs that use
  miscellaneous non-GUI utility functions.
 
-Package: libgnome-rr-4-dev
-Section: libdevel
-Architecture: any
-Multi-Arch: same
-Depends: gir1.2-gnomerr-4.0 (= ${binary:Version}),
-         gsettings-desktop-schemas-dev,
-         libgnome-desktop-4-dev (= ${binary:Version}),
-         libgnome-rr-4-2t64 (= ${binary:Version}),
-         libgtk-4-dev (>= 4.4.0),
-         ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Provides: ${gir:Provides}
-Description: Display information library for GNOME - development files (GTK 4)
- The gnome-desktop set of libraries provides various utility functions
- that are used in multiple components of the GNOME desktop, but do not
- have a sufficiently stable API to be included in core libraries such
- as GLib and GTK.
- .
- This package contains development files to compile programs that deal with
- display modes.
-
 Package: gir1.2-gnomedesktop-3.0
 Section: introspection
 Architecture: any
@@ -295,22 +252,6 @@ Description: Introspection data for GnomeDesktop (GTK 4)
  .
  This package contains GObject-Introspection bindings for miscellaneous
  utility functions.
-
-Package: gir1.2-gnomerr-4.0
-Section: introspection
-Architecture: any
-Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Description: Introspection data for GnomeRR (GTK 4)
- The gnome-desktop set of libraries provides various utility functions
- that are used in multiple components of the GNOME desktop, but do not
- have a sufficiently stable API to be included in core libraries such
- as GLib and GTK.
- .
- This package contains GObject-Introspection bindings for display mode
- management.
 
 Package: libgnome-desktop-doc
 Build-Profiles: <!nodoc>
