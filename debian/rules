@@ -1,7 +1,5 @@
 #!/usr/bin/make -f
 
-built_binaries := $(shell dh_listpackages)
-
 export DEB_BUILD_MAINT_OPTIONS = hardening=+all
 export DEB_LDFLAGS_MAINT_APPEND = -Wl,-O1 -Wl,-z,defs
 export DPKG_GENSYMBOLS_CHECK_LEVEL = 4
@@ -48,7 +46,7 @@ override_dh_auto_test:
 # quite right for installed-tests
 override_dh_fixperms:
 	dh_fixperms -Xusr/libexec/installed-tests
-ifneq ($(filter %-tests,$(built_binaries)),)
+ifneq ($(filter %-tests,$(shell dh_listpackages)),)
 	chmod --recursive --changes a+rX,u+w,og-w debian/*-tests/usr/libexec/installed-tests
 endif
 

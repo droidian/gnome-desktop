@@ -1,9 +1,7 @@
 ---
 Archive: GNOME
-Bug-Database: https://gitlab.gnome.org/GNOME/gnome-desktop/-/issues
-Bug-Submit: https://gitlab.gnome.org/GNOME/gnome-desktop/-/issues/new
+Bug-Database: https://gitlab.gnome.org/GNOME/gnome-desktop/-/work_items
+Bug-Submit: https://gitlab.gnome.org/GNOME/gnome-desktop/-/work_items/new
 Repository: https://gitlab.gnome.org/GNOME/gnome-desktop.git
 Repository-Browse: https://gitlab.gnome.org/GNOME/gnome-desktop
-Security-Contact: https://gitlab.gnome.org/GNOME/glib/-/blob/HEAD/SECURITY.md
-
-# vim:set ft=yaml:
+Security-Contact: https://gitlab.gnome.org/Teams/Releng/security
