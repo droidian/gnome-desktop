@@ -1,8 +1,24 @@
-gnome-desktop (51~alpha-1) UNRELEASED; urgency=medium
+gnome-desktop (51~alpha-1) experimental; urgency=medium
 
+  [ Jeremy Bícha ]
   * New upstream release
+  * Opt into Salsa CI
+  * Run wrap-and-sort -ast
+  * Update debian/copyright
+  * Update debhelper compat to 14
 
- -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 30 Jul 2026 20:16:25 +0200
+  [ Alessandro Astone ]
+  * debian: Update libgnome-desktop-3 SONAME
+  * d/libgnome-bg-4-2t64.symbols: Add new symbol
+  * d/symbols: Add missing Build-Depends-Package
+  * Remove patches applied upstream
+
+  [ Marco Trevisan (Treviño) ]
+  * debian: Add Packages for gnome-qr-4 and gnome-qr-gtk-4 libraries
+  * d/copyright: Ad qrcodegen subproject license
+  * d/tests: Add autopkgtests for libgnome-qr-4 and libgnome-qr-gtk-4
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 30 Jul 2026 20:45:43 +0200
 
 gnome-desktop (44.5-2) unstable; urgency=medium
 
