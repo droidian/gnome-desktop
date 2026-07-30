@@ -2,7 +2,7 @@ Source: gnome-desktop
 Section: gnome
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: Iain Lane <laney@debian.org>, Jeremy Bícha <jbicha@ubuntu.com>, Laurent Bigonville <bigon@debian.org>, Marco Trevisan (Treviño) <marco@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>, Tim Lunn <tim@feathertop.org>
-Build-Depends: debhelper-compat (= 13),
+Build-Depends: debhelper-compat (= 14),
                dh-sequence-gir,
                dh-sequence-gnome (>= 0.22.7~),
                dpkg-build-api (= 1),
@@ -44,7 +44,6 @@ Standards-Version: 4.7.4
 Package: gnome-desktop3-data
 Architecture: all
 Multi-Arch: foreign
-Depends: ${misc:Depends}
 Breaks: libgnome-desktop-3-17 (<< 3.36),
         libgnome-desktop-3-18 (<< 3.36),
 Description: Common files for GNOME desktop apps
@@ -56,8 +55,6 @@ Architecture: any
 Depends: libgnome-desktop-3-21 (= ${binary:Version}),
          gnome-desktop3-data (= ${source:Version}),
          locales | locales-all,
-         ${misc:Depends},
-         ${shlibs:Depends}
 Breaks: libgnome-desktop-3-19 (<< 40),
         libgnome-desktop-3-dev (<< 40),
         libgnome-desktop-3-dev-bin (<< 42~),
@@ -76,8 +73,6 @@ Depends: bubblewrap [linux-any],
          gnome-desktop3-data (<< ${gnome:NextVersion}),
          gsettings-desktop-schemas,
          iso-codes,
-         ${misc:Depends},
-         ${shlibs:Depends}
 Recommends: locales | locales-all
 Description: Utility library for the GNOME desktop - GTK 3 version
  This library provides various utility functions that are used in multiple
@@ -101,10 +96,6 @@ Depends: gir1.2-gnomedesktop-3.0 (= ${binary:Version}),
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          libxkbregistry-dev,
-         ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Provides: ${gir:Provides}
 Description: Utility library for the GNOME desktop - development files (GTK 3)
  This package provides the include files and static library for the GNOME
  desktop library functions.
@@ -117,8 +108,6 @@ Section: libs
 Architecture: any
 Multi-Arch: same
 Depends: gsettings-desktop-schemas,
-         ${misc:Depends},
-         ${shlibs:Depends}
 Recommends: locales | locales-all
 Description: Utility library for background images - runtime files
  The gnome-desktop set of libraries provides various utility functions
@@ -140,8 +129,6 @@ Depends: bubblewrap [linux-any],
          gnome-desktop3-data (<< ${gnome:NextVersion}),
          gsettings-desktop-schemas,
          iso-codes,
-         ${misc:Depends},
-         ${shlibs:Depends}
 Recommends: locales | locales-all
 Description: Utility library for the GNOME desktop - runtime files
  The gnome-desktop set of libraries provides various utility functions
@@ -156,12 +143,9 @@ Description: Utility library for the GNOME desktop - runtime files
  and keyboard layout information.
 
 Package: libgnome-qr-4-0
-Provides: ${t64:Provides}
 Section: libs
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},
-         ${shlibs:Depends}
 Description: Utility library for QR Codes - runtime files
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -171,12 +155,9 @@ Description: Utility library for QR Codes - runtime files
  This library provides utilities for creating QR Codes textures.
 
 Package: libgnome-qr-gtk-4-0
-Provides: ${t64:Provides}
 Section: libs
 Architecture: any
 Multi-Arch: same
-Depends: ${misc:Depends},
-         ${shlibs:Depends}
 Recommends: locales | locales-all
 Description: Utility library for GTK4 QR codes - runtime files
  The gnome-desktop set of libraries provides various utility functions
@@ -195,10 +176,6 @@ Depends: gir1.2-gnomebg-4.0 (= ${binary:Version}),
          libgnome-bg-4-2t64 (= ${binary:Version}),
          libgnome-desktop-4-dev (= ${binary:Version}),
          libgtk-4-dev (>= 4.4.0),
-         ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Provides: ${gir:Provides}
 Description: Background image library for GNOME - development files (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -221,10 +198,6 @@ Depends: gir1.2-gnomedesktop-4.0 (= ${binary:Version}),
          libsystemd-dev [linux-any],
          libudev-dev [linux-any],
          libxkbregistry-dev,
-         ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Provides: ${gir:Provides}
 Description: Utility library for the GNOME desktop - development files (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -241,10 +214,6 @@ Multi-Arch: same
 Depends: gir1.2-gnomeqr-4.0 (= ${binary:Version}),
          libgnome-qr-4-0 (= ${binary:Version}),
          libglib2.0-dev,
-         ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Provides: ${gir:Provides}
 Description: QR Codes library for GNOME - development files
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -262,10 +231,6 @@ Depends: gir1.2-gnomeqrgtk-4.0 (= ${binary:Version}),
          libgnome-qr-4-dev (= ${binary:Version}),
          libgnome-qr-gtk-4-0 (= ${binary:Version}),
          libgtk-4-dev (>= 4.12.0),
-         ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
-Provides: ${gir:Provides}
 Description: QR Codes library for GNOME - development files (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -279,9 +244,6 @@ Package: gir1.2-gnomedesktop-3.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
 Description: Introspection data for GnomeDesktop (GTK 3)
  This package provides the include files and static library for the GNOME
  desktop library functions.
@@ -292,9 +254,6 @@ Package: gir1.2-gnomebg-4.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
 Description: Introspection data for GnomeBG (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -308,9 +267,6 @@ Package: gir1.2-gnomedesktop-4.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
 Breaks: gnome-shell (<< 42~alpha)
 Description: Introspection data for GnomeDesktop (GTK 4)
  The gnome-desktop set of libraries provides various utility functions
@@ -325,9 +281,6 @@ Package: gir1.2-gnomeqr-4.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
 Description: Introspection data for GnomeQR
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -341,9 +294,6 @@ Package: gir1.2-gnomeqrgtk-4.0
 Section: introspection
 Architecture: any
 Multi-Arch: same
-Depends: ${gir:Depends},
-         ${misc:Depends},
-         ${shlibs:Depends}
 Description: Introspection data for GnomeQRGtk
  The gnome-desktop set of libraries provides various utility functions
  that are used in multiple components of the GNOME desktop, but do not
@@ -358,8 +308,6 @@ Build-Profiles: <!nodoc>
 Architecture: all
 Multi-Arch: foreign
 Section: doc
-Pre-Depends: ${misc:Pre-Depends}
-Depends: ${misc:Depends}
 Breaks: libgnome-desktop-3-dev (<< 42~),
 Replaces: libgnome-desktop-3-dev (<< 42~),
 Description: API documentation for libgnome-desktop
