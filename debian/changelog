@@ -1,3 +1,16 @@
+gnome-desktop (44.5-2) unstable; urgency=medium
+
+  [ Jeremy Bícha ]
+  * Cherry-pick patch to stop building the gnome-rr library
+  * debian/libgnome-desktop-3-20t64.symbols: Remove the gnome_rr symbols
+  * Update architectures where seccomp is not available
+  * Update Standards Version to 4.7.4
+
+  [ Alessandro Astone ]
+  * debian: Remove packaging for the gnome-rr library
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 30 Jul 2026 05:57:00 +0200
+
 gnome-desktop (44.5-1) unstable; urgency=medium
 
   * New upstream release
