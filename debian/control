@@ -1,6 +1,5 @@
 Source: gnome-desktop
 Section: gnome
-Priority: optional
 Maintainer: Debian GNOME Maintainers <pkg-gnome-maintainers@lists.alioth.debian.org>
 Uploaders: Iain Lane <laney@debian.org>, Jeremy Bícha <jbicha@ubuntu.com>, Laurent Bigonville <bigon@debian.org>, Marco Trevisan (Treviño) <marco@ubuntu.com>, Sjoerd Simons <sjoerd@debian.org>, Tim Lunn <tim@feathertop.org>
 Build-Depends: debhelper-compat (= 13),
@@ -40,7 +39,7 @@ Build-Depends: debhelper-compat (= 13),
                xvfb <!nocheck>
 Vcs-Browser: https://salsa.debian.org/gnome-team/gnome-desktop
 Vcs-Git: https://salsa.debian.org/gnome-team/gnome-desktop.git
-Standards-Version: 4.7.2
+Standards-Version: 4.7.4
 
 Package: gnome-desktop3-data
 Architecture: all
