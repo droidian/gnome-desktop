@@ -21,6 +21,12 @@ if get_option('build_gtk4')
   }
 endif
 
+if use_qr_feature
+  test_programs += {
+    'qr-code': { 'dependencies': [gnome_qr_dep]},
+  }
+endif
+
 # XXX: Some tests relies on the legacy library
 if get_option('legacy_library')
   test_programs_legacy += {
@@ -67,4 +73,5 @@ if get_option('installed_tests')
   )
   install_data(test_data, install_dir: test_execdir)
   install_data(test_metas, install_dir: test_metadir)
+  install_subdir('data', install_dir: test_execdir)
 endif

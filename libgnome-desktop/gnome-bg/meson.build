@@ -29,8 +29,8 @@ endif
 libgnome_bg = library('gnome-bg-4',
   sources: libgnome_bg_sources,
   dependencies: libgnome_bg_deps,
-  soversion: soversion,
-  version: libversion,
+  soversion: bg_soversion,
+  version: bg_libversion,
   c_args: libargs,
   link_args: libgnome_bg_ldflags,
   install: true,
@@ -52,6 +52,7 @@ if get_option('introspection')
     extra_args: ['-DGNOME_DESKTOP_USE_UNSTABLE_API', '--quiet', '--warn-all'],
     identifier_prefix: 'Gnome',
     symbol_prefix: 'gnome',
+    fatal_warnings: true,
     install: true,
   )
 endif

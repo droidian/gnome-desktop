@@ -1,12 +1,45 @@
-============
-Version 44.5
-============
+================
+Version 51.alpha
+================
 
-- thumbnail: support %m expansion (!175, Zander Brown)
-- Update seccomp filters from flatpak-run.c (!184, Michael Catanzaro)
-- Fix various memory leaks (!188, !190, !191, Marco Trevisan and !178 Khalid Abu Shawarib)
-- Run tests again by default
-- Translation updates
+* New API to generate qr codes. See gnome-qr.h and gnome-qr-gtk.h
+  for details of the api. The new apis are installed as separate
+  shared libraries (libgnome-qr-4.so and libgnome-qr-gtk-4.so).
+  To use in your code, use the pkg-config files gnome-qr-4.pc
+  and gnome-qr-gtk-4.pc.
+
+* Bugs fixed:
+  - !185 Introduce gnome-qr library (Joan Torres Lopez, Marco Trevisan
+    (Treviño))
+  - !188 build: Enable tests again (Marco Trevisan (Treviño))
+  - !193 thumbnail: Fix overly broad path check in can_thumbnail (Arecsu)
+
+* Translation updates:
+  - Bulgarian (Alexander Alexandrov Shopov)
+  - Catalan (Victor Dargallo)
+  - Chinese (China) (luming zh)
+  - Cornish (Flynn Peck)
+  - Czech (Daniel Rusek)
+  - French (Julien Humbert)
+  - Georgian (Ekaterine Papava)
+  - German (Christian Kirbach)
+  - Kazakh (Baurzhan Muftakhidinov)
+  - Lithuanian (Aurimas Aurimas Černius)
+  - Norwegian Bokmål (Kjartan Maraas)
+  - Norwegian Nynorsk (Bjørn Mørkedal)
+  - Occitan (post 1500) (Quentin PAGÈS)
+  - Polish (hoek)
+  - Portuguese (Hugo Carvalho)
+  - Portuguese (Brazil) (Juliano de Souza Camargo)
+  - Romanian (Antonio Marin)
+  - Russian (Julia Dronova, Artur S0, Антон Афонин)
+  - Serbian (Марко Костић)
+  - Slovak (Jose Riha)
+  - Slovenian (Martin)
+  - Turkish (Emin Tufan Çetin)
+  - Uighur (Abduqadir Abliz)
+  - Ukrainian (Yuri Chornoivan)
+  - Uzbek (Baxrom Raxmatov)
 
 ============
 Version 44.4
