@@ -1,3 +1,9 @@
+gnome-desktop (51~alpha-3) unstable; urgency=medium
+
+  * Fix hurd build
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 04 Aug 2026 19:31:56 +0200
+
 gnome-desktop (51~alpha-2) unstable; urgency=medium
 
   * debian/copyright: Add translator authors per DFSG review
