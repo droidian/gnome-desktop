@@ -1,3 +1,9 @@
+gnome-desktop (51~alpha-4) unstable; urgency=medium
+
+  * Add patch to try to fix the Hurd build
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 04 Aug 2026 21:17:43 +0200
+
 gnome-desktop (51~alpha-3) unstable; urgency=medium
 
   * Fix hurd build
