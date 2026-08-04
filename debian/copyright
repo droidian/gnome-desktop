@@ -61,6 +61,25 @@ Copyright: 2022 Sergio Costas
 License: LGPL-2+
 
 Files:
+ po/*
+Copyright:
+ Adam Weinberger and the GNOME Foundation
+ Alexander Shopov <ash@kambanaria.org>. Pavel Cholakov <pavel@linux.zonebg.com>, 2001
+ Gnome i18n Project for Latvian
+ GNOME i18n Project for Vietnamese
+ gnome-desktop
+ gnome-desktop's The Gnome Foundation
+ HZ
+ Jitendra Shah
+ Miloslav Trmac <mitr@volny.cz>
+ www.kyfieithu.co.uk, Dafydd Harries, Gareth Bowker www.kyfieithu.co.uk <gyfieithu@kyfieithu.co.uk>, 2003
+ Yannig Marchegay
+ Gurban Mühemmet Tewekgeli and Kakilik - Turkmen free software developers community
+ Jesús Bravo Álvarez Proxecto Trasno
+ Zuza Software FoundationLicense: LGPL-2+
+License: LGPL-2+
+
+Files:
  debian/tests/*
 Copyright:
   2012-2013, 2026 Canonical Ltd.
