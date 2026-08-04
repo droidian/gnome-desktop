@@ -1,3 +1,12 @@
+gnome-desktop (51~alpha-2) unstable; urgency=medium
+
+  * debian/copyright: Add translator authors per DFSG review
+  * debian/watch: Convert to Version: 5
+  * debian/watch: Watch for alpha releases
+  * Release to unstable
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 04 Aug 2026 15:51:19 +0200
+
 gnome-desktop (51~alpha-1) experimental; urgency=medium
 
   [ Jeremy Bícha ]
