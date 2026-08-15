@@ -36,7 +36,7 @@ Build-Depends:
  libsystemd-dev [linux-any],
  libudev-dev [linux-any],
  libxkbregistry-dev,
- locales <!nocheck> | locales-all <!nocheck>,
+ locales-all <!nocheck>,
  meson,
  pkgconf,
  xauth <!nocheck>,
