@@ -206,25 +206,24 @@ thumbnailer_unref (Thumbnailer *thumb)
 static Thumbnailer *
 thumbnailer_load (Thumbnailer *thumb)
 {
-  GKeyFile *key_file;
-  GError *error = NULL;
+  g_autoptr (GError) error = NULL;
+  g_autoptr (GKeyFile) key_file = NULL;
+  g_autofree char *try_exec = NULL;
+  g_autofree char *exec_path = NULL;
 
   key_file = g_key_file_new ();
   if (!g_key_file_load_from_file (key_file, thumb->path, 0, &error))
     {
-      g_warning ("Failed to load thumbnailer from \"%s\": %s\n", thumb->path, error->message);
-      g_error_free (error);
+      g_warning ("Failed to load thumbnailer from \"%s\": %s", thumb->path, error->message);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
 
   if (!g_key_file_has_group (key_file, THUMBNAILER_ENTRY_GROUP))
     {
-      g_warning ("Invalid thumbnailer: missing group \"%s\"\n", THUMBNAILER_ENTRY_GROUP);
+      g_warning ("Invalid thumbnailer: missing group \"%s\" in \"%s\"", THUMBNAILER_ENTRY_GROUP, thumb->path);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
@@ -232,9 +231,8 @@ thumbnailer_load (Thumbnailer *thumb)
   thumb->command = g_key_file_get_string (key_file, THUMBNAILER_ENTRY_GROUP, "Exec", NULL);
   if (!thumb->command)
     {
-      g_warning ("Invalid thumbnailer: missing Exec key\n");
+      g_warning ("Invalid thumbnailer: missing Exec key in \"%s\"", thumb->path);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
@@ -242,14 +240,24 @@ thumbnailer_load (Thumbnailer *thumb)
   thumb->mime_types = g_key_file_get_string_list (key_file, THUMBNAILER_ENTRY_GROUP, "MimeType", NULL, NULL);
   if (!thumb->mime_types)
     {
-      g_warning ("Invalid thumbnailer: missing MimeType key\n");
+      g_warning ("Invalid thumbnailer: missing MimeType key in \"%s\"", thumb->path);
       thumbnailer_unref (thumb);
-      g_key_file_free (key_file);
 
       return NULL;
     }
 
-  g_key_file_free (key_file);
+  try_exec = g_key_file_get_string (key_file, THUMBNAILER_ENTRY_GROUP, "TryExec", NULL);
+  if (try_exec)
+    {
+      exec_path = g_find_program_in_path (try_exec);
+      if (!exec_path)
+        {
+          g_info ("Skipping thumbnailer: Program not found in PATH for TryExec=%s in \"%s\"", try_exec, thumb->path);
+          thumbnailer_unref (thumb);
+
+          return NULL;
+        }
+    }
 
   return thumb;
 }
@@ -820,24 +828,21 @@ thumbnail_failed_path (const char *uri)
   return path;
 }
 
-static char *
-validate_thumbnail_path (char                      *path,
+static gboolean
+validate_thumbnail_path (const char                *path,
                          const char                *uri,
                          time_t                     mtime,
                          GnomeDesktopThumbnailSize  size)
 {
-  GdkPixbuf *pixbuf;
+  g_autoptr (GdkPixbuf) pixbuf = gdk_pixbuf_new_from_file (path, NULL);
 
-  pixbuf = gdk_pixbuf_new_from_file (path, NULL);
   if (pixbuf == NULL ||
-      !gnome_desktop_thumbnail_is_valid (pixbuf, uri, mtime)) {
-      g_free (path);
-      return NULL;
-  }
+      !gnome_desktop_thumbnail_is_valid (pixbuf, uri, mtime))
+    {
+      return FALSE;
+    }
 
-  g_clear_object (&pixbuf);
-
-  return path;
+  return TRUE;
 }
 
 static char *
@@ -845,8 +850,12 @@ lookup_thumbnail_path (const char                *uri,
                        time_t                     mtime,
                        GnomeDesktopThumbnailSize  size)
 {
-  char *path = thumbnail_path (uri, size);
-  return validate_thumbnail_path (path, uri, mtime, size);
+  g_autofree char *path = thumbnail_path (uri, size);
+
+  if (!validate_thumbnail_path (path, uri, mtime, size))
+    return NULL;
+
+  return g_steal_pointer (&path);
 }
 
 static char *
@@ -854,8 +863,12 @@ lookup_failed_thumbnail_path (const char                *uri,
                               time_t                     mtime,
                               GnomeDesktopThumbnailSize  size)
 {
-  char *path = thumbnail_failed_path (uri);
-  return validate_thumbnail_path (path, uri, mtime, size);
+  g_autofree char *path = thumbnail_failed_path (uri);
+
+  if (!validate_thumbnail_path (path, uri, mtime, size))
+    return NULL;
+
+  return g_steal_pointer (&path);
 }
 
 /**
@@ -944,9 +957,17 @@ gnome_desktop_thumbnail_factory_can_thumbnail (GnomeDesktopThumbnailFactory *fac
 
   /* Don't thumbnail thumbnails */
   if (uri &&
-      strncmp (uri, "file:/", 6) == 0 &&
-      strstr (uri, "/thumbnails/") != NULL)
-    return FALSE;
+      g_str_has_prefix (uri, "file:/"))
+    {
+      g_autoptr(GFile) thumbnail_location =
+        g_file_new_build_filename (g_get_user_cache_dir (),
+                                   "thumbnails",
+                                   NULL);
+      g_autoptr(GFile) file = g_file_new_for_uri (uri);
+
+      if (g_file_has_prefix (file, thumbnail_location))
+        return FALSE;
+    }
 
   if (!mime_type)
     return FALSE;
@@ -1135,7 +1156,11 @@ gnome_desktop_thumbnail_factory_generate_thumbnail (GnomeDesktopThumbnailFactory
     {
       GBytes *data;
 
-      data = gnome_desktop_thumbnail_script_exec (script, size, uri, error);
+      data = gnome_desktop_thumbnail_script_exec (script,
+                                                  size,
+                                                  uri,
+                                                  mime_type,
+                                                  error);
       if (data)
         {
           pixbuf = pixbuf_new_from_bytes (data, error);

@@ -1,19 +1,58 @@
-Tests: libgnome-desktop-3-dev
-Depends: build-essential, libgnome-desktop-3-dev, pkgconf
-Restrictions: allow-stderr superficial
-
 Tests: libgnome-bg-4-dev
-Depends: build-essential, libgnome-bg-4-dev, pkgconf
-Restrictions: allow-stderr superficial
+Depends:
+ build-essential,
+ libgnome-bg-4-dev,
+ pkgconf,
+Restrictions:
+ allow-stderr,
+ superficial,
+
+Tests: libgnome-desktop-3-dev
+Depends:
+ build-essential,
+ libgnome-desktop-3-dev,
+ pkgconf,
+Restrictions:
+ allow-stderr,
+ superficial,
 
 Tests: libgnome-desktop-4-dev
-Depends: build-essential, libgnome-desktop-4-dev, pkgconf
-Restrictions: allow-stderr superficial
+Depends:
+ build-essential,
+ libgnome-desktop-4-dev,
+ pkgconf,
+Restrictions:
+ allow-stderr,
+ superficial,
 
-Tests: libgnome-rr-4-dev
-Depends: build-essential, libgnome-rr-4-dev, pkgconf
-Restrictions: allow-stderr superficial
+Tests: libgnome-qr-4-dev
+Depends:
+ build-essential,
+ libgnome-qr-4-dev,
+ pkgconf,
+Restrictions:
+ allow-stderr,
+ superficial,
+
+Tests: libgnome-qr-gtk-4-dev
+Depends:
+ build-essential,
+ libgnome-qr-gtk-4-dev,
+ pkgconf,
+ xauth,
+ xvfb,
+Restrictions:
+ allow-stderr,
+ superficial,
 
 Tests: installed-tests
-Depends: dbus (>= 1.8), gnome-desktop-testing, gnome-desktop-3-tests, locales | locales-all, xauth, xvfb
-Restrictions: allow-stderr superficial
+Depends:
+ dbus (>= 1.8),
+ gnome-desktop-3-tests,
+ gnome-desktop-testing,
+ locales | locales-all,
+ xauth,
+ xvfb,
+Restrictions:
+ allow-stderr,
+ superficial,

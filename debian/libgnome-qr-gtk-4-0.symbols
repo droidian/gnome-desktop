@@ -1,0 +1,12 @@
+libgnome-qr-gtk-4.so.0 libgnome-qr-gtk-4-0 #MINVER#
+* Build-Depends-Package: libgnome-qr-gtk-4-dev
+ gnome_qr_widget_get_alternative_text@Base 51~alpha
+ gnome_qr_widget_get_ecc_level@Base 51~alpha
+ gnome_qr_widget_get_size@Base 51~alpha
+ gnome_qr_widget_get_text@Base 51~alpha
+ gnome_qr_widget_get_type@Base 51~alpha
+ gnome_qr_widget_new@Base 51~alpha
+ gnome_qr_widget_set_alternative_text@Base 51~alpha
+ gnome_qr_widget_set_ecc_level@Base 51~alpha
+ gnome_qr_widget_set_size@Base 51~alpha
+ gnome_qr_widget_set_text@Base 51~alpha

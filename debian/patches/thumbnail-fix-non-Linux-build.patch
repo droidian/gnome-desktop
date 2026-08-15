@@ -1,0 +1,30 @@
+From: =?utf-8?q?Jeremy_B=C3=ADcha?= <jbicha@ubuntu.com>
+Date: Tue, 4 Aug 2026 21:05:49 +0200
+Subject: thumbnail: fix non-Linux build
+
+This header-file is unique to Linux
+and isn't needed where we aren't using seccomp
+
+Fixes: c4dbe0c297d920e645d509cbc840a3de8b36321d
+---
+ libgnome-desktop/gnome-desktop-thumbnail-script.c | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libgnome-desktop/gnome-desktop-thumbnail-script.c b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+index 0da8804..1127305 100644
+--- a/libgnome-desktop/gnome-desktop-thumbnail-script.c
++++ b/libgnome-desktop/gnome-desktop-thumbnail-script.c
+@@ -31,12 +31,12 @@
+ #include <glib/gstdio.h>
+ #include <string.h>
+ #include <stdlib.h>
+-#include <sys/personality.h>
+ #include <sys/stat.h>
+ #include <fcntl.h>
+ 
+ #ifdef ENABLE_SECCOMP
+ #include <errno.h>
++#include <sys/personality.h>
+ #include <sys/socket.h>
+ #include <sys/ioctl.h>
+ #include <sys/utsname.h>

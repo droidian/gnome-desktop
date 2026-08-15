@@ -1,0 +1,74 @@
+#!/bin/sh
+# (C) 2026 Canonical Ltd.
+# Authors: Marco Trevisan
+# SPDX-License-Identifier: LGPL-2.0-or-later
+
+set -eux
+
+if [ -n "${DEB_HOST_GNU_TYPE:-}" ]; then
+    CROSS_COMPILE="$DEB_HOST_GNU_TYPE-"
+else
+    CROSS_COMPILE=
+fi
+
+mode=dynamic
+
+getopt_temp="$(getopt -o '' --long 'static' -n debian/tests/build -- "$@")"
+eval set -- "$getopt_temp"
+
+while true; do
+    case "$1" in
+        (--static)
+            mode=static
+            shift
+            continue
+            ;;
+
+        (--)
+            shift
+            break
+            ;;
+
+        (*)
+            echo "getopt: Internal error" >&2
+            exit 2
+    esac
+done
+
+cd "$AUTOPKGTEST_TMP"
+cat <<EOF > gnome-qr.c
+#include <gnome-qr/gnome-qr.h>
+
+int main(void)
+{
+    size_t qr_size = 0;
+    g_autoptr(GError) error = NULL;
+    GnomeQrPixelFormat format = GNOME_QR_PIXEL_FORMAT_RGBA_8888;
+    g_autoptr(GBytes) qr = gnome_qr_generate_qr_code_sync ("https://debian.org/",
+                                                           0, NULL, NULL, format,
+                                                           GNOME_QR_ECC_LEVEL_LOW,
+                                                           &qr_size, NULL, &error);
+
+    g_assert_nonnull (qr);
+    g_assert_no_error (error);
+    g_assert_cmpuint (qr_size * qr_size * GNOME_QR_BYTES_PER_FORMAT (format), ==, g_bytes_get_size (qr));
+    return 0;
+}
+EOF
+
+cflags=
+pcflags=
+
+case "$mode" in
+    (static)
+        cflags=-static
+        pcflags=--static
+        ;;
+esac
+
+# shellcheck disable=SC2046
+"${CROSS_COMPILE}gcc" $cflags -o "$mode" gnome-qr.c $("${CROSS_COMPILE}pkgconf" $pcflags --cflags --libs gnome-qr-4)
+echo "build ($mode): OK"
+[ -x "$mode" ]
+"./$mode"
+echo "run ($mode): OK"

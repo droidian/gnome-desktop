@@ -1,3 +1,141 @@
+gnome-desktop (51~alpha-4) unstable; urgency=medium
+
+  * Add patch to try to fix the Hurd build
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 04 Aug 2026 21:17:43 +0200
+
+gnome-desktop (51~alpha-3) unstable; urgency=medium
+
+  * Fix hurd build
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 04 Aug 2026 19:31:56 +0200
+
+gnome-desktop (51~alpha-2) unstable; urgency=medium
+
+  * debian/copyright: Add translator authors per DFSG review
+  * debian/watch: Convert to Version: 5
+  * debian/watch: Watch for alpha releases
+  * Release to unstable
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Tue, 04 Aug 2026 15:51:19 +0200
+
+gnome-desktop (51~alpha-1) experimental; urgency=medium
+
+  [ Jeremy Bícha ]
+  * New upstream release
+  * Opt into Salsa CI
+  * Run wrap-and-sort -ast
+  * Update debian/copyright
+  * Update debhelper compat to 14
+
+  [ Alessandro Astone ]
+  * debian: Update libgnome-desktop-3 SONAME
+  * d/libgnome-bg-4-2t64.symbols: Add new symbol
+  * d/symbols: Add missing Build-Depends-Package
+  * Remove patches applied upstream
+
+  [ Marco Trevisan (Treviño) ]
+  * debian: Add Packages for gnome-qr-4 and gnome-qr-gtk-4 libraries
+  * d/copyright: Ad qrcodegen subproject license
+  * d/tests: Add autopkgtests for libgnome-qr-4 and libgnome-qr-gtk-4
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 30 Jul 2026 20:45:43 +0200
+
+gnome-desktop (44.5-2) unstable; urgency=medium
+
+  [ Jeremy Bícha ]
+  * Cherry-pick patch to stop building the gnome-rr library
+  * debian/libgnome-desktop-3-20t64.symbols: Remove the gnome_rr symbols
+  * Update architectures where seccomp is not available
+  * Update Standards Version to 4.7.4
+
+  [ Alessandro Astone ]
+  * debian: Remove packaging for the gnome-rr library
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 30 Jul 2026 05:57:00 +0200
+
+gnome-desktop (44.5-1) unstable; urgency=medium
+
+  * New upstream release
+  * d/p: Refresh
+
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Mon, 09 Feb 2026 02:12:02 +0100
+
+gnome-desktop (44.4-2) unstable; urgency=medium
+
+  * d/p: Add upstream patches including memory and tests fixes
+  * d/p: Hide private symbols from public libraries.
+  * d/libgnome-desktop-*.symbols: Drop a private symbol that leaked into API.
+    It was not exposed by public headers, so not something that was meant to
+    be used anyways.
+
+ -- Marco Trevisan (Treviño) <marco@ubuntu.com>  Sun, 08 Feb 2026 17:06:39 +0100
+
+gnome-desktop (44.4-1) unstable; urgency=medium
+
+  * New upstream release
+  * Remove obsolete Rules-Requires-Root: no field
+
+ -- Jeremy Bícha <jbicha@ubuntu.com>  Thu, 04 Sep 2025 14:19:58 -0400
+
+gnome-desktop (44.3-4) unstable; urgency=medium
+
+  * Team upload
+  * Build-depend on gir1.2-*-dev and gobject-introspection.
+    libgirepository1.0-dev is not Multi-Arch-friendly and should be
+    phased out.
+  * Explicitly Build-Depend on required gir1.2-*-dev packages.
+    In practice these are provided by the lib*-dev build-dependencies,
+    but listing them explicitly is an enabler for being able to implement
+    the <!nogir> build-profile in those packages.
+  * Standards-Version: 4.7.2 (no changes required)
+
+ -- Simon McVittie <smcv@debian.org>  Fri, 15 Aug 2025 10:56:28 +0100
+
+gnome-desktop (44.3-3) unstable; urgency=medium
+
+  * Team upload
+  * Upload to unstable
+
+ -- Simon McVittie <smcv@debian.org>  Thu, 12 Jun 2025 21:10:40 +0100
+
+gnome-desktop (44.3-2) experimental; urgency=medium
+
+  * Team upload
+  * d/p/debian/Revert-default-IM-for-zh_HK-to-ibus-table-cangjie5.patch:
+    Revert default IM for zh_HK to ibus-table-cangjie5 for now.
+    I've asked on #1107525 whether we should follow upstream by moving to
+    the ibus-cangjie package as the default input method for
+    Chinese (Hong Kong), or keep Debian 12 behaviour by using the
+    ibus-table-cangjie5 package. Until we have a recommendation from
+    Chinese speakers, it seems like the conservative option is to keep
+    the Debian 12 behaviour.
+
+ -- Simon McVittie <smcv@debian.org>  Mon, 09 Jun 2025 18:53:43 +0100
+
+gnome-desktop (44.3-1) experimental; urgency=medium
+
+  * Team upload
+  * New upstream release
+    - zh_HK, Chinese (Hong Kong) now defaults to ibus-cangjie instead of
+      ibus-table-cangjie5, reverting a change made before bookworm
+      (see #1107525)
+    - format times with U+003A COLON instead of U+2236 RATIO, avoiding display
+      issues in right-to-left languages and in fonts that don't contain U+2236
+    - only build GObject-Introspection data if requested
+      (unnecessary but harmless in Debian)
+    - make build system compatible with being used from a subproject
+      (unnecessary but harmless in Debian)
+    - silence a false-positive compiler warning with -Wmaybe-uninitialized
+    - translation updates
+    - CI/release-management changes (not relevant to Debian)
+  * d/p/gnome-bg-only-parse-XML-files-as-slideshows.patch:
+    Drop patch, included in the new upstream release
+  * d/patches: Refresh remaining patches (no functional changes)
+  * d/copyright: Remove details of tests/wallclock-reftest, no longer included
+
+ -- Simon McVittie <smcv@debian.org>  Sun, 08 Jun 2025 18:02:58 +0100
+
 gnome-desktop (44.1-2) unstable; urgency=medium
 
   * Team upload

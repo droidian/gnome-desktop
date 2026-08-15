@@ -1,6 +1,6 @@
 Format: https://www.debian.org/doc/packaging-manuals/copyright-format/1.0/
-Upstream-Name: gnome-desktop
 Source: https://download.gnome.org/sources/gnome-desktop/
+Upstream-Name: gnome-desktop
 
 Files: *
 Copyright: 2007-2020 Red Hat, Inc.
@@ -14,14 +14,7 @@ Copyright: 2007-2020 Red Hat, Inc.
            2004 Richard D. Worth
            2021 Dan Cîrnaț
            2020 Nvidia Corporation
-License: LGPL-2+
-
-Files: libgnome-desktop/gnome-rr-private.h
-Copyright: 2009 Novell, Inc
-           2014 Endless
-           2009, 2014 Red Hat, Inc
-           2019 System76
-           2021 Emmanuele Bassi
+           1997-2013, 2017-2019, 2022, 2025 Free Software Foundation
 License: LGPL-2+
 
 Files:
@@ -33,14 +26,12 @@ Files:
  libgnome-desktop/gnome-idle-monitor.*
  libgnome-desktop/gnome-languages.*
  libgnome-desktop/gnome-pnp-ids.*
- libgnome-desktop/gnome-rr-debug.*
  libgnome-desktop/gnome-xkb-info.*
  libgnome-desktop/meta-xrandr-shared.*
  libgnome-desktop/test-pnp-ids.*
  tests/bg-slide-show.c
  tests/languages.c
  tests/wall-clock.c
- tests/wallclock-reftest.c
 Copyright:
  2007 William Jon McCann
  2008-2014 Red Hat, Inc.
@@ -51,11 +42,81 @@ Copyright:
 License: GPL-2+
 
 Files:
+ libgnome-desktop/gnome-qr/*
+Copyright:
+ 2019 Purism SPC
+ 2024-2025 Red Hat, Inc
+ 2024-2025 Canonical Ltd
+License: GPL-3+
+
+Files:
+ libgnome-desktop/gnome-qr-gtk/*
+Copyright:
+ 2026 Canonical Ltd
+License: GPL-3+
+
+Files:
+ libgnome-desktop/gnome-desktop-version.*
+Copyright: 2022 Sergio Costas
+License: LGPL-2+
+
+Files:
+ po/*
+Copyright:
+ Adam Weinberger and the GNOME Foundation
+ Alexander Shopov <ash@kambanaria.org>. Pavel Cholakov <pavel@linux.zonebg.com>, 2001
+ Gnome i18n Project for Latvian
+ GNOME i18n Project for Vietnamese
+ gnome-desktop
+ gnome-desktop's The Gnome Foundation
+ HZ
+ Jitendra Shah
+ Miloslav Trmac <mitr@volny.cz>
+ www.kyfieithu.co.uk, Dafydd Harries, Gareth Bowker www.kyfieithu.co.uk <gyfieithu@kyfieithu.co.uk>, 2003
+ Yannig Marchegay
+ Gurban Mühemmet Tewekgeli and Kakilik - Turkmen free software developers community
+ Jesús Bravo Álvarez Proxecto Trasno
+ Zuza Software FoundationLicense: LGPL-2+
+License: LGPL-2+
+
+Files:
+ debian/tests/*
+Copyright:
+  2012-2013, 2026 Canonical Ltd.
+  2018-2019, Simon McVittie
+License: LGPL-2+
+
+Files:
  debian/tests/run-with-locales
-License: Expat
 Copyright:
  2017-2018 Collabora Ltd.
  2016-2020 Simon McVittie
+License: Expat
+
+Files:
+ subprojects/qrcodegen/c/*
+Copyright:
+ Project Nayuki
+License: Expat
+
+License: Expat
+ Permission is hereby granted, free of charge, to any person obtaining a copy
+ of this software and associated documentation files (the "Software"), to
+ deal in the Software without restriction, including without limitation the
+ rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
+ sell copies of the Software, and to permit persons to whom the Software is
+ furnished to do so, subject to the following conditions:
+ .
+ The above copyright notice and this permission notice shall be included in
+ all copies or substantial portions of the Software.
+ .
+ THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
+ IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
+ FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
+ AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
+ LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
+ FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
+ IN THE SOFTWARE.
 
 License: GPL-2+
  This program is free software; you can redistribute it and/or modify
@@ -73,6 +134,23 @@ License: GPL-2+
  .
  On Debian systems, the complete text of the GNU General
  Public License can be found in "/usr/share/common-licenses/GPL-2".
+
+License: GPL-3+
+ This program is free software: you can redistribute it and/or modify
+ it under the terms of the GNU General Public License as published by
+ the Free Software Foundation, either version 3 of the License, or
+ (at your option) any later version.
+ .
+ This program is distributed in the hope that it will be useful,
+ but WITHOUT ANY WARRANTY; without even the implied warranty of
+ MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
+ GNU General Public License for more details.
+ .
+ You should have received a copy of the GNU General Public License
+ along with this program.  If not, see <https://www.gnu.org/licenses/>.
+ .
+ On Debian systems, the complete text of the GNU General
+ Public License can be found in `/usr/share/common-licenses/GPL-3'.
 
 License: LGPL-2+
  This package is free software; you can redistribute it and/or
@@ -107,22 +185,3 @@ License: LGPL-3+
  .
  On Debian systems, the complete text of the GNU Lesser General
  Public License can be found in "/usr/share/common-licenses/LGPL-3".
-
-License: Expat
- Permission is hereby granted, free of charge, to any person obtaining a copy
- of this software and associated documentation files (the "Software"), to
- deal in the Software without restriction, including without limitation the
- rights to use, copy, modify, merge, publish, distribute, sublicense, and/or
- sell copies of the Software, and to permit persons to whom the Software is
- furnished to do so, subject to the following conditions:
- .
- The above copyright notice and this permission notice shall be included in
- all copies or substantial portions of the Software.
- .
- THE SOFTWARE IS PROVIDED "AS IS", WITHOUT WARRANTY OF ANY KIND, EXPRESS OR
- IMPLIED, INCLUDING BUT NOT LIMITED TO THE WARRANTIES OF MERCHANTABILITY,
- FITNESS FOR A PARTICULAR PURPOSE AND NONINFRINGEMENT. IN NO EVENT SHALL THE
- AUTHORS OR COPYRIGHT HOLDERS BE LIABLE FOR ANY CLAIM, DAMAGES OR OTHER
- LIABILITY, WHETHER IN AN ACTION OF CONTRACT, TORT OR OTHERWISE, ARISING
- FROM, OUT OF OR IN CONNECTION WITH THE SOFTWARE OR THE USE OR OTHER DEALINGS
- IN THE SOFTWARE.

@@ -18,10 +18,10 @@ Forwarded: no
  1 file changed, 9 insertions(+)
 
 diff --git a/libgnome-desktop/gnome-languages.c b/libgnome-desktop/gnome-languages.c
-index 3fa1b84..2dceba7 100644
+index 93a9bbb..e92a1fe 100644
 --- a/libgnome-desktop/gnome-languages.c
 +++ b/libgnome-desktop/gnome-languages.c
-@@ -1455,6 +1455,15 @@ gnome_get_input_source_from_locale (const char  *locale,
+@@ -1458,6 +1458,15 @@ gnome_get_input_source_from_locale (const char  *locale,
          if (dis) {
                  *type = dis->type;
                  *id = dis->id;

@@ -1,3 +1,69 @@
+================
+Version 51.alpha
+================
+
+* New API to generate qr codes. See gnome-qr.h and gnome-qr-gtk.h
+  for details of the api. The new apis are installed as separate
+  shared libraries (libgnome-qr-4.so and libgnome-qr-gtk-4.so).
+  To use in your code, use the pkg-config files gnome-qr-4.pc
+  and gnome-qr-gtk-4.pc.
+
+* Bugs fixed:
+  - !185 Introduce gnome-qr library (Joan Torres Lopez, Marco Trevisan
+    (Treviño))
+  - !188 build: Enable tests again (Marco Trevisan (Treviño))
+  - !193 thumbnail: Fix overly broad path check in can_thumbnail (Arecsu)
+
+* Translation updates:
+  - Bulgarian (Alexander Alexandrov Shopov)
+  - Catalan (Victor Dargallo)
+  - Chinese (China) (luming zh)
+  - Cornish (Flynn Peck)
+  - Czech (Daniel Rusek)
+  - French (Julien Humbert)
+  - Georgian (Ekaterine Papava)
+  - German (Christian Kirbach)
+  - Kazakh (Baurzhan Muftakhidinov)
+  - Lithuanian (Aurimas Aurimas Černius)
+  - Norwegian Bokmål (Kjartan Maraas)
+  - Norwegian Nynorsk (Bjørn Mørkedal)
+  - Occitan (post 1500) (Quentin PAGÈS)
+  - Polish (hoek)
+  - Portuguese (Hugo Carvalho)
+  - Portuguese (Brazil) (Juliano de Souza Camargo)
+  - Romanian (Antonio Marin)
+  - Russian (Julia Dronova, Artur S0, Антон Афонин)
+  - Serbian (Марко Костић)
+  - Slovak (Jose Riha)
+  - Slovenian (Martin)
+  - Turkish (Emin Tufan Çetin)
+  - Uighur (Abduqadir Abliz)
+  - Ukrainian (Yuri Chornoivan)
+  - Uzbek (Baxrom Raxmatov)
+
+============
+Version 44.4
+============
+
+- Support TryExec for thumbnailers
+- Translation updates
+
+============
+Version 44.3
+============
+
+- Fix CI regression for release upload
+
+============
+Version 44.2
+============
+
+- Stop using ratio character for time in the wall-clock  (!176, Florian Müllner)
+- Fix variable initialization (!169,  Jonathan Blandford)
+- General CI cleanups (!171, Jordan Petridis)
+- Only parse XML files as slideshows  (!165, Christian Hergert)
+- Translation updates
+
 ============
 Version 44.1
 ============

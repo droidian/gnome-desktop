@@ -1,0 +1,2 @@
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-qr-${env:GD_QR_API_VERSION}.so.${env:GD_QR_SOVERSION}
+usr/lib/${DEB_HOST_MULTIARCH}/libgnome-qr-${env:GD_QR_API_VERSION}.so.${env:GD_QR_SOVERSION}.*

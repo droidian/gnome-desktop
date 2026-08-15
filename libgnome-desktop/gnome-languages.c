@@ -480,6 +480,8 @@ collect_locales_from_directory (void)
         for (cnt = 0; cnt < ndirents; ++cnt) {
                 if (add_locale (dirents[cnt]->d_name, TRUE))
                         found_locales = TRUE;
+
+                free (dirents[cnt]);
         }
 
         if (ndirents > 0) {
@@ -743,7 +745,7 @@ get_translated_territory (const char *code,
         name = NULL;
         if (territory != NULL) {
                 const char *translated_territory;
-                locale_t loc;
+                locale_t loc = (locale_t) 0;
                 g_autofree char *tmp = NULL;
 
                 if (locale == NULL) {
@@ -757,7 +759,8 @@ get_translated_territory (const char *code,
                 tmp = get_first_item_in_semicolon_list (translated_territory);
                 name = capitalize_utf8_string (tmp);
 
-                freelocale (loc);
+                if (loc)
+                        freelocale (loc);
         }
 
         return name;

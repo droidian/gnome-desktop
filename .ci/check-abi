@@ -65,27 +65,36 @@ def build_install(revision):
         rm_rf(build_dir)
         rm_rf(revision)
 
+        introspection_arg = []
+        if subprocess.call(['git', 'merge-base',
+                            '--is-ancestor',
+                            '94b253000f081423a3c813d340ed486fc170768d',
+                            revision]) == 0:
+            introspection_arg = ['-Dintrospection=true']
+
         subprocess.check_call(['meson', 'setup', build_dir,
                                '--prefix=/usr', '--libdir=lib',
                                '-Ddesktop_docs=false',
                                '-Ddebug_tools=false',
                                '-Dudev=disabled',
-                               '-Dbuild_gtk4=false'])
-        subprocess.check_call(['ninja', '-v', '-C', build_dir])
-        subprocess.check_call(['ninja', '-v', '-C', build_dir, 'install'],
+                               ] + introspection_arg)
+        subprocess.check_call(['meson', 'compile', '-C', build_dir, '-v'])
+        subprocess.check_call(['meson', 'install', '-C', build_dir],
                               env={'DESTDIR': dest_dir})
 
     return dest_dir
 
 
-def compare(old_tree, new_tree):
+def compare(old_tree, new_tree, sublib, libversion):
     print(format_title(f'# Comparing the two ABIs'), end='\n\n', flush=True)
 
     old_headers = os.path.join(old_tree, 'usr', 'include')
-    old_lib = os.path.join(old_tree, 'usr', 'lib', 'libgnome-desktop-3.so')
+    old_lib = os.path.join(old_tree, 'usr', 'lib',
+                           f'libgnome-{sublib}-{libversion}.so')
 
     new_headers = os.path.join(new_tree, 'usr', 'include')
-    new_lib = os.path.join(new_tree, 'usr', 'lib', 'libgnome-desktop-3.so')
+    new_lib = os.path.join(new_tree, 'usr', 'lib',
+                           f'libgnome-{sublib}-{libversion}.so')
 
     subprocess.check_call([
         'abidiff', '--headers-dir1', old_headers, '--headers-dir2', new_headers,
@@ -95,23 +104,49 @@ def compare(old_tree, new_tree):
 if __name__ == '__main__':
     parser = argparse.ArgumentParser()
 
-    parser.add_argument('old', help='the previous revision, considered the reference')
+    parser.add_argument('--old-desktop', help='the previous revision of desktop library, considered the reference',
+                        required=True)
+    parser.add_argument('--old-desktop-legacy', help='the previous revision of desktop library, considered the reference',
+                        required=True)
+    parser.add_argument('--old-bg', help='the previous revision of the background library, considered the reference',
+                        required=True)
+    parser.add_argument('--old-qr', help='the previous revision of the QR library, considered the reference',
+                        required=True)
+    parser.add_argument('--old-qr-gtk', help='the previous revision of the QR-GTK library, considered the reference',
+                        required=True)
     parser.add_argument('new', help='the new revision, to compare to the reference')
 
     args = parser.parse_args()
 
-    if args.old == args.new:
+    if (args.old_desktop == args.new and
+        args.old_desktop_legacy == args.new and
+        args.old_bg == args.new and
+        args.old_qr == args.new):
         print("Let's not waste time comparing something to itself")
         sys.exit(0)
 
-    old_tree = build_install(args.old)
+    old_desktop_legacy_tree = build_install(args.old_desktop_legacy)
+    old_desktop_tree = build_install(args.old_desktop)
+    old_bg_tree = build_install(args.old_bg)
+    old_qr_tree = build_install(args.old_qr)
+    old_qr_gtk_tree = build_install(args.old_qr_gtk)
     new_tree = build_install(args.new)
 
     try:
-        compare(old_tree, new_tree)
+        compare(old_desktop_legacy_tree, new_tree, 'desktop', 3)
+        print(f'Hurray! Desktop3 {args.old_desktop_legacy} and {args.new} are ABI-compatible!')
+
+        compare(old_desktop_tree, new_tree, 'desktop', 4)
+        print(f'Hurray! Desktop4 {args.old_desktop} and {args.new} are ABI-compatible!')
+
+        compare(old_bg_tree, new_tree, 'bg', 4)
+        print(f'Hurray! BG {args.old_bg} and {args.new} are ABI-compatible!')
+
+        compare(old_qr_tree, new_tree, 'qr', 4)
+        print(f'Hurray! QR {args.old_qr} and {args.new} are ABI-compatible!')
+
+        compare(old_qr_gtk_tree, new_tree, 'qr-gtk', 4)
+        print(f'Hurray! QR-GTK {args.old_qr_gtk} and {args.new} are ABI-compatible!')
 
     except Exception:
         sys.exit(1)
-
-    print(f'Hurray! {args.old} and {args.new} are ABI-compatible!')
-

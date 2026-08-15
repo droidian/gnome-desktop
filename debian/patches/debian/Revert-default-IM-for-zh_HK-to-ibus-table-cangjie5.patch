@@ -1,0 +1,36 @@
+From: Simon McVittie <smcv@debian.org>
+Date: Mon, 9 Jun 2025 18:36:56 +0100
+Subject: Revert default IM for zh_HK to ibus-table-cangjie5
+
+In Debian 12, and in testing as of 2025-06-09, the default input method
+for zh_HK users was "ibus"/"table:cangjie5" (the ibus-table-cangjie5
+package). Upstream release 44.3 changed this to "ibus"/"cangjie" (the
+ibus-cangjie package). These are both implementations of the Cangjie
+input method, typically used in Hong Kong and Macau to enter Traditional
+Chinese characters (unless I've been misled by Wikipedia).
+
+To avoid possible regressions during the Debian 13 freeze, return to the
+Debian 12 behaviour while we discuss which one would be a better default
+with the l10n-chinese mailing list.
+
+This reverts commit e89ad22f10961955c5495be96de2d0ff122ffe62.
+
+Bug-Debian: https://bugs.debian.org/1107525
+Forwarded: not-needed
+---
+ libgnome-desktop/default-input-sources.h | 2 +-
+ 1 file changed, 1 insertion(+), 1 deletion(-)
+
+diff --git a/libgnome-desktop/default-input-sources.h b/libgnome-desktop/default-input-sources.h
+index ef7655c..00f6e62 100644
+--- a/libgnome-desktop/default-input-sources.h
++++ b/libgnome-desktop/default-input-sources.h
+@@ -56,7 +56,7 @@ static DefaultInputSource default_input_sources[] =
+   { "tr_TR",    "xkb",          "tr" },
+   { "ur_IN",    "ibus",         "m17n:ur:phonetic" },
+   { "zh_CN",    "ibus",         "libpinyin" },
+-  { "zh_HK",    "ibus",         "cangjie" },
++  { "zh_HK",    "ibus",         "table:cangjie5" },
+   { "zh_TW",    "ibus",         "chewing" },
+   { NULL,       NULL,           NULL }
+ };

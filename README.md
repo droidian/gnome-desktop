@@ -15,6 +15,12 @@ You may download updates to the package from [download.gnome.org](https://downlo
 To discuss gnome-desktop, you may use the Platform group of [GNOME's
 Discourse instance](https://discourse.gnome.org/c/platform/5).
 
+
+API Reference
+============
+
+You can find the API reference for gnome-desktop3 (GTK 3) [here](https://gnome.pages.gitlab.gnome.org/gnome-desktop/html/gnome-desktop3/index.html)
+
 Installation
 ============
 
@@ -33,10 +39,6 @@ How to report bugs
 ==================
 
 Bugs should be reported to the [Issues section of gnome-desktop repository](https://gitlab.gnome.org/GNOME/gnome-desktop/-/issues).
-Due to very high numbers of misdirected gnome-shell bugs, the issue tracker has
-unfortunately been restricted to GNOME developers only. If you have found a bug in
-this library, feel free to contact any GNOME developer and ask for your report to be
-forwarded here.
 
 Thumbnailing sandboxing
 =======================

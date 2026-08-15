@@ -1,0 +1,7 @@
+libgnome-qr-4.so.0 libgnome-qr-4-0 #MINVER#
+* Build-Depends-Package: libgnome-qr-4-dev
+ gnome_qr_ecc_level_get_type@Base 51~alpha
+ gnome_qr_generate_qr_code_async@Base 51~alpha
+ gnome_qr_generate_qr_code_finish@Base 51~alpha
+ gnome_qr_generate_qr_code_sync@Base 51~alpha
+ gnome_qr_pixel_format_get_type@Base 51~alpha
